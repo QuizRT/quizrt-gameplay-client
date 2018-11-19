@@ -1,26 +1,21 @@
-# base image
-FROM node:9.6.1
+# Use an official Angular Node runtime as a parent image
+FROM node: 8.11.4
 
-# # install chrome for protractor tests
-# RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-# RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-# RUN apt-get update && apt-get install -yq google-chrome-stable
+# Set the working directory to /app
+WORKDIR /C:/Users/Administrator/Desktop/Docker
 
-# set working directory
-RUN mkdir /usr/src/gameplayapp
-WORKDIR /usr/src/gameplayapp
+# Copy the current directory contents into the container at /app
+COPY .C:/Users/Administrator/Desktop/Docker
 
-# add `/usr/src/gameplayapp/node_modules/.bin` to $PATH
-ENV PATH /usr/src/gameplayapp/node_modules/.bin:$PATH
-
-# install and cache gameplayapp dependencies
-COPY package.json /usr/src/gameplayapp/package.json
-RUN npm install
-RUN npm install -g @angular/cli@1.7.1
+# Install any needed packages specified in requirements.txt
+RUN RUN npm install
 RUN npm install @aspnet/signalr
 
-# add gameplayapp
-COPY . /usr/src/gameplayapp
+# Make port 80 available to the world outside this container
+EXPOSE 80
 
-# start gameplayapp
-CMD ng serve --host 0.0.0.0
+# Define environment variable
+# ENV NAME World
+
+# Run app.py when the container launches
+# CMD ["python", "app.py"]
