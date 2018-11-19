@@ -2,13 +2,14 @@
 FROM node: 8.11.4
 
 # Set the working directory to /app
-WORKDIR /C:/Users/Administrator/Desktop/Docker
+RUN mkdir /app
+WORKDIR /app
 
 # Copy the current directory contents into the container at /app
-COPY .C:/Users/Administrator/Desktop/Docker
+COPY ./app
 
 # Install any needed packages specified in requirements.txt
-RUN RUN npm install
+RUN npm install
 RUN npm install @aspnet/signalr
 
 # Make port 80 available to the world outside this container
