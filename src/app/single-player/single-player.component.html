@@ -1,0 +1,32 @@
+<button class="play" mat-raised-button *ngIf="!start" (click)="showQuestions()">
+  Let's Play</button>
+<div *ngIf="counter>=1 && !gameOver && start">
+     <mat-card class="quiz">
+       <h2 class="question"> {{currentQuestion?.questionGiven}} </h2><br>
+       <mat-radio-group class="options">
+           <mat-radio-button
+           *ngFor="let option of currentQuestion?.questionOptions"
+           [value]="option.optionsId" (click)="scoreCalculator(option)">
+           {{option.optionGiven}}<br>
+          </mat-radio-button>
+          <br>
+       </mat-radio-group>
+     </mat-card>
+
+     <mat-card class="score">
+        <h3> Your Score is {{score}} </h3>
+     </mat-card>
+</div>
+
+<div *ngIf="gameOver" class="gameover">
+  <mat-card class="final">
+    <mat-card-title id="finalScore">Your Final Score is {{score}} </mat-card-title>
+       <button mat-raised-button class="goBack" color="primary" [routerLink]="['/play']">Go Back</button>
+       <br><br>
+       <img mat-card-lg-image src="/src/assets/img/q8.jpg">
+    </mat-card>
+</div>
+
+<div id="clock" *ngIf="!gameOver">
+  {{counter}}
+</div>

@@ -1,0 +1,52 @@
+.chat{
+  float:right;
+}
+
+mat-list-item{
+margin-bottom: 5rem;
+margin-left:5rem;
+}
+
+.play{
+background-image: url('/src/assets/img/bg.jpg');
+background-position: fixed;
+background-size: 100%;
+min-height: -webkit-fill-available;
+}
+
+button{
+  margin-top:3rem;
+  margin-left: 18rem;
+  /* width:5rem; */
+  height:3rem;
+}
+
+button:hover{
+  background:rgb(238, 122, 87);
+  color:white;
+}
+
+.numberOfPlayers{
+  margin-top:1rem;
+}
+
+@media(max-width: 600px){
+  .play{
+    background-image: url('/src/assets/img/3.jpg');
+    background-position: fixed;
+    background-size: 100%;
+    min-height: -webkit-fill-available;
+    }
+
+  button{
+   margin-top:2rem;
+   margin-left: 8rem;
+  /* width:5rem; */
+   height:3rem;
+  }
+
+  button:hover{
+    background:rgb(238, 122, 87);
+    color:white;
+  }
+}

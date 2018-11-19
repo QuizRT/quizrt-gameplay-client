@@ -1,0 +1,137 @@
+#clock{
+  width:10rem;
+  background-color: black;
+  font-family: cursive;
+  font-size: 2rem;
+  color:white;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  margin-left: 40%;
+  margin-right: 40%;
+ }
+
+.quiz{
+  width:80%;
+  height: 30rem;
+  background-color: aqua;
+  background-image: url('/src/assets/img/ques.jpg');
+  background-size: cover;
+  margin-left:10rem;
+  border-bottom:5rem;
+ }
+
+.score{
+ width:80%;
+ height: 10rem;
+ background-color: rgb(166, 255, 0);
+ background-size: cover;
+ margin-left:10rem;
+ border-bottom:5rem;
+ color: black;
+ }
+
+
+.final{
+ width:30%;
+ height:30%;
+ margin-top:13rem;
+ margin-left:15rem;
+ }
+
+#finalScore{
+   color: blue
+}
+.goBack{
+ margin-left: 10%;
+ color: white;
+
+ }
+
+.options{
+ display: inline-flex;
+ flex-direction: column;
+ color:white;
+ }
+
+ button{
+  margin-top:3rem;
+  margin-left: 18rem;
+  /* width:5rem; */
+  height:3rem;
+}
+
+button:hover{
+  background:rgb(238, 122, 87);
+  color:white;
+}
+
+.question{
+  color: white;
+}
+
+
+ @media(max-width:600px){
+  .quiz{
+    width:80%;
+    height: 20rem;
+    /* background-color: aqua; */
+    background-image: url('/src/assets/img/ques.jpg');
+    background-size: cover;
+    margin-left:2rem;
+    border-bottom:1rem;
+    font-size: 15px;
+   }
+   .score{
+    width:80%;
+    height: 5rem;
+    background-color: rgb(166, 255, 0);
+    background-size: cover;
+    margin-left:2rem;
+    border-bottom:1rem;
+    color:black;
+
+    }
+
+    .question{
+      font-size:20px;
+      color: white;
+    }
+
+    #clock{
+      width:25rem;
+      background-color: black;
+      font-family: cursive;
+      font-size: 2rem;
+      color:white;
+      text-align: center;
+      position: fixed;
+      bottom: 0;
+      margin-left: 0%;
+      margin-right: 12rem;
+    }
+
+    .play{
+      position: relative;
+      margin-top: 50%;
+      margin-left: 40%
+    }
+
+    .final{
+      position: relative;
+      margin-top: 10%;
+      margin-left: 10%;
+      width: 80%;
+      height: 90%;
+    }
+
+  .goBack{
+    margin-left: 33%
+  }
+
+  img{
+    margin-left: 25%
+  }
+
+ }
+

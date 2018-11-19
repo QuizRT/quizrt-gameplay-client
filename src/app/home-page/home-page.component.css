@@ -1,0 +1,45 @@
+.homepage{
+  /* background-image: url('/src/assets/img/full.jpg'); */
+   background-position: fixed;
+   background-size:100%;
+  min-height: -webkit-fill-available;
+}
+
+button{
+  margin-top:10rem;
+  margin-left: 20rem;
+  /* width:5rem; */
+  height:3rem;
+}
+
+button:hover{
+  background:rgb(238, 122, 87);
+  color:white;
+}
+
+@media(max-width: 600px) {
+  .homepage{
+    /* background-image: url('/src/assets/img/3.jpg'); */
+     background-position: fixed;
+     background-size:100%;
+    min-height: -webkit-fill-available;
+  }
+
+  button{
+    margin-top:1rem;
+    margin-left: 5.5rem;
+  }
+
+  .logo{
+    background-image: url('/src/assets/img/logo_1.png');
+    width: 188px;
+    height: 235px;
+    margin-top:2rem;
+    margin-left: 4.5rem;
+  }
+
+  .login{
+    margin-left: 7.5rem;
+  }
+
+}

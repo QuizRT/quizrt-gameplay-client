@@ -1,0 +1,19 @@
+.links{
+  width:80%;
+  height: 40rem;
+  background-color: aqua;
+  background-size: cover;
+  margin-left:10rem;
+  border-bottom:5rem;
+}
+#divMessages1{
+  background-color: blueviolet;
+}
+.input-zone1{
+  align-content: center;
+}
+
+.input-zone-input
+{
+  width:82%;
+}
