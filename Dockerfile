@@ -1,22 +1,21 @@
 # Use an official Angular Node runtime as a parent image
-FROM node: 8.11.4
+FROM node
 
 # Set the working directory to /app
 RUN mkdir /app
 WORKDIR /app
 
-# Copy the current directory contents into the container at /app
-COPY ./app
-
 # Install any needed packages specified in requirements.txt
+COPY package.json /app/package.json
 RUN npm install
+RUN npm install -g @angular/cli
 RUN npm install @aspnet/signalr
 
-# Make port 80 available to the world outside this container
-EXPOSE 80
+# Copy the current directory contents into the container at /app
+COPY . /app
 
 # Define environment variable
 # ENV NAME World
 
 # Run app.py when the container launches
-# CMD ["python", "app.py"]
+CMD ng serve --host 0.0.0.0
