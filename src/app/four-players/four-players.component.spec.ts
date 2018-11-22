@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { FourPlayersComponent } from './four-players.component';
 
 describe('FourPlayersComponent', () => {

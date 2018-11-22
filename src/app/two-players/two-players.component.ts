@@ -33,7 +33,6 @@ export class TwoPlayersComponent implements OnInit {
 
   ngOnInit() {
 
-
       this.connection = new signalR.HubConnectionBuilder()
       .withUrl('https://localhost:5001/gameplayhub')
       .build();
@@ -97,20 +96,15 @@ export class TwoPlayersComponent implements OnInit {
 
     // }
     // )
-    this.connection.on("ClockStarted",(tick: number)=>
-    {
+    this.connection.on("ClockStarted",(tick: number)=> {
       this.counter=tick;
     });
-    this.connection.on("SendQuestions",(message:any)=>
-    {
+
+    this.connection.on("SendQuestions",(message:any)=> {
       this.start=true;
       this.currentQuestion = message;
       this.connection.send("StartClock");
-    }
-    );
-
-
-
+    });
 
   }
   sleep(){
@@ -151,17 +145,13 @@ export class TwoPlayersComponent implements OnInit {
 //  }
 
 
-
-
 // resetTimer(){
-
 //   this.counter=10;
 //   this.connection.send("StartClock",this.counter,this.questionCounter);
 // }
 
 scoreCalculator(optionsobject:any){
-  if(optionsobject.isCorrect==true)
-  {
+  if(optionsobject.isCorrect==true){
     // console.log("correct answer");
     this.score+=this.counter*2;
   }
@@ -171,10 +161,7 @@ scoreCalculator(optionsobject:any){
 
   // this.connection.send("sendScore", this.username, this.score);
 
-
-}
-
-
-
+  } 
+  
 }
 
