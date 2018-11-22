@@ -28,125 +28,136 @@ export class TwoPlayersComponent implements OnInit {
   forignUserScore: number=0;
   op: any;
   isDisabled:boolean=false;
-  group_id:string="hard_code";
+  topic: string = "politics";
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
 
 
       this.connection = new signalR.HubConnectionBuilder()
-      .withUrl('http://172.23.238.164:8082/chathub')
+      .withUrl('https://localhost:5001/gameplayhub')
       .build();
 
       this.connection.start()
         .then(() => console.log('connection established'))
         .catch((err) => console.log("Error::: ", err));
 
-      this.connection.on('users', (received_user: any) => {
+      // this.connection.on('users', (received_user: any) => {
 
-          if(this.username != received_user) {
-          this.client_found++;
-          alert('Player 2 wants to play');
-          this.forignuser=received_user;
-          // this.connection.send("AddToGroup",received_user,this.group_id);
-        }
-      })
-    this.connection.on('receive', (username:string, score:number) => {
+      //     if(this.username != received_user) {
+      //     this.client_found++;
+      //     alert('Player 2 wants to play');
+      //     this.forignuser=received_user;
+      //     // this.connection.send("AddToGroup",received_user,this.group_id);
+      //   }
+      // })
+    // this.connection.on('receive', (username:string, score:number) => {
 
-      this.forignUserScore = score;
-     this.forignuser = username;
-      });
+    //   this.forignUserScore = score;
+    //  this.forignuser = username;
+    //   });
 
-    this.connection.on('game',(gameOver:boolean)=>{
-    this.gameOver=gameOver;
+    // this.connection.on('game',(gameOver:boolean)=>{
+    // this.gameOver=gameOver;
+    // });
+
+  // this.connection.on("usersDisconnect",(username:string)=> {
+
+  //   alert(username+" decides to quit.Finishing game...");
+  //   this.gameOver=true;
+
+  // });
+
+  // this.connection.on("Send",(username:string, group_id:string)=> {
+  //   console.log(username +" is in "+ group_id);
+  // })
+
+  // this.connection.on('counter',(counter1:number, question:number)=> {
+  //     // console.log(this.username+" is triggereing "+counter1);
+  //     this.counter=counter1;
+  //     if (this.counter <= 0) {
+  //       this.isDisabled=false;
+  //       if(this.users_found===true){
+
+  //         this.nextQuestion();
+  //       if(this.questionCounter>7)
+  //       {
+  //         this.gameOver=true;
+  //         this.connection.send("gameOver",this.gameOver);
+  //       }
+  //     }
+  //     }
+  //   });
+
+    // this.connection.on('questionsToMulti',(question:any)=>{
+
+    //   this.start=true;
+    //   // console.log(question);
+    //       this.currentQuestion=question;
+
+    // }
+    // )
+    this.connection.on("ClockStarted",(tick: number)=>
+    {
+      this.counter=tick;
     });
-
-  this.connection.on("usersDisconnect",(username:string)=> {
-
-    alert(username+" decides to quit.Finishing game...");
-    this.gameOver=true;
-
-  });
-
-  this.connection.on("Send",(username:string, group_id:string)=> {
-    console.log(username +" is in "+ group_id);
-  })
-
-  this.connection.on('counter',(counter1:number, question:number)=> {
-      // console.log(this.username+" is triggereing "+counter1);
-      this.counter=counter1;
-      if (this.counter <= 0) {
-        this.isDisabled=false;
-        if(this.users_found===true){
-
-          this.nextQuestion();
-        if(this.questionCounter>7)
-        {
-          this.gameOver=true;
-          this.connection.send("gameOver",this.gameOver);
-        }
-      }
-      }
-    });
-
-    this.connection.on('questionsToMulti',(question:any)=>{
-
+    this.connection.on("SendQuestions",(message:any)=>
+    {
       this.start=true;
-      // console.log(question);
-          this.currentQuestion=question;
-
+      this.currentQuestion = message;
+      this.connection.send("StartClock");
     }
-    )
+    );
 
 
 
 
   }
   sleep(){
-    if(this.client_found==2 ) {
+    // if(this.client_found==2 ) {
 
-      alert('2 players joined');
-      this.users_found=true;
-    }
-    this.connection.send("OnConnectedAsync",this.username);
-    this.connection.send("AddToGroup", this.username, this.group_id);
-
-  }
-
-  endGame(){
-    this.connection.send("OnDisconnectedAsync",this.username);
-    // this.gameOver=true;
-  }
-  showQuestions()
-  {
-
-    this.start=true;
-    // var cq=JSON.stringify(this.currentQuestion);
-    this.connection.send("SendQuestionsToMulti",this.group_id);
-    this.gameClock();
-
+    //   alert('2 players joined');
+    //   this.users_found=true;
+    // }
+    this.connection.send("OnConnectedAsync",this.username, this.topic, 2);
+    // this.connection.send("AddToGroup", this.username, this.group_id);
 
   }
 
-  gameClock() {
-  this.connection.send("StartClock",this.counter,this.questionCounter);
-}
+  // endGame(){
+  //   this.connection.send("OnDisconnectedAsync",this.username);
+  //   // this.gameOver=true;
+  // }
+  // showQuestions()
+  // {
 
-nextQuestion(){
-
-    this.questionCounter++;
-    this.connection.send("SendQuestionsToMulti",this.group_id);
-    this.resetTimer();
- }
+  //   this.start=true;
+  //   // var cq=JSON.stringify(this.currentQuestion);
+  //   this.connection.send("SendQuestionsToMulti",this.group_id);
+  //   this.gameClock();
 
 
+  // }
+
+//   gameClock() {
+//   this.connection.send("StartClock",this.counter,this.questionCounter);
+// }
+
+// nextQuestion(){
+
+//     this.questionCounter++;
+//     this.connection.send("SendQuestionsToMulti",this.group_id);
+//     this.resetTimer();
+//  }
 
 
-resetTimer(){
 
-  this.counter=10;
-  this.connection.send("StartClock",this.counter,this.questionCounter);
-}
+
+// resetTimer(){
+
+//   this.counter=10;
+//   this.connection.send("StartClock",this.counter,this.questionCounter);
+// }
 
 scoreCalculator(optionsobject:any){
   if(optionsobject.isCorrect==true)
@@ -158,7 +169,7 @@ scoreCalculator(optionsobject:any){
     this.score+=0;
   }
 
-  this.connection.send("sendScore", this.username, this.score);
+  // this.connection.send("sendScore", this.username, this.score);
 
 
 }
