@@ -9,6 +9,16 @@ body{
   background-size:cover;
 }
 
+@media(max-width: 768px){
+  body{
+    background-image: url('/src/assets/img/bg.jpg');
+    background-color: black;
+    background-position: fixed;
+    background-size:  100%;
+  }
+}
+
+
  @media(max-width: 600px){
   body{
     background-image: url('/src/assets/img/3.jpg');
@@ -16,4 +26,4 @@ body{
     background-position: fixed;
     background-size:cover;
   }
- }
+}

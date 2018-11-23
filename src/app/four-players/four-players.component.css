@@ -16,6 +16,7 @@
   height: 30rem;
   background-color: aqua;
   background-image: url('/src/assets/img/ques.jpg');
+  opacity: 0;
   background-size: cover;
   margin-left:10rem;
   border-bottom:5rem;

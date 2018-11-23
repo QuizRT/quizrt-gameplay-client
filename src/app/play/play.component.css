@@ -32,7 +32,7 @@ button:hover{
 
 @media(max-width: 600px){
   .play{
-    background-image: url('/src/assets/img/3.jpg');
+    background-image: url('/src/assets/img/single.jpg');
     background-position: fixed;
     background-size: 100%;
     min-height: -webkit-fill-available;

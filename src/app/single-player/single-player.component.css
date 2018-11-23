@@ -16,19 +16,23 @@
   height: 30rem;
   background-color: aqua;
   background-image: url('/src/assets/img/ques.jpg');
+  opacity: 0;
   background-size: cover;
   margin-left:10rem;
   border-bottom:5rem;
  }
 
 .score{
- width:80%;
- height: 10rem;
- background-color: rgb(166, 255, 0);
+ width:50%;
+ height: 5rem;
+ /* background-color: rgb(166, 255, 0); */
+ background-color: transparent;
  background-size: cover;
- margin-left:10rem;
- border-bottom:5rem;
- color: black;
+ margin-left:5%;
+ /* border-bottom:5rem; */
+ color: white;
+ font-size: 40px;
+ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
  }
 
 
@@ -70,6 +74,9 @@ button:hover{
   color: white;
 }
 
+img{
+  opacity: 0;
+}
 
  @media(max-width:600px){
   .quiz{
@@ -85,12 +92,11 @@ button:hover{
    .score{
     width:80%;
     height: 5rem;
-    background-color: rgb(166, 255, 0);
+    background-color:transparent;
     background-size: cover;
     margin-left:2rem;
-    border-bottom:1rem;
     color:black;
-
+    font-size: 20px;
     }
 
     .question{
