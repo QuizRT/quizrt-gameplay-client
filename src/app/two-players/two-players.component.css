@@ -1,7 +1,7 @@
 #clock{
   width:10rem;
   background-color: black;
-  font-family: cursive;
+  font-family: 'Roboto', sans-serif;
   font-size: 2rem;
   color:white;
   text-align: center;
@@ -21,6 +21,7 @@
   margin-left:10rem;
   border-bottom:5rem;
   color: white;
+  font-family: 'Roboto', sans-serif;
  }
 
 /* .abc
@@ -42,6 +43,7 @@ mat-grid-list{
   width: 80%;
   margin-left: 10rem;
 font-size: 20px;
+font-family: 'Roboto', sans-serif;
 }
 
 .end{
@@ -62,6 +64,7 @@ font-size: 20px;
     border-bottom:1rem;
     font-size: 15px;
     color: white;
+    font-family: 'Roboto', sans-serif;
    }
 
     mat-grid-list{
@@ -73,10 +76,10 @@ font-size: 20px;
 
     .ques{
       font-size:20px;
+      font-family: 'Roboto', sans-serif;
     }
 
     #clock{
-
       width:25rem;
       background-color: black;
       font-family: cursive;

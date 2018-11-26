@@ -5,8 +5,8 @@
 <button mat-raised-button *ngIf="users_found && !start"  color="primary" (click)="showQuestions()">Let's Play</button>
 <div class="abc" *ngIf="counter>=1 && !gameOver">
 
-  <mat-card class="mc">
-    <h2 style="color:white">{{currentQuestion.questionGiven}}</h2><br>
+  <mat-card class="questions">
+    <h2>{{currentQuestion.questionGiven}}</h2><br>
     <mat-radio-group class="radio-group">
         <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.questionOptions" [value]="o.optionsId" style="color:white" (click)="scoreCalculator(o)">
           {{o.optionGiven}}<br>

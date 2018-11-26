@@ -1,7 +1,7 @@
 #clock{
   width:10rem;
   background-color: black;
-  font-family: cursive;
+  font-family: 'Roboto', sans-serif;
   font-size: 2rem;
   color:white;
   text-align: center;
@@ -11,7 +11,7 @@
   margin-right: 40%;
 }
 
-.mc{
+.questions{
   width:80%;
   height: 30rem;
   background-color: aqua;
@@ -20,12 +20,9 @@
   background-size: cover;
   margin-left:10rem;
   border-bottom:5rem;
+  color: white;
+  font-family: 'Roboto', sans-serif;
  }
-
-.abc{
-text-align:center;
-justify-content:center;
-}
 
 .radio-group{
   display: inline-flex;
@@ -42,15 +39,17 @@ font-size: 20px;
 }
 
 @media(max-width:600px){
-  .mc{
+  .questions{
     width:80%;
     height: 20rem;
     /* background-color: aqua; */
-    background-image: url('/src/assets/img/ques.jpg');
+    background-image: url('/src/assets/img/single.jpg');
     background-size: cover;
     margin-left:2rem;
     border-bottom:1rem;
     font-size: 15px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
    }
    mat-grid-list{
     width: 80%;
@@ -67,7 +66,7 @@ font-size: 20px;
 
       width:25rem;
       background-color: black;
-      font-family: cursive;
+      font-family: 'Roboto', sans-serif;
       font-size: 2rem;
       color:white;
       text-align: center;
