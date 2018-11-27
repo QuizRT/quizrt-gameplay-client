@@ -24,8 +24,8 @@ export class TwoPlayersComponent implements OnInit {
   connection:any;
   client_found: number=1;
   currentUser: any;
-  forignuser: any;
-  forignUserScore: number=0;
+  otherUser: any;
+  otherUserScore: number=0;
   op: any;
   isDisabled:boolean=false;
   topic: string = "topic";
@@ -46,42 +46,29 @@ export class TwoPlayersComponent implements OnInit {
 
 
     this.connection.on("ClockStarted",(tick: boolean)=> {
-      console.log("came to clock ");
-      if(tick == true)
-      {
-        while(this.counter>=0 && this.questionCounter<7)
-        {
-          delay(1000);
-          this.counter--;
-          if(this.counter<0)
-          {
-            this.counter = 10;
-            this.questionCounter++;
-            // this.connection.send("SendQuestions",this.groupname);
-
-          }
-        }
-        if(this.questionCounter===7)
-        {
-          this.gameOver = true;
-        }
-
-      }
+        this.gameClock();
     });
 
     this.connection.on("QuestionsReceived",(message:any)=> {
       this.start=true;
       this.currentQuestion = message;
-      // this.connection.send("StartClock",this.groupname);
     });
 
-    this.connection.on("SendToGroup", (start:boolean)=>
+    this.connection.on("GetTicks",(counter:number)=> {
+      this.counter=counter;
+    });
+
+    this.connection.on("GetScore",(username:string, score:number)=> {
+      this.otherUser=username;
+      this.otherUserScore=score;
+    })
+
+    this.connection.on("SendToGroup", (start:number)=>
     {
-      console.log("connected to group");
-      if(start == true)
+      if(start == 2)
       {
-        console.log(" came to group ");
-        this.connection.send("SendQuestions",this.groupname);
+        console.log(this.username + " becomes admin");
+        this.connection.send("StartClock", this.groupname);
       }
     });
 
@@ -95,7 +82,7 @@ export class TwoPlayersComponent implements OnInit {
       }
       else
       {
-        this.connection.send("AddToGroup", this.username, this.groupname);
+        this.connection.send("AddToGroup", this.username, this.groupname, 2);
       }
     });
 
@@ -107,6 +94,24 @@ export class TwoPlayersComponent implements OnInit {
     this.connection.send("OnConnectedAsync",this.username, this.topic, 2);
 }
 
+  gameClock(){
+      this.connection.send("SendQuestions",this.groupname);
+      const intervalMain = setInterval(() => {
+        this.connection.send("SendTicks",this.groupname,this.counter--);
+      if (this.counter < 0) {
+        this.connection.send("SendQuestions", this.groupname);
+        this.counter=10;
+        this.questionCounter++;
+        if(this.questionCounter>=7)
+        {
+          this.gameOver=true;
+          clearInterval(intervalMain);
+        }
+      }
+    }, 1000);
+
+  }
+
   scoreCalculator(optionsobject:any){
   if(optionsobject.isCorrect==true){
     this.score+=this.counter*2;
@@ -114,6 +119,7 @@ export class TwoPlayersComponent implements OnInit {
   else{
     this.score+=0;
   }
+  this.connection.send("SendScore",this.username, this.score);
 }
 
 }

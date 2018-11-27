@@ -5,7 +5,7 @@ margin-left:5rem;
 
 .play{
 background-image: url('/src/assets/img/bg.jpg');
-background-position: fixed;
+/* background-position: fixed; */
 background-size: 100%;
 background-repeat: no-repeat;
 min-height: -webkit-fill-available;
