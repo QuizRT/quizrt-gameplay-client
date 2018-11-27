@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {PlayersComponent} from '../players/players.component';
@@ -10,6 +10,7 @@ export interface DialogData {
   country:string;
   password:string;
 }
+
 
 @Component({
   selector: 'app-home-page',

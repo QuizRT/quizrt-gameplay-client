@@ -1,19 +1,46 @@
+
+@media( min-width: 769px){
 .homepage{
-  background-image: url('/src/assets/img/bg.jpg');
-  background-position: fixed;
-  background-size:cover;
-  min-height: -webkit-fill-available;
-  width: 100%;
+  background-color: #F0F3BD;
+  display: flex;
+  height:100vh;
+  /* justify-content: space-between; */
+}
+
+.logo{
+  flex:2;
+  background-color: #F0F3BD;
+  background-image: url('/src/assets/img/logo3.png');
+  background-size: 400px 410px;
+  background-position: 45%;
+  /* width: 241px;
+  height: 241px; */
+  background-repeat: no-repeat;
   /* margin: auto; */
 }
 
+.buttons{
+  flex:1;
+  background-color: #05668D;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
 button{
-  margin-top:10rem;
-  margin-left: 20%; 
-  height:3rem;
+  margin-top:20%;
+  margin-left: 20%;
+  /* margin: auto; */
+  margin-left: 20vh;
+  /* height:3rem; */
   font-size: 25px;
-  text-align: center;
   display: block;
+  border-radius: 12px; 
+  background-color:  #F0F3BD;
+  width: 55%;
+  color: #00A896;
+  /* text-align: center; */
+  text-decoration: none;
 }
 
 .homepage button:hover{
@@ -21,73 +48,46 @@ button{
   color:white;
 }
 
-
-@media(max-width: 1024px){
-  .homepage{
-    background-image: url('/src/assets/img/bg.jpg');
-    background-position: fixed;
-    background-size:cover;
-    min-height: -webkit-fill-available;
-    width: 100%;
-    /* margin: auto; */
-  }
-}
-
-@media(max-width: 600px) {
-  .homepage{
-    background-image: url('/src/assets/img/p6.jpg');
-    background-position: fixed;
-    background-size:contain;
-    min-height: -webkit-fill-available;
-    margin: auto;
-  }
-
-  button{
-   margin-top:15%;
-   margin-left: 25%;   
-   background-color: black;
-   color: white;
-   text-align: center;
-  }
-
-  .logo{
-    background-image: url('/src/assets/img/logo2.png');
-    width: 241px;
-    height: 241px;
-    background-repeat: no-repeat;
-    margin: auto;
-  }
-
-  .login{
-    margin-left: 35%;
-  }
 }
 
 
 @media(max-width: 768px) {
   .homepage{
-    background-image: url('/src/assets/img/p6.jpg');
-    background-position: fixed;
-    background-size:contain;
-    min-height: -webkit-fill-available;
+    background-color: #F0F3BD;
+  }
+
+  .buttons{
+    background-color: #F0F3BD;
+    height: fit-content;
+    margin-top: 10%;
   }
 
   button{
-    background-color: black;
-    color: white;
-    display: inline;
-    padding: 15px 32px;
-    font-size: 15px;
-    text-align: center;
-    text-decoration: none;
+   margin-bottom:10%;
+   margin-left: 25%;   
+   background-color: #00A896;
+   color: white;
+   text-align: center;
+   text-decoration: none;
+   font-size: 16px;
+   display: block;
+   border-radius: 12px;
+   width: 55%;
+  }
+
+  .login{
+    margin-top: 25%;
   }
 
   .logo{
-    background-image: url('/src/assets/img/logo2.png');
+    background-color: #F0F3BD;
+    background-image: url('/src/assets/img/logo3.png');
     width: 241px;
     height: 241px;
     background-repeat: no-repeat;
     margin: auto;
   }
+
 }
+
 
