@@ -3,34 +3,17 @@
 
 
 body{
-  /* background-image: url('/src/assets/img/bg.jpg');
-  background-position: fixed;
-  background-size:cover;
-  background-repeat: no-repeat;
-  height: fit-content; */
-  /* background-color: #05668D;
-   */
    background-color: #F0F3BD;
 }
 
 @media(max-width: 768px){
   body{
     background-color: #F0F3BD;
-    /* background-image: url('/src/assets/img/p6.jpg');
-    background-position: fixed;
-    background-size:100%;
-    height: fit-content;
-    background-repeat: no-repeat; */
-    /* background-color: #DE541E; */
   }
 }
 
 @media(max-width: 600px){
   body{
     background-color: #F0F3BD;
-    /* background-image: url('/src/assets/img/p6.jpg');
-    background-size:cover;
-    height: 100%;
-    min-height: -webkit-fill-available; */
   }
 }

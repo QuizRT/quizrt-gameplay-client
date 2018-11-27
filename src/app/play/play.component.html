@@ -1,10 +1,12 @@
 <div class="play">
+  <div class="logo"></div>
+  <div class="players">
 <button mat-raised-button (click)="openDialog()">Play</button>
-<!-- <button mat-raised-button class="chat" [routerLink]="['chat']">Chat w. Friends</button> -->
   <mat-list class="numberOfPlayers" *ngIf="play">
       <button mat-raised-button [routerLink]="['single-player']">1 Player</button><br>
       <button mat-raised-button [routerLink]="['two-players']">2 Players</button><br>
       <button mat-raised-button [routerLink]="['three-players']">3 Players</button><br>
       <button mat-raised-button [routerLink]="['four-players']">4 Players</button><br>
   </mat-list>
+</div>
 </div>
