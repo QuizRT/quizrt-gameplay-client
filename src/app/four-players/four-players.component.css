@@ -7,8 +7,9 @@
   text-align: center;
   position: fixed;
   bottom: 0;
-  margin-left: 40%;
-  margin-right: 40%;
+  margin: auto;
+  /* margin-left: 40%;
+  margin-right: 40%; */
 }
 
 .questions{
