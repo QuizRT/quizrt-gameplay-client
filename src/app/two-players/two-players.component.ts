@@ -14,7 +14,7 @@ export class TwoPlayersComponent implements OnInit {
   counter:number = 10;
   questions = [ ];
   score:number=0;
-  questionCounter = 1;
+  questionCounter = 0;
   // shouldDisplayQuestions = false;
   currentQuestion : any;
   users_found:boolean=false;
@@ -28,7 +28,10 @@ export class TwoPlayersComponent implements OnInit {
   forignUserScore: number=0;
   op: any;
   isDisabled:boolean=false;
-  topic: string = "politics";
+  topic: string = "topic";
+  TopicSelected: boolean = false;
+  Waiting: boolean = false;
+  groupname:string;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -41,127 +44,77 @@ export class TwoPlayersComponent implements OnInit {
         .then(() => console.log('connection established'))
         .catch((err) => console.log("Error::: ", err));
 
-      // this.connection.on('users', (received_user: any) => {
 
-      //     if(this.username != received_user) {
-      //     this.client_found++;
-      //     alert('Player 2 wants to play');
-      //     this.forignuser=received_user;
-      //     // this.connection.send("AddToGroup",received_user,this.group_id);
-      //   }
-      // })
-    // this.connection.on('receive', (username:string, score:number) => {
+    this.connection.on("ClockStarted",(tick: boolean)=> {
+      console.log("came to clock ");
+      if(tick == true)
+      {
+        while(this.counter>=0 && this.questionCounter<7)
+        {
+          delay(1000);
+          this.counter--;
+          if(this.counter<0)
+          {
+            this.counter = 10;
+            this.questionCounter++;
+            // this.connection.send("SendQuestions",this.groupname);
 
-    //   this.forignUserScore = score;
-    //  this.forignuser = username;
-    //   });
+          }
+        }
+        if(this.questionCounter===7)
+        {
+          this.gameOver = true;
+        }
 
-    // this.connection.on('game',(gameOver:boolean)=>{
-    // this.gameOver=gameOver;
-    // });
-
-  // this.connection.on("usersDisconnect",(username:string)=> {
-
-  //   alert(username+" decides to quit.Finishing game...");
-  //   this.gameOver=true;
-
-  // });
-
-  // this.connection.on("Send",(username:string, group_id:string)=> {
-  //   console.log(username +" is in "+ group_id);
-  // })
-
-  // this.connection.on('counter',(counter1:number, question:number)=> {
-  //     // console.log(this.username+" is triggereing "+counter1);
-  //     this.counter=counter1;
-  //     if (this.counter <= 0) {
-  //       this.isDisabled=false;
-  //       if(this.users_found===true){
-
-  //         this.nextQuestion();
-  //       if(this.questionCounter>7)
-  //       {
-  //         this.gameOver=true;
-  //         this.connection.send("gameOver",this.gameOver);
-  //       }
-  //     }
-  //     }
-  //   });
-
-    // this.connection.on('questionsToMulti',(question:any)=>{
-
-    //   this.start=true;
-    //   // console.log(question);
-    //       this.currentQuestion=question;
-
-    // }
-    // )
-    this.connection.on("ClockStarted",(tick: number)=> {
-      this.counter=tick;
+      }
     });
 
-    this.connection.on("SendQuestions",(message:any)=> {
+    this.connection.on("QuestionsReceived",(message:any)=> {
       this.start=true;
       this.currentQuestion = message;
-      this.connection.send("StartClock");
+      // this.connection.send("StartClock",this.groupname);
+    });
+
+    this.connection.on("SendToGroup", (start:boolean)=>
+    {
+      console.log("connected to group");
+      if(start == true)
+      {
+        console.log(" came to group ");
+        this.connection.send("SendQuestions",this.groupname);
+      }
+    });
+
+    this.connection.on("usersConnected", (groupName:string)=>
+    {
+      this.groupname = groupName;
+      if(this.groupname==null)
+      {
+        this.start =false;
+        this.gameOver = true;
+      }
+      else
+      {
+        this.connection.send("AddToGroup", this.username, this.groupname);
+      }
     });
 
   }
   sleep(){
-    // if(this.client_found==2 ) {
-
-    //   alert('2 players joined');
-    //   this.users_found=true;
-    // }
+    this.TopicSelected = true;
+    this.Waiting = true;
+    // console.log(this.username + " chose " + this.topic);
     this.connection.send("OnConnectedAsync",this.username, this.topic, 2);
-    // this.connection.send("AddToGroup", this.username, this.group_id);
+}
 
-  }
-
-  // endGame(){
-  //   this.connection.send("OnDisconnectedAsync",this.username);
-  //   // this.gameOver=true;
-  // }
-  // showQuestions()
-  // {
-
-  //   this.start=true;
-  //   // var cq=JSON.stringify(this.currentQuestion);
-  //   this.connection.send("SendQuestionsToMulti",this.group_id);
-  //   this.gameClock();
-
-
-  // }
-
-//   gameClock() {
-//   this.connection.send("StartClock",this.counter,this.questionCounter);
-// }
-
-// nextQuestion(){
-
-//     this.questionCounter++;
-//     this.connection.send("SendQuestionsToMulti",this.group_id);
-//     this.resetTimer();
-//  }
-
-
-// resetTimer(){
-//   this.counter=10;
-//   this.connection.send("StartClock",this.counter,this.questionCounter);
-// }
-
-scoreCalculator(optionsobject:any){
+  scoreCalculator(optionsobject:any){
   if(optionsobject.isCorrect==true){
-    // console.log("correct answer");
     this.score+=this.counter*2;
   }
   else{
     this.score+=0;
   }
+}
 
-  // this.connection.send("sendScore", this.username, this.score);
-
-  } 
-  
 }
 

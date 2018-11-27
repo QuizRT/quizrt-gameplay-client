@@ -26,6 +26,7 @@ import { SocialLoginModule,  AuthServiceConfig, GoogleLoginProvider} from "angul
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material';
 import  {Howl}  from 'howler';
+import { FormsModule } from '@angular/forms';
 // import { PlayerService } from './player.service';
 // import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 // import {ErrorStateMatcher} from '@angular/material/core';
@@ -77,7 +78,7 @@ return config;
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    // Howl
+    FormsModule
   ],
 
 

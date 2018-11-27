@@ -1,8 +1,10 @@
-<button mat-raised-button *ngIf="!start" (click)="sleep()" style="background-color:white; color:black;" >
-   I want to play
-</button>
+<input *ngIf= "!TopicSelected" type="text"  name="EnterTopic" [(ngModel)]="topic">
+<button mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button>
 
-<!-- <button mat-raised-button  *ngIf="users_found" color="primary" (click)="showQuestions()">Let's Play</button> -->
+<div *ngIf="!start && Waiting" style="color:white; font-size:1rem;">
+   Waiting for opponent to join...
+</div>
+
 
 
 <div *ngIf="start && !gameOver">
@@ -18,7 +20,7 @@
          <br>
          <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button>
       </mat-card> -->
-      <mat-card>{{currentQuestion}}</mat-card>
+      <mat-card>{{this.currentQuestion}}</mat-card>
 
       <mat-grid-list cols="2" rowHeight="5:1">
         <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
@@ -27,19 +29,25 @@
 
 </div>
 
-<div id="clock" *ngIf="!gameOver">
+<mat-card *ngIf="!start && gameOver">
+  Players not found...Go Back
+  <button mat-raised-button  color="primary" [routerLink]="['/play']">
+    Go Back</button>
+</mat-card>
+
+<div id="clock" *ngIf="start && !gameOver">
   {{counter}}
 </div>
 
-<mat-card *ngIf="gameOver && score>forignUserScore">You Win<br>
+<mat-card *ngIf="start && gameOver && score>forignUserScore">You Win<br>
     <button mat-raised-button color="primary" [routerLink]="['/play']">
         Go Back</button>
 </mat-card>
-<mat-card *ngIf="gameOver && score<forignUserScore">Opponent Wins<br>
+<mat-card *ngIf="start && gameOver && score<forignUserScore">Opponent Wins<br>
     <button mat-raised-button  color="primary" [routerLink]="['/play']">
         Go Back</button>
 </mat-card>
-<mat-card *ngIf="gameOver && score===forignUserScore">It's a Draw<br>
+<mat-card *ngIf="start && gameOver && score===forignUserScore">It's a Draw<br>
     <button mat-raised-button  color="primary" [routerLink]="['/play']">
         Go Back</button>
 </mat-card>

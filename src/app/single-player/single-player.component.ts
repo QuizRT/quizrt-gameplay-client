@@ -37,54 +37,14 @@ export class SinglePlayerComponent implements OnInit {
       console.log("questions are coming");
     });
 
-    // this.connection.on("ReceiveMessage1",(i:number)=> {
-    //   console.log(i + " lets see if it changes");
-    // });
-
-
-    // this.connection.send("SendMessageToCaller","Hi");
-
-
   }
 
 
   showQuestions()
   {
     this.start=true;
-    // this.http.get('http://172.23.238.164:8080/api/quizrt/question').subscribe((res:any) => {
-    // this.questions = res;
-    // this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
     this.connection.send("OnConnectedAsync",this.username, this.topic, 1);
-    // this.gameClock();
-
-    // });
   }
-
-//   gameClock() {
-//     const intervalMain = setInterval(() => {
-//     this.counter--;
-//     if (this.counter <= 0) {
-//       this.nextQuestion();}
-//       if(this.questionCounter>6)
-//       {
-//         clearInterval(intervalMain);
-//         this.gameOver=true;
-//       }
-
-//   }, 1000);
-// }
-
-// nextQuestion(){
-//   this.questionCounter++;
-//   this.connection.send("SendQuestions");
-//   // this.currentQuestion = this.questions[Math.floor((Math.random() * 800) + 1)];
-//   this.resetTimer();
-// }
-
-// resetTimer(){
-// this.counter=10;
-
-// }
 
 scoreCalculator(optionsobject: any){
     if(optionsobject.isCorrect==true)
@@ -94,7 +54,5 @@ scoreCalculator(optionsobject: any){
   else{
     this.score+=0;
   }
-  console.log("came here")
-//  this.nextQuestion();
  }
 }
