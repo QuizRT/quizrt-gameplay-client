@@ -4,16 +4,6 @@
 
 body{
    background-color: #F0F3BD;
+   font-family: 'Roboto', sans-serif;
 }
 
-@media(max-width: 768px){
-  body{
-    background-color: #F0F3BD;
-  }
-}
-
-@media(max-width: 600px){
-  body{
-    background-color: #F0F3BD;
-  }
-}

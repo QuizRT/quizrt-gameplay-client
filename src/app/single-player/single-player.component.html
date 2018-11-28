@@ -1,7 +1,7 @@
 <button class="play" mat-raised-button *ngIf="!start" (click)="showQuestions()">
-  Let's Play</button>
-<div>
-     <mat-card class="quiz">
+  Let's Play </button>
+<!-- <div> -->
+  <mat-card class="quiz">
        <h2 class="question"> {{currentQuestion?.questionGiven}} </h2><br>
        <mat-radio-group class="options">
            <mat-radio-button
@@ -16,7 +16,7 @@
      <mat-card class="score">
         Your Score is {{score}} 
      </mat-card>
-</div>
+<!-- </div> -->
 
 <div *ngIf="gameOver" class="gameover">
   <mat-card class="final">
@@ -27,6 +27,3 @@
     </mat-card>
 </div>
 
-<!-- <div id="clock" *ngIf="!gameOver">
-  {{counter}}
-</div> -->

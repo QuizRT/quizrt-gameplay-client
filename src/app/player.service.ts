@@ -6,7 +6,7 @@ import { HttpClient} from '@angular/common/http';
 })
 export class PlayerService {
 
-  LIVE_URI="http://localhost:3000/players";
+  LIVE_URI="http://localhost:5000/players";
   constructor(private httpClient: HttpClient) { }
 
 //   PostData(player:any)
