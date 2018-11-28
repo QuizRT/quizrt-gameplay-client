@@ -12,17 +12,14 @@ import { delay } from 'q';
 export class TwoPlayersComponent implements OnInit {
 
   counter:number = 10;
-  questions = [ ];
   score:number=0;
   questionCounter = 0;
   // shouldDisplayQuestions = false;
   currentQuestion : any;
-  users_found:boolean=false;
   start:boolean=false;
   gameOver = false;
   username = new Date().getTime();
   connection:any;
-  client_found: number=1;
   currentUser: any;
   otherUser: any;
   otherUserScore: number=0;
@@ -52,7 +49,6 @@ export class TwoPlayersComponent implements OnInit {
     this.connection.on("QuestionsReceived",(message:any)=> {
       this.start=true;
       this.currentQuestion = message;
-      console.log(this.currentQuestion.question+"----------");
     });
 
     this.connection.on("GetTicks",(counter:number)=> {
@@ -103,11 +99,11 @@ export class TwoPlayersComponent implements OnInit {
       const intervalMain = setInterval(() => {
         this.counter--;
         this.connection.send("SendTicks",this.groupname,this.counter);
-      if (this.counter < 0) {
+      if (this.counter <= 0) {
         this.connection.send("SendQuestions", this.groupname);
         this.counter=10;
         this.questionCounter++;
-        if(this.questionCounter>=7)
+        if(this.questionCounter>7)
         {
           this.gameOver=true;
           this.connection.send("GameOver", this.groupname);
