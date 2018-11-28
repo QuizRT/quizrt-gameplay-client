@@ -33,8 +33,9 @@ export class SinglePlayerComponent implements OnInit {
         .catch((err) => console.log("Error::: ", err));
 
     this.connection.on("SendQuestions",(response: any)=>
-    {this.currentQuestion = response;
-      console.log("questions are coming");
+    {
+      this.currentQuestion = response;
+
     });
 
   }

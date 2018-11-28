@@ -8,19 +8,19 @@
 
 
 <div *ngIf="start && !gameOver">
-      <!-- <mat-card class="questions">
-         <h2>{{currentQuestion.questionGiven}}</h2>
-         <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button>
+      <mat-card class="questions">
+         <h2 style="color:black; size:40px">{{currentQuestion.question}}</h2>
+         <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
          <br>
          <mat-radio-group class="radio-group" [disabled]="isDisabled">
-            <mat-radio-button class="radio-button"  *ngFor="let o of currentQuestion?.questionOptions" [value]="o.optionsId" style="color:white" (click)="scoreCalculator(o); isDisabled=true">
-                {{o.optionGiven}}<br>
+            <mat-radio-button class="radio-button"  *ngFor="let o of currentQuestion?.otherOptionsList" style="color:white" (click)="scoreCalculator(o); isDisabled=true">
+                {{o}}<br>
              </mat-radio-button>
          </mat-radio-group>
          <br>
-         <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button>
-      </mat-card> -->
-      <mat-card>{{this.currentQuestion}}</mat-card>
+         <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
+      </mat-card>
+      <!-- <mat-card>{{this.currentQuestion}}</mat-card> -->
 
       <mat-grid-list cols="2" rowHeight="5:1">
         <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>

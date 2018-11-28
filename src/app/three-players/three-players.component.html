@@ -1,10 +1,10 @@
-<button mat-raised-button (click)="sleep()" style="background-color:black; color:white;" >
-  I want to play
-</button>
+<input *ngIf= "!TopicSelected" type="text"  name="EnterTopic" [(ngModel)]="topic">
+<button mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button>
 
-<!-- <button mat-raised-button *ngIf="users_found"  color="primary" (click)="showQuestions()">Let's Play</button> -->
-
-<div *ngIf="counter>=1 && !gameOver">
+<div *ngIf="!start && Waiting" style="color:white; font-size:1rem;">
+   Waiting for opponent to join...
+</div>
+<div *ngIf="start && !gameOver">
   <mat-card class="questions">
       <h2 >{{currentQuestion.questionGiven}}</h2><br>
       <mat-radio-group class="radio-group">
@@ -25,11 +25,19 @@
 
 </div>
 
-<mat-card *ngIf="gameOver">Your Score: {{score}}<br>Highest Score: {{max1}}</mat-card>
+<mat-card *ngIf="!start && gameOver">
+  Players not found...Go Back
+  <button mat-raised-button  color="primary" [routerLink]="['/play']">
+    Go Back</button>
+</mat-card>
+
+<div id="clock" *ngIf="start && !gameOver">
+  {{counter}}
+  </div>
+
+<mat-card *ngIf="start && gameOver">Your Score: {{score}}<br>Highest Score: {{max1}}</mat-card>
 <!-- <mat-card *ngIf="gameOver && score<forignUserScore">Opponent Wins</mat-card>
 <mat-card *ngIf="gameOver && score===forignUserScore">It's a Draw</mat-card> -->
 
-<div id="clock" *ngIf="!gameOver">
-{{counter}}
-</div>
+
 

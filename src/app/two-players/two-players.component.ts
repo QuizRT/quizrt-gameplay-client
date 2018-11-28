@@ -52,6 +52,7 @@ export class TwoPlayersComponent implements OnInit {
     this.connection.on("QuestionsReceived",(message:any)=> {
       this.start=true;
       this.currentQuestion = message;
+      console.log(this.currentQuestion.question+"----------");
     });
 
     this.connection.on("GetTicks",(counter:number)=> {
@@ -67,7 +68,6 @@ export class TwoPlayersComponent implements OnInit {
     {
       if(start == 2)
       {
-        console.log(this.username + " becomes admin");
         this.connection.send("StartClock", this.groupname);
       }
     });
@@ -86,18 +86,23 @@ export class TwoPlayersComponent implements OnInit {
       }
     });
 
+    this.connection.on("GameOver", ()=>
+    {
+      this.gameOver = true;
+    })
+
   }
   sleep(){
     this.TopicSelected = true;
     this.Waiting = true;
-    // console.log(this.username + " chose " + this.topic);
     this.connection.send("OnConnectedAsync",this.username, this.topic, 2);
 }
 
   gameClock(){
       this.connection.send("SendQuestions",this.groupname);
       const intervalMain = setInterval(() => {
-        this.connection.send("SendTicks",this.groupname,this.counter--);
+        this.counter--;
+        this.connection.send("SendTicks",this.groupname,this.counter);
       if (this.counter < 0) {
         this.connection.send("SendQuestions", this.groupname);
         this.counter=10;
@@ -105,9 +110,11 @@ export class TwoPlayersComponent implements OnInit {
         if(this.questionCounter>=7)
         {
           this.gameOver=true;
+          this.connection.send("GameOver", this.groupname);
           clearInterval(intervalMain);
         }
       }
+
     }, 1000);
 
   }
@@ -119,7 +126,7 @@ export class TwoPlayersComponent implements OnInit {
   else{
     this.score+=0;
   }
-  this.connection.send("SendScore",this.username, this.score);
+  this.connection.send("SendScore",this.groupname,this.username, this.score);
 }
 
 }
