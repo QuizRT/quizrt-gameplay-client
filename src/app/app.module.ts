@@ -25,6 +25,7 @@ import { ChatComponent } from './chat/chat.component';
 import { SocialLoginModule,  AuthServiceConfig, GoogleLoginProvider} from "angular-6-social-login";
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material';
+// import {FlexLayoutModule} from '@angular/flex-layout';
 import  {Howl}  from 'howler';
 import { FormsModule } from '@angular/forms';
 // import { PlayerService } from './player.service';
