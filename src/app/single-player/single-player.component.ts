@@ -25,7 +25,7 @@ export class SinglePlayerComponent implements OnInit {
   ngOnInit() {
 
     this.connection = new signalR.HubConnectionBuilder()
-    .withUrl('https://localhost:5001/gameplayhub')
+    .withUrl('http://localhost:5000/gameplayhub')
     .build();
 
     this.connection.start()

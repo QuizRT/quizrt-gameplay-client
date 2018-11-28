@@ -1,7 +1,16 @@
+.play{
+  /* margin-bottom:30%; */
+  margin-left: 30%;
+  height:3rem;
+  background-color: #02C39A;
+  color: white;
+  font-style: bold;
+  font-size: 25px;
+  width: 30%;
+}
 #clock{
   width:10rem;
   background-color: black;
-  font-family: 'Roboto', sans-serif;
   font-size: 2rem;
   color:white;
   text-align: center;
@@ -10,139 +19,83 @@
   margin-left: 40%;
   margin-right: 40%;
  }
-
-.quiz{
+ .quiz{
   width:80%;
-  height: 30rem;
-  background-color: aqua;
-  background-image: url('/src/assets/img/ques.jpg');
-  opacity: 0;
-  background-size: contain;
-  margin-left:10rem;
-  border-bottom:5rem;
-  font-family: 'Roboto', sans-serif;
+  /* opacity: 0; */
+  margin: auto;
+  font-size: 25px;
  }
-
-.score{
- width:50%;
- height: 5rem;
- /* background-color: rgb(166, 255, 0); */
- background-color: transparent;
- background-size: contain;
- margin-left:5%;
- /* border-bottom:5rem; */
- color: white;
- font-size: 40px;
- font-family: 'Roboto', sans-serif;
- }
-
-
-.final{
- width:30%;
- height:30%;
- margin-top:13rem;
- margin-left:15rem;
- }
-
-#finalScore{
-   color: blue
+ .question{
+  color:black;
 }
-.goBack{
- margin-left: 10%;
- color: white;
-
- }
-
 .options{
- display: inline-flex;
- flex-direction: column;
- color:white;
- }
-
- button{
-  margin-top:3rem;
-  margin-left: 18rem;
-  /* width:5rem; */
-  height:3rem;
-}
-
-button:hover{
-  background:rgb(238, 122, 87);
-  color:white;
-}
-
-.question{
-  color: white;
-  font-family: 'Roboto', sans-serif;
-}
-
-img{
-  opacity: 0;
-}
-
- @media(max-width:600px){
-  .quiz{
-    width:80%;
-    /* height: 20rem; */
-    height: 100%;
-    /* background-image: url('/src/assets/img/p6.jpg'); */
-    /* background-size: contain; */
-    /* margin-left:2rem;
-    border-bottom:1rem; */
-    font-size: 15px;
-    font-family: 'Roboto', sans-serif;
-   }
-   .score{
-    width:80%;
-    height: 5rem;
-    background-color:transparent;
-    background-size: contain;
-    margin-left:2rem;
-    color:black;
-    font-size: 20px;
-    font-family: 'Roboto', sans-serif;
-    }
-
-    .question{
-      font-size:20px;
-      font-family:  'Roboto', sans-serif;
-      color: white;
-    }
-
-    #clock{
-      width:25rem;
-      background-color: black;
-      font-family: cursive;
-      font-size: 2rem;
-      color:white;
-      text-align: center;
-      position: fixed;
-      bottom: 0;
-      margin-left: 0%;
-      margin-right: 12rem;
-    }
-
-    .play{
-      position: relative;
-      margin-top: 50%;
-      margin-left: 40%
-    }
-
-    .final{
-      position: relative;
-      margin-top: 10%;
-      margin-left: 10%;
-      width: 80%;
-      height: 90%;
-    }
-
-  .goBack{
-    margin-left: 33%
-  }
-
-  img{
-    margin-left: 25%
+  display: inline-flex;
+  flex-direction: column;
+  color:black;
   }
  
+button{
+  margin-top:3rem;
+  margin-left: 18rem;
+   /* width:5rem; */
+  height:3rem;
+ }
+ 
+ button:hover{
+   background:rgb(238, 122, 87);
+   color:white;
  }
 
+ .score{
+  width:80%;
+  margin: auto;
+  height: 5rem;
+  color: black;
+  font-size: 40px;
+  }
+
+  .final{
+    width:30%;
+    height:30%;
+    margin-top:13rem;
+    margin-left:15rem;
+    }
+   
+   #finalScore{
+      color: blue;
+      font-size: 40px;
+   }
+   .goBack{
+   margin-left: 10%;
+   background-color: #02C39A;
+   color: white;
+   font-style: bold;
+   font-size: 25px;
+   width: 30%;
+    }
+   
+   img{
+     opacity: 0;
+   }
+
+
+  @media(max-width:767px){
+    .play{
+      height:3rem;
+      margin-left: 40%;
+      font-size: 15px;
+      width: 30%;
+     }
+    .quiz{
+      font-size: 15px;
+    }
+    /* button{
+
+    } */
+   .score{
+     font-size: 20px;
+   }
+   .finalScore{
+     font-size: 30px;
+   }
+  }

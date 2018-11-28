@@ -35,7 +35,7 @@ button{
   /* height:3rem; */
   font-size: 25px;
   display: block;
-  border-radius: 12px; 
+  /* border-radius: 12px;  */
   background-color:  #F0F3BD;
   width: 55%;
   color: #00A896;
@@ -44,7 +44,7 @@ button{
 }
 
 .homepage button:hover{
-  background:rgb(238, 122, 87);
+  background:#02C39A;
   color:white;
 }
 
@@ -71,8 +71,8 @@ button{
    text-decoration: none;
    font-size: 16px;
    display: block;
-   border-radius: 12px;
-   width: 55%;
+   /* border-radius: 12px; */
+   width: 60%;
   }
 
   .login{

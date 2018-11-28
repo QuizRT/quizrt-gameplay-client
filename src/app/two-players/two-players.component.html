@@ -1,13 +1,15 @@
-<input *ngIf="!TopicSelected" type="text" name="EnterTopic" [(ngModel)]="topic">
-<button mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button>
+<input class="topic" *ngIf= "!TopicSelected" type="text"  name="EnterTopic" [(ngModel)]="topic">
+<br>
+<button class="play" mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button>
 
-<div *ngIf="!start && Waiting" style="color:white; font-size:1rem;">
-  Waiting for opponent to join...
+<div class="opponent" *ngIf="!start && Waiting" >
+   Waiting for opponent to join...
 </div>
 
 
 
 <div *ngIf="start && !gameOver">
+<<<<<<< HEAD
   <mat-card class="questions">
     <h2 style="color:black; size:40px">{{currentQuestion.question}}</h2>
     <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
@@ -26,18 +28,55 @@
     <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
     <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
   </mat-grid-list>
+=======
+      <mat-card class="questions">
+<<<<<<< HEAD
+         <h2>{{currentQuestion.questionGiven}}</h2>
+         <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
+         <br>
+         <mat-radio-group class="options" [disabled]="isDisabled">
+            <mat-radio-button class="radio-button"  *ngFor="let o of currentQuestion?.questionOptions" [value]="o.optionsId" style="color:white" (click)="scoreCalculator(o); isDisabled=true">
+                {{o.optionGiven}}<br>
+=======
+         <h2 style="color:black; size:40px">{{currentQuestion.question}}</h2>
+         <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
+         <br>
+         <mat-radio-group class="radio-group" [disabled]="isDisabled">
+            <mat-radio-button class="radio-button"  *ngFor="let o of currentQuestion?.otherOptionsList" [value]="o" style="color:#000000" (click)="scoreCalculator(o); isDisabled=true">
+                {{o.option}}<br>
+>>>>>>> 7a172c08bd5f89f8df24c0f5d55e0b8de37023c4
+             </mat-radio-button>
+             <mat-radio-button class="radio-button">
+              {{currentQuestion.correctOption}}<br>
+           </mat-radio-button>
+         </mat-radio-group>
+         <br>
+         <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
+      </mat-card>
+      <!-- <mat-card>{{this.currentQuestion}}</mat-card> -->
+
+      <mat-grid-list cols="2" rowHeight="5:1">
+        <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
+        <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
+      </mat-grid-list>
+>>>>>>> 66d282f862cf416f29d335e52073c38db86e5a3c
 
 </div>
 
-<mat-card *ngIf="!start && gameOver">
+<mat-card class="noOpponent" *ngIf="!start && gameOver">
   Players not found...Go Back
+<<<<<<< HEAD
   <button mat-raised-button color="primary" [routerLink]="['/play']">
+=======
+  <button class="back" mat-raised-button  color="primary" [routerLink]="['/play']">
+>>>>>>> 66d282f862cf416f29d335e52073c38db86e5a3c
     Go Back</button>
 </mat-card>
 
 <div id="clock" *ngIf="start && !gameOver">
   {{counter}}
 </div>
+<<<<<<< HEAD
 
 <mat-card *ngIf="start && gameOver && score>otherUserScore">You Win<br>
   <button mat-raised-button color="primary" [routerLink]="['/play']">
@@ -50,7 +89,22 @@
 <mat-card *ngIf="start && gameOver && score===otherUserScore">It's a Draw<br>
   <button mat-raised-button color="primary" [routerLink]="['/play']">
     Go Back</button>
+=======
+<div class="result">
+<mat-card *ngIf="start && gameOver && score>forignUserScore">You Win<br>
+    <button mat-raised-button [routerLink]="['/play']">
+        Go Back</button>
 </mat-card>
+<mat-card *ngIf="start && gameOver && score<forignUserScore">Opponent Wins<br>
+    <button mat-raised-button [routerLink]="['/play']">
+        Go Back</button>
+</mat-card>
+<mat-card *ngIf="start && gameOver && score===forignUserScore">It's a Draw<br>
+    <button mat-raised-button [routerLink]="['/play']">
+        Go Back</button>
+>>>>>>> 66d282f862cf416f29d335e52073c38db86e5a3c
+</mat-card>
+</div>
 <!-- <script> -->
 <!-- function disableButton(){ -->
 <!-- console.log("radio-button disabled"); -->
