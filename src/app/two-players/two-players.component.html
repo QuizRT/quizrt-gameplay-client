@@ -11,7 +11,6 @@
 <div *ngIf="start && !gameOver">
   <mat-card class="questions">
     {{currentQuestion.question}}
-    <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
     <br>
     <br>
     <mat-radio-group class="options">
@@ -23,7 +22,8 @@
     <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
   <!-- <mat-card>{{this.currentQuestion}}</mat-card> -->
 
-  <mat-grid-list cols="2" rowHeight="5:1" fxShow="true" fxHide.lt-md="true">
+  <!-- <mat-grid-list cols="2" rowHeight="5:1.5"> -->
+      <mat-grid-list cols="2" >
     <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
     <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
   </mat-grid-list>

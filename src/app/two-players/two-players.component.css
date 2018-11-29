@@ -23,7 +23,7 @@
 }
 #clock{
   width:30%;
-  height: 25px;
+  height: 3rem;
   margin: auto;
   background-color:#02C39A;
   /* background-color: #05668D; */
@@ -78,7 +78,7 @@ mat-grid-list{
   width:80%;
   /* opacity: 0; */
   margin: auto;
- font-size: 25px;
+ /* font-size: 25px; */
  background-color:#028090;
 }
 
@@ -145,7 +145,7 @@ mat-grid-list{
   margin: auto;
  font-size: 15px;
  text-align: center;
- 
+
 }
 #clock{
   font-size: 15px;

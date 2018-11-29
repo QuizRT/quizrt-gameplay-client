@@ -11,7 +11,7 @@
   margin-right: 40%;
 }
 
-.questions{
+/* .questions{
   width:80%;
   height: 30rem;
   background-color: aqua;
@@ -22,7 +22,7 @@
   border-bottom:5rem;
   color: white;
   font-family: 'Roboto', sans-serif;
- }
+ } */
 
 .radio-group{
   display: inline-flex;
