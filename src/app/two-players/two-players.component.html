@@ -46,6 +46,8 @@
 <div id="clock" *ngIf="start && !gameOver">
   {{counter}}
 </div>
+
+
 <div class="result">
 <mat-card *ngIf="start && gameOver && score>otherUserScore">You Win<br>
   <button mat-raised-button color="primary" [routerLink]="['/play']">

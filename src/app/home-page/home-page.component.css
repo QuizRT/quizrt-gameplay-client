@@ -33,19 +33,20 @@
 }
 
 button{
-  margin-top:20%;
-  margin-left: 20%;
-  /* margin: auto; */
-  margin-left: 20vh;
-  /* height:3rem; */
+  margin-top:30%;
+ /* margin-left: 20%; */
+
+  /* margin-left: 20vh; */
   font-size: 25px;
   display: block;
   /* border-radius: 12px;  */
   background-color:  #F0F3BD;
-  width: 55%;
+  width: 70%;
   color: #00A896;
   /* text-align: center; */
   text-decoration: none;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .homepage button:hover{
@@ -70,7 +71,7 @@ button{
 
   button{
    margin-bottom:10%;
-   margin-left: 25%;   
+   /* margin-left: 25%;    */
    background-color: #00A896;
    color: white;
    text-align: center;
@@ -78,7 +79,10 @@ button{
    font-size: 16px;
    display: block;
    /* border-radius: 12px; */
-   width: 60%;
+   /* width: 60%; */
+   margin-left: 15%;
+   margin-right: 15%;
+   width: 70%;
   }
 
   .login{
