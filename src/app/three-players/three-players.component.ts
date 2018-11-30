@@ -5,6 +5,10 @@ import { ControlContainer } from '@angular/forms';
 import { throwToolbarMixedModesError } from '@angular/material';
 import { delay } from 'q';
 
+class Options {
+  optionName: string;
+  isCorrect: boolean;
+}
 @Component({
   selector: 'app-three-players',
   templateUrl: './three-players.component.html',
@@ -24,12 +28,13 @@ export class ThreePlayersComponent implements OnInit {
   groupname:string;
   TopicSelected: boolean = false;
   questionCounter: number = 0;
+  options: Options[];
   constructor(private http: HttpClient ) { }
 
   ngOnInit() {
 
    this.connection = new signalR.HubConnectionBuilder()
-      .withUrl('https://localhost:5001/chathub')
+      .withUrl('https://localhost:5001/gameplayhub')
       .build();
 
     this.connection.start().
@@ -40,9 +45,16 @@ export class ThreePlayersComponent implements OnInit {
           this.gameClock();
       });
 
-      this.connection.on("QuestionsReceived",(message:any)=> {
-        this.start=true;
+      this.connection.on("QuestionsReceived", (message: any) => {
+        this.start = true;
         this.currentQuestion = message;
+        this.options = [
+          { "optionName": this.currentQuestion.correctOption, "isCorrect": true },
+          { "optionName": this.currentQuestion.otherOptionsList[0].option, "isCorrect": false },
+          { "optionName": this.currentQuestion.otherOptionsList[1].option, "isCorrect": false },
+          { "optionName": this.currentQuestion.otherOptionsList[2].option, "isCorrect": false }
+        ];
+
       });
 
       this.connection.on("GetTicks",(counter:number)=> {
@@ -56,7 +68,7 @@ export class ThreePlayersComponent implements OnInit {
 
       this.connection.on("SendToGroup", (start:number)=>
       {
-        if(start == 2)
+        if(start == 3)
         {
           console.log(this.username + " becomes admin");
           this.connection.send("StartClock", this.groupname);
@@ -73,9 +85,14 @@ export class ThreePlayersComponent implements OnInit {
         }
         else
         {
-          this.connection.send("AddToGroup", this.username, this.groupname, 2);
+          this.connection.send("AddToGroup", this.username, this.groupname, 3);
         }
       });
+
+      this.connection.on("GameOver", () => {
+        this.gameOver = true;
+      });
+
 
   }
   sleep(){
@@ -88,14 +105,16 @@ export class ThreePlayersComponent implements OnInit {
   gameClock(){
       this.connection.send("SendQuestions",this.groupname);
       const intervalMain = setInterval(() => {
-        this.connection.send("SendTicks",this.groupname,this.counter--);
-      if (this.counter < 0) {
+        this.counter--;
+        this.connection.send("SendTicks",this.groupname,this.counter);
+      if (this.counter <= 0) {
         this.connection.send("SendQuestions", this.groupname);
         this.counter=10;
         this.questionCounter++;
-        if(this.questionCounter>=7)
+        if(this.questionCounter>7)
         {
           this.gameOver=true;
+          this.connection.send("GameOver", this.groupname);
           clearInterval(intervalMain);
         }
       }

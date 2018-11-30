@@ -10,28 +10,31 @@
 
 <div *ngIf="start && !gameOver">
   <mat-card class="questions">
-    <h2>{{currentQuestion.question}}</h2>
-    <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
+    {{currentQuestion.question}}
     <br>
-    <mat-radio-group class="radio-group" [disabled]="isDisabled">
-      <mat-radio-button class="radio-button" *ngFor="let o of currentQuestion?.otherOptionsList" [value]="o" style="color:#000000"
-        (click)="scoreCalculator(o); isDisabled=true">
-        {{o.option}}<br>
-      </mat-radio-button>
-      <mat-radio-button class="radio-button">
-        {{currentQuestion.correctOption}}<br>
+    <br>
+    <mat-radio-group class="options">
+      <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o)">
+        {{o.optionName}}<br>
       </mat-radio-button>
     </mat-radio-group>
-    <br>
-    <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
   </mat-card>
+    <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
   <!-- <mat-card>{{this.currentQuestion}}</mat-card> -->
 
-  <mat-grid-list cols="2" rowHeight="5:1">
+  <!-- <mat-grid-list cols="2" rowHeight="5:1.5"> -->
+      <mat-grid-list cols="2" >
     <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
     <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
   </mat-grid-list>
-
+         <br>
+         <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
+      <!-- <mat-card>{{this.currentQuestion}}</mat-card> -->
+      <!-- <mat-grid-list cols="2" rowHeight="5:2" fxShow="false" fxHide.lt-md="false">
+        <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
+        <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
+      </mat-grid-list>
+             <br> -->
 </div>
 
 <mat-card class="noOpponent" *ngIf="!start && gameOver">
@@ -44,19 +47,20 @@
   {{counter}}
 </div>
 <div class="result">
-  <mat-card *ngIf="start && gameOver && score>forignUserScore">You Win<br>
-    <button mat-raised-button [routerLink]="['/play']">
-      Go Back</button>
-  </mat-card>
-  <mat-card *ngIf="start && gameOver && score<forignUserScore">Opponent Wins<br>
-    <button mat-raised-button [routerLink]="['/play']">
-      Go Back</button>
-  </mat-card>
-  <mat-card *ngIf="start && gameOver && score===forignUserScore">It's a Draw<br>
-    <button mat-raised-button [routerLink]="['/play']">
-      Go Back</button>
-  </mat-card>
+<mat-card *ngIf="start && gameOver && score>otherUserScore">You Win<br>
+  <button mat-raised-button color="primary" [routerLink]="['/play']">
+    Go Back</button>
+</mat-card>
+<mat-card *ngIf="start && gameOver && score<otherUserScore">Opponent Wins<br>
+  <button mat-raised-button color="primary" [routerLink]="['/play']">
+    Go Back</button>
+</mat-card>
+<mat-card *ngIf="start && gameOver && score===otherUserScore">It's a Draw<br>
+  <button mat-raised-button color="primary" [routerLink]="['/play']">
+    Go Back</button>
+</mat-card>
 </div>
+
 <!-- <script> -->
 <!-- function disableButton(){ -->
 <!-- console.log("radio-button disabled"); -->

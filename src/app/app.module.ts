@@ -17,7 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PlayComponent } from './play/play.component';
 import { SinglePlayerComponent } from './single-player/single-player.component';
-import { TwoPlayersComponent } from './two-players/two-players.component';
+import { TwoPlayersComponent} from './two-players/two-players.component';
 import { ThreePlayersComponent } from './three-players/three-players.component';
 import { FourPlayersComponent } from './four-players/four-players.component';
 import {MatCardModule} from '@angular/material/card';
@@ -25,6 +25,7 @@ import { ChatComponent } from './chat/chat.component';
 import { SocialLoginModule,  AuthServiceConfig, GoogleLoginProvider} from "angular-6-social-login";
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material';
+// import {FlexLayoutModule} from '@angular/flex-layout';
 import  {Howl}  from 'howler';
 import { FormsModule } from '@angular/forms';
 // import { PlayerService } from './player.service';
@@ -56,7 +57,7 @@ return config;
     TwoPlayersComponent,
     ThreePlayersComponent,
     FourPlayersComponent,
-    ChatComponent
+    ChatComponent,
     // PlayerService
   ],
   imports: [

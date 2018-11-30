@@ -6,21 +6,20 @@
 </div>
 <div *ngIf="start && !gameOver">
   <mat-card class="questions">
-    <h2>{{currentQuestion.questionGiven}}</h2><br>
-    <mat-radio-group class="radio-group">
-      <mat-radio-button class="radio-button" 
-          *ngFor="let o of currentQuestion?.questionOptions" [value]="o.optionsId"
-           (click)="scoreCalculator(o)">  {{o.optionGiven}}<br>
-      </mat-radio-button>
-    </mat-radio-group>
-    <br>
+      <h2 >{{currentQuestion.question}}</h2><br>
+      <mat-radio-group class="radio-group">
+         <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o)">
+           {{o.optionName}}<br>
+          </mat-radio-button>
+      </mat-radio-group>
+      <br>
   </mat-card>
 
 
   <mat-grid-list cols="3" rowHeight="5:1">
     <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
-    <mat-grid-tile>{{arr[0]}}:<br>{{ score1[0] }}</mat-grid-tile>
-    <mat-grid-tile>{{arr[1]}}:<br>{{ score1[1] }}</mat-grid-tile>
+    <!-- <mat-grid-tile>{{arr[0]}}:<br>{{ score1[0] }}</mat-grid-tile>
+    <mat-grid-tile>{{arr[1]}}:<br>{{ score1[1] }}</mat-grid-tile> -->
   </mat-grid-list>
 
 
