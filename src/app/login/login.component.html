@@ -8,7 +8,9 @@
     </mat-form-field>
     <br>
     <div>
-        <button mat-raised-button color="primary" type="submit" [routerLink]="['play']">Login</button>
-        <button mat-raised-button color="warn">Close</button>
+        <button mat-raised-button color="primary" type="submit" 
+             [routerLink]="['play']" (click)="closeDialog1()" >Login
+        </button>
+        <button mat-raised-button color="warn" (click)="closeDialog1()">Close</button>
     </div>
 </div>
