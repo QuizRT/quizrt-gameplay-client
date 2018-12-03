@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as signalR from '@aspnet/signalr';
+import { MatSnackBar } from '@angular/material';
 import { ControlContainer } from '@angular/forms';
 import { throwToolbarMixedModesError } from '@angular/material';
 import { delay } from 'q';
@@ -16,27 +17,27 @@ class Options {
 
 export class TwoPlayersComponent implements OnInit {
 
-  counter: number = 10;
-  score: number = 0;
+  counter = 10;
+  score = 0;
   questionCounter = 0;
   currentQuestion: any;
-  start: boolean = false;
+  start = false;
   gameOver = false;
-  username = new Date().getTime();
+  username = new Date().getTime().toString();
   connection: any;
   currentUser: any;
   otherUser: any;
-  otherUserScore: number = 0;
-  isDisabled: boolean = false;
-  topic: string = "topic";
-  TopicSelected: boolean = false;
-  Waiting: boolean = false;
+  otherUserScore = 0;
+  isDisabled = false;
+  topic = 'topic';
+  TopicSelected = false;
+  Waiting = false;
   groupname: string;
   options: Options[];
+  notify: any;
 
 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public snackBar: MatSnackBar) { }
 
   ngOnInit() {
 
@@ -46,90 +47,103 @@ export class TwoPlayersComponent implements OnInit {
 
     this.connection.start()
       .then(() => {
-        console.log("Connection Establiished..");
+        console.log("Connection Established...");
       })
-      .catch((err) => console.log("Error::: ", err));
-    this.connection.on("ClockStarted", (tick: boolean) => {
-      this.gameClock();
-    });
+      .catch((err) => console.log('Error::: ', err));
+    // this.connection.on('ClockStarted', (tick: boolean) => {
+    //   this.gameClock();
+    // });
 
-    this.connection.on("QuestionsReceived", (message: any) => {
+    this.connection.on('QuestionsReceived', (message: any) => {
+      console.log("received questions");
       this.start = true;
       this.currentQuestion = message;
       this.options = [
-        { "optionName": this.currentQuestion.correctOption, "isCorrect": true },
-        { "optionName": this.currentQuestion.otherOptionsList[0].option, "isCorrect": false },
-        { "optionName": this.currentQuestion.otherOptionsList[1].option, "isCorrect": false },
-        { "optionName": this.currentQuestion.otherOptionsList[2].option, "isCorrect": false }
+        { 'optionName': this.currentQuestion.correctOption, 'isCorrect': true },
+        { 'optionName': this.currentQuestion.otherOptionsList[0].option, 'isCorrect': false },
+        { 'optionName': this.currentQuestion.otherOptionsList[1].option, 'isCorrect': false },
+        { 'optionName': this.currentQuestion.otherOptionsList[2].option, 'isCorrect': false }
       ];
+      this.options = this.shuffle(this.options);
 
     });
 
-    this.connection.on("GetTicks", (counter: number) => {
-      this.counter = counter;
-    });
-
-    this.connection.on("GetScore", (username: string, score: number) => {
-      this.otherUser = username;
-      this.otherUserScore = score;
+    this.connection.on('ProvideGroupId',(groupname:string) =>
+    {
+      console.log(groupname);
+      this.groupname = groupname;
     })
 
-    this.connection.on("SendToGroup", (start: number) => {
-      if (start == 2) {
-        this.connection.send("StartClock", this.groupname);
-      }
+    this.connection.on('NoOpponentsFound',() =>
+    {
+      console.log("users not found..");
+    })
+
+    this.connection.on('StartClock',() => {
+      const intervalMain = setInterval(() => {
+        this.counter--;
+        if (this.counter <= 0) {
+          this.counter = 10;
+        }
+      }, 1000);
     });
 
-    this.connection.on("usersConnected", (groupName: string) => {
-      this.groupname = groupName;
-      if (this.groupname == null) {
-        this.start = false;
-        this.gameOver = true;
+    this.connection.on('GetScore', (username: string, score: number) => {
+      if(this.username != username)
+      {
+        this.otherUser = username;
+        this.otherUserScore = score;
       }
       else {
-        this.connection.send("AddToGroup", this.username, this.groupname, 2);
+        this.score = score;
       }
     });
 
-    this.connection.on("GameOver", () => {
+    this.connection.on('GameOver', () => {
       this.gameOver = true;
-    })
+    });
 
   }
   sleep() {
     this.TopicSelected = true;
     this.Waiting = true;
-    this.connection.send("OnConnectedAsync", this.username, this.topic, 2);
+    this.connection.send('Init', this.username, this.topic, 2);
+
   }
 
-  gameClock() {
-    this.connection.send("SendQuestions", this.groupname);
-    const intervalMain = setInterval(() => {
-      this.counter--;
-      this.connection.send("SendTicks", this.groupname, this.counter);
-      if (this.counter <= 0) {
-        this.connection.send("SendQuestions", this.groupname);
-        this.counter = 10;
-        this.questionCounter++;
-        if (this.questionCounter > 7) {
-          this.gameOver = true;
-          this.connection.send("GameOver", this.groupname);
-          clearInterval(intervalMain);
-        }
-      }
+  shuffle(options : any) {
+    var currentIndex = options.length, temporaryValue, randomIndex;
 
-    }, 1000);
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
 
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = options[currentIndex];
+      options[currentIndex] = options[randomIndex];
+      options[randomIndex] = temporaryValue;
+    }
+
+    return options;
   }
 
   scoreCalculator(optionsobject: any) {
-    if (optionsobject.isCorrect == true) {
-      this.score += this.counter * 2;
-    }
-    else {
-      this.score += 0;
-    }
-    this.connection.send("SendScore", this.groupname, this.username, this.score);
+    // if (optionsobject.isCorrect == true) {
+    //   this.score += this.counter * 2;
+    // } else {
+    //   this.score += 0;
+    // }
+    this.connection.send('CalculateScore', this.groupname, this.username, optionsobject, this.counter);
+  }
+
+  openSnackBar(message: string, action: number)
+  {
+    this.snackBar.open("Hi", "JustChecking", {
+      duration: 2000,
+    });
   }
 
 }

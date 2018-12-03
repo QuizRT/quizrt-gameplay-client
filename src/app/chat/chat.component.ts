@@ -7,14 +7,14 @@ import * as signalR from '@aspnet/signalr';
 })
 export class ChatComponent implements OnInit {
   constructor() { }
-  username:any = new Date().getTime();
-  connection1:any;
+  username: any = new Date().getTime();
+  connection1: any;
 
   ngOnInit() {
     const divMessages1: HTMLDivElement = document.querySelector('#divMessages1');
     const tbMessage1: HTMLInputElement = document.querySelector('#tbMessage1');
     const btnSend1: HTMLButtonElement = document.querySelector('#btnSend1');
-    let arr: any=[];
+    const arr: any = [];
 
 
 
@@ -24,8 +24,8 @@ export class ChatComponent implements OnInit {
     const connection = new signalR.HubConnectionBuilder()
       .withUrl('https://localhost:5001/chathub')
       .build();
-      connection.start().then(() => console.log('connection established')).catch((err) => console.log("Error::: ", err));
-      this.connection1=connection;
+      connection.start().then(() => console.log('connection established')).catch((err) => console.log('Error::: ', err));
+      this.connection1 = connection;
       // connection.on("users",(username1:string)=> {
       //   if(username1!=this.username)
       //   {
@@ -34,9 +34,9 @@ export class ChatComponent implements OnInit {
 
       //   }
       // });
-      connection.on('messageReceived',(username:string, message:string)=>{
-        let m1 = document.createElement('div');
-        console.log(username+ " messaged "+message);
+      connection.on('messageReceived', (username: string, message: string) => {
+        const m1 = document.createElement('div');
+        console.log(username + ' messaged ' + message);
         m1.innerHTML =
           `<div class='message__author'>${username}</div><div>${message}</div>`;
 
@@ -55,10 +55,10 @@ export class ChatComponent implements OnInit {
 
 
 
-  function send1(){
-    console.log(this.username +" : "+ tbMessage1.value);
-      connection.send("newMessage", this.username, tbMessage1.value)
-      .then(() => tbMessage1.value="");
+  function send1() {
+    console.log(this.username + ' : ' + tbMessage1.value);
+      connection.send('newMessage', this.username, tbMessage1.value)
+      .then(() => tbMessage1.value = '');
 
   }
 }

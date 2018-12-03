@@ -1,0 +1,9 @@
+ gameplaynglr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4202:4200"
+    volumes:
+      - ".:/QuizRT/usr/src/app"
+      - /QuizRT/usr/src/app/node_modules

@@ -13,87 +13,105 @@ class Options {
   styleUrls: ['./single-player.component.css']
 })
 export class SinglePlayerComponent implements OnInit {
-  counter:number = 10;
-  score:number=0;
+  counter = 10;
+  score = 0;
   questionCounter = 0;
-  currentQuestion : any;
-  start:boolean=false;
-  gameOver:boolean = false;
-  connection:any;
-  topic:string="topic";
-  TopicSelected:boolean = false;
-  username:number= new Date().getTime();
-  groupname:string;
-  options:Options[];
-  answered:boolean = false;
+  currentQuestion: any;
+  start = false;
+  gameOver = false;
+  connection: any;
+  topic = 'topic';
+  TopicSelected = false;
+  username: number = new Date().getTime();
+  groupname: string;
+  options: Options[];
+  answered = false;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
 
     this.connection = new signalR.HubConnectionBuilder()
-    .withUrl('http://localhost:5000/gameplayhub')
-    .build();
+      .withUrl('http://localhost:5000/gameplayhub')
+      .build();
 
     this.connection.start()
-        .then(() => console.log('connection established'))
-        .catch((err) => console.log("Error::: ", err));
+      .then(() => console.log('connection established'))
+      .catch((err) => console.log('Error::: ', err));
 
-        this.connection.on("QuestionsReceived", (message: any) => {
-          this.start = true;
-          this.currentQuestion = message;
-          this.options = [
-            { "optionName": this.currentQuestion.correctOption, "isCorrect": true },
-            { "optionName": this.currentQuestion.otherOptionsList[0].option, "isCorrect": false },
-            { "optionName": this.currentQuestion.otherOptionsList[1].option, "isCorrect": false },
-            { "optionName": this.currentQuestion.otherOptionsList[2].option, "isCorrect": false }
-          ];
-
-        });
-    this.connection.on("SendToGroup", (start: number) => {
-        this.start = true;
-        this.gameClock();
+    this.connection.on('QuestionsReceived', (message: any) => {
+      this.start = true;
+      this.currentQuestion = message;
+      this.options = [
+        { 'optionName': this.currentQuestion.correctOption, 'isCorrect': true },
+        { 'optionName': this.currentQuestion.otherOptionsList[0].option, 'isCorrect': false },
+        { 'optionName': this.currentQuestion.otherOptionsList[1].option, 'isCorrect': false },
+        { 'optionName': this.currentQuestion.otherOptionsList[2].option, 'isCorrect': false }
+      ];
+      this.options = this.shuffle(this.options);
+    });
+    this.connection.on('SendToGroup', (start: number) => {
+      this.start = true;
+      this.gameClock();
     });
 
 
-    this.connection.on("usersConnected",(groupId:string)=>
-    {
+    this.connection.on('usersConnected', (groupId: string) => {
       this.groupname = groupId;
-      this.connection.send("AddToGroup", this.username, this.groupname, 2);
+      this.connection.send('AddToGroup', this.username, this.groupname, 2);
     });
 
   }
 
   sleep() {
     this.TopicSelected = true;
-    this.connection.send("OnConnectedAsync", this.username, this.topic, 1);
+    this.connection.send('OnConnectedAsync', this.username, this.topic, 1);
   }
 
   gameClock() {
-    this.connection.send("SendQuestions", this.groupname);
+    this.connection.send('SendQuestions', this.groupname);
     const intervalMain = setInterval(() => {
       this.counter--;
       if (this.counter <= 0 || this.answered === true) {
-        this.connection.send("SendQuestions", this.groupname);
+        this.answered = false;
+        this.connection.send('SendQuestions', this.groupname);
         this.counter = 10;
         this.questionCounter++;
-        if (this.questionCounter > 7) {
+        if (this.questionCounter >= 7) {
           this.gameOver = true;
+          console.log("reached here");
           clearInterval(intervalMain);
         }
       }
-
     }, 1000);
 
   }
 
-scoreCalculator(optionsobject: any){
-    if(optionsobject.isCorrect==true)
-  {
-    this.score+=this.counter*2;
+  shuffle(options : any) {
+    var currentIndex = options.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = options[currentIndex];
+      options[currentIndex] = options[randomIndex];
+      options[randomIndex] = temporaryValue;
+    }
+
+    return options;
   }
-  else{
-    this.score+=0;
+
+
+  scoreCalculator(optionsobject: any) {
+    if (optionsobject.isCorrect == true) {
+      this.score += this.counter * 2;
+    } else {
+      this.score += 0;
+    }
   }
- }
 }

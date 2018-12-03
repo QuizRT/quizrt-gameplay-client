@@ -1,38 +1,34 @@
-<input class="topic" *ngIf= "!TopicSelected" type="text"  name="EnterTopic" [(ngModel)]="topic">
+<input class="topic" *ngIf="!TopicSelected" type="text" name="EnterTopic" [(ngModel)]="topic">
 <br>
 <button class="play" mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button>
 <!-- <div> -->
-  <div *ngIf="start && !gameOver">
-    <mat-card class="questions">
-      {{currentQuestion.question}}
-      <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
-      <br>
-      <br>
-      <mat-radio-group class="options">
-        <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o); answered = true">
-          {{o.optionName}}<br>
-        </mat-radio-button>
-      </mat-radio-group>
-    </mat-card>
+<div *ngIf="start && !gameOver">
+  <mat-card class="questions">
+    {{currentQuestion.question}}
+    <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
+    <br>
+    <br>
+    <mat-radio-group class="options">
+      <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o); answered = true">
+        {{o.optionName}}<br>
+      </mat-radio-button>
+    </mat-radio-group>
+  </mat-card>
 
-     <mat-card *ngIf="start && !gameOver"class="score">
-        Your Score is {{score}}
-     </mat-card>
-<!-- </div> -->
+  <mat-card *ngIf="start && !gameOver" class="score">
+    Your Score is {{score}}
+  </mat-card>
+  <!-- </div> -->
 
-<div *ngIf="gameOver" class="gameover">
-  <mat-card class="final">
-    <mat-card-title id="finalScore">Your Final Score is {{score}} </mat-card-title>
-       <button mat-raised-button class="goBack" color="primary" [routerLink]="['/play']">Go Back</button>
-       <br><br>
+  <div  class="gameover">
+    <mat-card class="final">
+      <mat-card-title id="finalScore">Your Final Score is {{gameOver}} </mat-card-title>
+      <button mat-raised-button class="goBack" color="primary" [routerLink]="['/play']">Go Back</button>
+      <br><br>
        <img mat-card-lg-image src="/src/assets/img/q8.jpg">
     </mat-card>
-</div>
+  </div>
 
-<div id="clock" *ngIf="start && !gameOver">
-  {{counter}}
-</div>
-
-
-
-
+  <div id="clock" *ngIf="start && !gameOver">
+    {{counter}}
+  </div>

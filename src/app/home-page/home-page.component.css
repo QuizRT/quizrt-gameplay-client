@@ -29,24 +29,41 @@
 
 button{
   margin-top:20%;
-  margin-left: 20%;
+  margin-left: 15%;
   /* margin: auto; */
-  margin-left: 20vh;
+  /* margin-left: 10vh; */
   /* height:3rem; */
-  font-size: 25px;
-  display: block;
+  /* font-size: 20px;
+  display: block; */
   /* border-radius: 12px;  */
   background-color:  #F0F3BD;
-  width: 55%;
+  width: 70%;
   color: #00A896;
   /* text-align: center; */
   text-decoration: none;
 }
+button:focus{
+  outline: none;
+}
+button:before{
+  content:'';
+  display:block;
+  filter:blur(4px);
+}
+
 
 .homepage button:hover{
-  background:#02C39A;
+  /* background:#02C39A; */
+  background:#028090;
   color:white;
+  cursor:pointer;
 }
+
+.homepage button:hover:before{
+  opacity: 0.6;
+  transition: 0.7s;
+}
+
 
 }
 
@@ -64,7 +81,7 @@ button{
 
   button{
    margin-bottom:10%;
-   margin-left: 25%;   
+   margin-left: 25%;
    background-color: #00A896;
    color: white;
    text-align: center;

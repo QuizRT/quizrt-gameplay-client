@@ -7,8 +7,8 @@ import {AuthService, GoogleLoginProvider} from 'angular-6-social-login';
 
 export interface DialogData {
   name: string;
-  country:string;
-  password:string;
+  country: string;
+  password: string;
 }
 
 
@@ -20,17 +20,17 @@ export interface DialogData {
 
 export class HomePageComponent {
 name: string;
-country:string;
+country: string;
 password: string;
-  constructor(private dialog: MatDialog, private socialAuthService: AuthService){ }
+  constructor(private dialog: MatDialog, private socialAuthService: AuthService) { }
 
-public socialSignIn(socialPlatform: string){
+public socialSignIn(socialPlatform: string) {
   let socialPlatformProvider;
-  if(socialPlatform== "google"){
+  if (socialPlatform == 'google') {
     socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
   }
   this.socialAuthService.signIn(socialPlatformProvider).then(
-    (userData)=> {console.log(socialPlatform +" sign in data: ", userData);}
+    (userData) => {console.log(socialPlatform + ' sign in data: ', userData); }
   );
 }
 
@@ -38,16 +38,16 @@ openDialog(): void {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = false;
   dialogConfig.autoFocus = true;
-  dialogConfig.width = "40%";
-  this.dialog.open(PlayersComponent,dialogConfig);
+  dialogConfig.width = '40%';
+  this.dialog.open(PlayersComponent, dialogConfig);
 }
 
-openDialog1():void {
-  const dialogConfig=new MatDialogConfig();
-  dialogConfig.disableClose=false;
+openDialog1(): void {
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = false;
   dialogConfig.autoFocus = true;
-  dialogConfig.width = "40%";
-  this.dialog.open(LoginComponent,dialogConfig);
+  dialogConfig.width = '40%';
+  this.dialog.open(LoginComponent, dialogConfig);
 }
 
 // onSignIn(googleUser) {

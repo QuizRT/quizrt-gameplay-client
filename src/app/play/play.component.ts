@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./play.component.css']
 })
 export class PlayComponent implements OnInit {
-  breakpoint:number;
-  play:boolean=false;
+  breakpoint: number;
+  play = false;
   constructor() { }
 
   ngOnInit() {
@@ -18,8 +18,8 @@ export class PlayComponent implements OnInit {
     this.breakpoint = (event.target.innerWidth <= 786) ? 1 : 4;
   }
 
-  openDialog(){
-    this.play=!this.play;
+  openDialog() {
+    this.play = !this.play;
   }
 
 }

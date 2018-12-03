@@ -22,9 +22,10 @@ import { ThreePlayersComponent } from './three-players/three-players.component';
 import { FourPlayersComponent } from './four-players/four-players.component';
 import {MatCardModule} from '@angular/material/card';
 import { ChatComponent } from './chat/chat.component';
-import { SocialLoginModule,  AuthServiceConfig, GoogleLoginProvider} from "angular-6-social-login";
+import { SocialLoginModule,  AuthServiceConfig, GoogleLoginProvider} from 'angular-6-social-login';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material';
+import {MatSnackBarModule} from '@angular/material';
 // import {FlexLayoutModule} from '@angular/flex-layout';
 import  {Howl}  from 'howler';
 import { FormsModule } from '@angular/forms';
@@ -33,15 +34,15 @@ import { FormsModule } from '@angular/forms';
 // import {ErrorStateMatcher} from '@angular/material/core';
 
 export function getAuthServiceConfigs() {
-  let config = new AuthServiceConfig(
+  const config = new AuthServiceConfig(
     [
       {
         id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider("146798745966-lj51tb9pmdpam7a2d7k375fq221didg0.apps.googleusercontent.com")
+        provider: new GoogleLoginProvider('146798745966-lj51tb9pmdpam7a2d7k375fq221didg0.apps.googleusercontent.com')
       }
 
     ]
-)
+);
 return config;
 }
 
@@ -79,7 +80,8 @@ return config;
     MatListModule,
     MatIconModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
   ],
 
 
@@ -90,7 +92,7 @@ return config;
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents :[PlayersComponent,
+  entryComponents : [PlayersComponent,
    LoginComponent
   ]
 })

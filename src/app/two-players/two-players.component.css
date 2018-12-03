@@ -102,22 +102,14 @@ mat-grid-list{
   width: 30%;
 }
 .result{
-  background-color: #02C39A;
-  opacity: 0;
+  color: #02C39A;
   width:80%;
-  /* opacity: 0; */
   margin: auto;
-  /* width:30%;
-  height:30%; */
-  /* margin-top:13rem;
-  margin-left:15rem; */
-  color:white;
   font-size: 40px;
 }
 .result .button{
   margin-left: 10%;
-   background-color: #02C39A;
-   color: white;
+   color: #028090;
    font-style: bold;
    font-size: 25px;
    width: 30%;
@@ -141,7 +133,6 @@ mat-grid-list{
 
  mat-grid-list{
   width:80%;
-  /* opacity: 0; */
   margin: auto;
  font-size: 15px;
  text-align: center;

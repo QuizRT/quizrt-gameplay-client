@@ -13,7 +13,7 @@ import { ChatComponent } from './chat/chat.component';
 const routes: Route[] = [
 
    {path: '', component: HomePageComponent},
-   {path: 'home-page', component:HomePageComponent},
+   {path: 'home-page', component: HomePageComponent},
    {path: 'players', component: PlayersComponent},
    {path: 'login', component: LoginComponent},
    {path: 'play', component: PlayComponent},

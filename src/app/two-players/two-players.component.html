@@ -1,9 +1,9 @@
-<input class="topic" *ngIf= "!TopicSelected" type="text"  name="EnterTopic" [(ngModel)]="topic">
+<input class="topic" *ngIf="!TopicSelected" type="text" name="EnterTopic" [(ngModel)]="topic">
 <br>
 <button class="play" mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button>
-
-<div class="opponent" *ngIf="!start && Waiting" >
-   Waiting for opponent to join...
+<button mat-button *ngIf="!TopicSelected" (click)="openSnackBar(username.value, score.value)">Show snack-bar</button>
+<div class="opponent" *ngIf="!start && Waiting">
+  Waiting for opponent to join...
 </div>
 
 
@@ -19,18 +19,18 @@
       </mat-radio-button>
     </mat-radio-group>
   </mat-card>
-    <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
+  <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
   <!-- <mat-card>{{this.currentQuestion}}</mat-card> -->
 
   <!-- <mat-grid-list cols="2" rowHeight="5:1.5"> -->
-      <mat-grid-list cols="2" >
+  <mat-grid-list cols="2" rowHeight="5:1.5">
     <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
     <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
   </mat-grid-list>
-         <br>
-         <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
-      <!-- <mat-card>{{this.currentQuestion}}</mat-card> -->
-      <!-- <mat-grid-list cols="2" rowHeight="5:2" fxShow="false" fxHide.lt-md="false">
+  <br>
+  <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
+  <!-- <mat-card>{{this.currentQuestion}}</mat-card> -->
+  <!-- <mat-grid-list cols="2" rowHeight="5:2" fxShow="false" fxHide.lt-md="false">
         <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
         <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
       </mat-grid-list>
@@ -38,8 +38,8 @@
 </div>
 
 <mat-card class="noOpponent" *ngIf="!start && gameOver">
-  Players not found...Go Back
-  <button class="back" mat-raised-button  color="primary" [routerLink]="['/play']">
+  {{notify}}
+  <button class="back" mat-raised-button color="primary" [routerLink]="['/play']">
     Go Back</button>
 </mat-card>
 
@@ -47,18 +47,18 @@
   {{counter}}
 </div>
 <div class="result">
-<mat-card *ngIf="start && gameOver && score>otherUserScore">You Win<br>
-  <button mat-raised-button color="primary" [routerLink]="['/play']">
-    Go Back</button>
-</mat-card>
-<mat-card *ngIf="start && gameOver && score<otherUserScore">Opponent Wins<br>
-  <button mat-raised-button color="primary" [routerLink]="['/play']">
-    Go Back</button>
-</mat-card>
-<mat-card *ngIf="start && gameOver && score===otherUserScore">It's a Draw<br>
-  <button mat-raised-button color="primary" [routerLink]="['/play']">
-    Go Back</button>
-</mat-card>
+  <mat-card *ngIf="start && gameOver && score>otherUserScore">You Win<br>
+    <button mat-raised-button [routerLink]="['/play']">
+      Go Back</button>
+  </mat-card>
+  <mat-card *ngIf="start && gameOver && score<otherUserScore">Opponent Wins<br>
+    <button mat-raised-button [routerLink]="['/play']">
+      Go Back</button>
+  </mat-card>
+  <mat-card *ngIf="start && gameOver && score === otherUserScore">It's a Draw<br>
+    <button mat-raised-button [routerLink]="['/play']">
+      Go Back</button>
+  </mat-card>
 </div>
 
 <!-- <script> -->
