@@ -3,6 +3,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import {MatDialog, MatDialogConfig} from '@angular/material';
 import {PlayersComponent} from '../players/players.component';
 import {LoginComponent} from '../login/login.component';
+import {SignupComponent} from '../signup/signup.component';
 import {AuthService, GoogleLoginProvider} from 'angular-6-social-login';
 
 export interface DialogData {
@@ -34,12 +35,12 @@ public socialSignIn(socialPlatform: string) {
   );
 }
 
-openDialog(): void {
+openDialog2(): void {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = false;
   dialogConfig.autoFocus = true;
   dialogConfig.width = '40%';
-  this.dialog.open(PlayersComponent, dialogConfig);
+  this.dialog.open(SignupComponent, dialogConfig);
 }
 
 openDialog1(): void {

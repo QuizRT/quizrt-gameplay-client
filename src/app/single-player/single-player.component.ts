@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as signalR from '@aspnet/signalr';
+import {delay} from 'q';
 // import { Howl} from 'howler';
 
-class Options {
-  optionName: string;
-  isCorrect: boolean;
-}
+
 @Component({
   selector: 'app-single-player',
   templateUrl: './single-player.component.html',
@@ -20,11 +18,11 @@ export class SinglePlayerComponent implements OnInit {
   start = false;
   gameOver = false;
   connection: any;
-  topic = 'topic';
+  topic = '';
   TopicSelected = false;
-  username: number = new Date().getTime();
+  username: string = new Date().getTime().toString();
   groupname: string;
-  options: Options[];
+  options: string[];
   answered = false;
 
   constructor(private http: HttpClient) { }
@@ -41,51 +39,55 @@ export class SinglePlayerComponent implements OnInit {
 
     this.connection.on('QuestionsReceived', (message: any) => {
       this.start = true;
+      console.log("questions came");
       this.currentQuestion = message;
       this.options = [
-        { 'optionName': this.currentQuestion.correctOption, 'isCorrect': true },
-        { 'optionName': this.currentQuestion.otherOptionsList[0].option, 'isCorrect': false },
-        { 'optionName': this.currentQuestion.otherOptionsList[1].option, 'isCorrect': false },
-        { 'optionName': this.currentQuestion.otherOptionsList[2].option, 'isCorrect': false }
+        this.currentQuestion.correctOption,
+        this.currentQuestion.otherOptionsList[0],
+        this.currentQuestion.otherOptionsList[1],
+        this.currentQuestion.otherOptionsList[2]
       ];
       this.options = this.shuffle(this.options);
     });
-    this.connection.on('SendToGroup', (start: number) => {
-      this.start = true;
-      this.gameClock();
+
+    this.connection.on('GetScore',(username:string,score:number)=>
+    {
+      this.username = username;
+      this.score = score
+
     });
 
-
-    this.connection.on('usersConnected', (groupId: string) => {
-      this.groupname = groupId;
-      this.connection.send('AddToGroup', this.username, this.groupname, 2);
+    this.connection.on('StartClock',() => {
+      const intervalMain = setInterval(() => {
+        this.counter--;
+        if (this.counter <= 0) {
+          this.counter = 10;
+          clearInterval(intervalMain);
+        }
+      }, 1000);
     });
+
+    this.connection.on('ProvideGroupId',(groupname:string)=>{
+      this.groupname = groupname;
+    })
+
+    this.connection.on('GameOver', () => {
+      this.gameOver = true;
+    });
+
 
   }
 
   sleep() {
     this.TopicSelected = true;
-    this.connection.send('OnConnectedAsync', this.username, this.topic, 1);
+    this.connection.send('Init', this.username, this.topic, 1);
   }
 
-  gameClock() {
-    this.connection.send('SendQuestions', this.groupname);
-    const intervalMain = setInterval(() => {
-      this.counter--;
-      if (this.counter <= 0 || this.answered === true) {
-        this.answered = false;
-        this.connection.send('SendQuestions', this.groupname);
-        this.counter = 10;
-        this.questionCounter++;
-        if (this.questionCounter >= 7) {
-          this.gameOver = true;
-          console.log("reached here");
-          clearInterval(intervalMain);
-        }
-      }
-    }, 1000);
-
+  scoreCalculator(option: any) {
+    this.connection.send('CalculateScore', this.groupname, this.username, option, this.currentQuestion, this.counter);
   }
+
+
 
   shuffle(options : any) {
     var currentIndex = options.length, temporaryValue, randomIndex;
@@ -106,12 +108,4 @@ export class SinglePlayerComponent implements OnInit {
     return options;
   }
 
-
-  scoreCalculator(optionsobject: any) {
-    if (optionsobject.isCorrect == true) {
-      this.score += this.counter * 2;
-    } else {
-      this.score += 0;
-    }
-  }
 }

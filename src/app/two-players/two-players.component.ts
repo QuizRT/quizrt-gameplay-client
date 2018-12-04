@@ -29,7 +29,7 @@ export class TwoPlayersComponent implements OnInit {
   otherUser: any;
   otherUserScore = 0;
   isDisabled = false;
-  topic = 'topic';
+  topic = '';
   TopicSelected = false;
   Waiting = false;
   groupname: string;
@@ -76,6 +76,9 @@ export class TwoPlayersComponent implements OnInit {
 
     this.connection.on('NoOpponentsFound',() =>
     {
+      this.Waiting = false;
+      this.start = false;
+      this.gameOver = true;
       console.log("users not found..");
     })
 
@@ -84,6 +87,7 @@ export class TwoPlayersComponent implements OnInit {
         this.counter--;
         if (this.counter <= 0) {
           this.counter = 10;
+          clearInterval(intervalMain);
         }
       }, 1000);
     });

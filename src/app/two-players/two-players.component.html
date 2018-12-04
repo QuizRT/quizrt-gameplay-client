@@ -1,7 +1,6 @@
-<input class="topic" *ngIf="!TopicSelected" type="text" name="EnterTopic" [(ngModel)]="topic">
+<input *ngIf="!TopicSelected" class="topic" type="text" placeholder="Enter Topic" [(ngModel)]="topic">
 <br>
-<button class="play" mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button>
-<button mat-button *ngIf="!TopicSelected" (click)="openSnackBar(username.value, score.value)">Show snack-bar</button>
+<button class="play" mat-raised-button  (click)="sleep()">Let's Play</button>
 <div class="opponent" *ngIf="!start && Waiting">
   Waiting for opponent to join...
 </div>
@@ -38,7 +37,7 @@
 </div>
 
 <mat-card class="noOpponent" *ngIf="!start && gameOver">
-  {{notify}}
+  Players not found...Go Back
   <button class="back" mat-raised-button color="primary" [routerLink]="['/play']">
     Go Back</button>
 </mat-card>
@@ -46,6 +45,8 @@
 <div id="clock" *ngIf="start && !gameOver">
   {{counter}}
 </div>
+
+
 <div class="result">
   <mat-card *ngIf="start && gameOver && score>otherUserScore">You Win<br>
     <button mat-raised-button [routerLink]="['/play']">

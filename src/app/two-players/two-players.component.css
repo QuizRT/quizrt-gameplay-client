@@ -1,4 +1,4 @@
-.topic{
+/* .topic{
   width: 100%;
   margin: auto;
   background-color: #02C39A;
@@ -7,16 +7,16 @@
   font-size: 25px;
   text-align: center;
 }
-.play{
+.play{ */
   /* margin-bottom:30%; */
-  margin-left: 30%;
+  /* margin-left: 30%;
   height:3rem;
   background-color: #02C39A;
   color: white;
   font-style: bold;
   font-size: 25px;
-  width: 30%;
-}
+  width: 40%;
+} */
 .opponent{
   color: #02C39A;
   font-size: 25px;

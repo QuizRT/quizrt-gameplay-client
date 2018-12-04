@@ -1,14 +1,16 @@
 <div class="login">
-  <mat-form-field>
-    <input matInput placeholder="Name">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <input matInput type="password" minlength="8" placeholder="Password">
-  </mat-form-field>
-  <br>
-  <div>
-    <button mat-raised-button color="primary" type="submit" [routerLink]="['play']">Login</button>
-    <button mat-raised-button color="warn">Close</button>
-  </div>
+    <mat-form-field>
+        <input matInput placeholder="Name" [(ngModel)]="name">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+        <input matInput type="password" minlength="8" placeholder="Password" [(ngModel)]="password">
+    </mat-form-field>
+    <br>
+    <div>
+        <button mat-raised-button color="primary" type="submit"
+             [routerLink]="['play']" (click)="closeDialog1()" >Login
+        </button>
+        <button mat-raised-button color="warn" (click)="closeDialog1()">Close</button>
+    </div>
 </div>

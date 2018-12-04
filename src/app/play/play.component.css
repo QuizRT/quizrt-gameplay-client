@@ -9,7 +9,7 @@ margin-left:5rem;
     display: flex;
     height:100vh;
   }
-  
+
   .logo{
     flex:2;
     background-color: #F0F3BD;
@@ -28,23 +28,57 @@ margin-left:5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    z-index:100;
+    box-shadow: -30px 10px 30px #021C27;
+  }
+
+  button::after{
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
   }
 
 button{
   /* margin-top:3rem;
   margin-left: 10rem; */
-  margin-top:20%;
-  margin-left: 40%;
-  height:3rem;
-  background-color: #02C39A;
-  color: white;
+  margin-top:2rem;
+  margin-left: 30%;
+  /* height:3rem; */
   font-style: bold;
   font-size: 25px;
-  width: 40%;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  background-color: #05668D;
+  border-radius: 10px;
+  color: white;
+  width: 50%;
+  height:3rem;
+  /* transform-style: preserve-3d; */
+  transition:0.5s;
+  opacity:1
 }
 
-.numberOfPlayers{
-  margin-top:1rem;
+button::before,
+button::after {
+  background: #fff;
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+button:hover{
+  color:#05668D;
+}
+button::after {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 0;
+}
+ button:hover:after{
+    width: 100%;
 }
 
 }

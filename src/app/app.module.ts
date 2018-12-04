@@ -18,7 +18,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PlayComponent } from './play/play.component';
 import { SinglePlayerComponent } from './single-player/single-player.component';
 import { TwoPlayersComponent} from './two-players/two-players.component';
-import { ThreePlayersComponent } from './three-players/three-players.component';
+import { ThreePlayersComponent} from './three-players/three-players.component';
 import { FourPlayersComponent } from './four-players/four-players.component';
 import {MatCardModule} from '@angular/material/card';
 import { ChatComponent } from './chat/chat.component';
@@ -29,6 +29,8 @@ import {MatSnackBarModule} from '@angular/material';
 // import {FlexLayoutModule} from '@angular/flex-layout';
 import  {Howl}  from 'howler';
 import { FormsModule } from '@angular/forms';
+import { SignupComponent } from './signup/signup.component';
+import { Options } from 'selenium-webdriver/chrome';
 // import { PlayerService } from './player.service';
 // import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 // import {ErrorStateMatcher} from '@angular/material/core';
@@ -59,6 +61,7 @@ return config;
     ThreePlayersComponent,
     FourPlayersComponent,
     ChatComponent,
+    SignupComponent,
     // PlayerService
   ],
   imports: [
@@ -92,7 +95,7 @@ return config;
     }
   ],
   bootstrap: [AppComponent],
-  entryComponents : [PlayersComponent,
+  entryComponents : [SignupComponent,
    LoginComponent
   ]
 })

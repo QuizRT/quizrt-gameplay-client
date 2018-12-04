@@ -41,88 +41,93 @@ export class ThreePlayersComponent implements OnInit {
       then(() => console.log('connection established'))
       .catch((err) => console.log('Error::: ', err));
 
-    this.connection.on('ClockStarted', (tick: boolean) => {
-      this.gameClock();
-    });
+      this.connection.on('QuestionsReceived', (message: any) => {
+        console.log("received questions");
+        this.start = true;
+        this.currentQuestion = message;
+        this.options = [
+          { 'optionName': this.currentQuestion.correctOption, 'isCorrect': true },
+          { 'optionName': this.currentQuestion.otherOptionsList[0].option, 'isCorrect': false },
+          { 'optionName': this.currentQuestion.otherOptionsList[1].option, 'isCorrect': false },
+          { 'optionName': this.currentQuestion.otherOptionsList[2].option, 'isCorrect': false }
+        ];
+        this.options = this.shuffle(this.options);
 
-    this.connection.on('QuestionsReceived', (message: any) => {
-      this.start = true;
-      this.currentQuestion = message;
-      this.options = [
-        { 'optionName': this.currentQuestion.correctOption, 'isCorrect': true },
-        { 'optionName': this.currentQuestion.otherOptionsList[0].option, 'isCorrect': false },
-        { 'optionName': this.currentQuestion.otherOptionsList[1].option, 'isCorrect': false },
-        { 'optionName': this.currentQuestion.otherOptionsList[2].option, 'isCorrect': false }
-      ];
+      });
 
-    });
+      this.connection.on('ProvideGroupId',(groupname:string) =>
+      {
+        console.log(groupname);
+        this.groupname = groupname;
+      })
 
-    this.connection.on('GetTicks', (counter: number) => {
-      this.counter = counter;
-    });
+      this.connection.on('NoOpponentsFound',() =>
+      {
+        console.log("users not found..");
+      })
 
-    this.connection.on('GetScore', (username: string, score: number) => {
-      // this.otherUser=username;
-      // this.otherUserScore=score;
-    });
+      this.connection.on('StartClock',() => {
+        const intervalMain = setInterval(() => {
+          this.counter--;
+          if (this.counter <= 0) {
+            this.counter = 10;
+            clearInterval(intervalMain);
+          }
+        }, 1000);
+      });
 
-    this.connection.on('SendToGroup', (start: number) => {
-      if (start == 3) {
-        console.log(this.username + ' becomes admin');
-        this.connection.send('StartClock', this.groupname);
-      }
-    });
+      this.connection.on('GetScore', (username: string, score: number) => {
+        if(this.username != username)
+        {
+          // this.otherUser = username;
+          // this.otherUserScore = score;
+        }
+        else {
+          this.score = score;
+        }
+      });
 
-    this.connection.on('usersConnected', (groupName: string) => {
-      this.groupname = groupName;
-      if (this.groupname == null) {
-        this.start = false;
+      this.connection.on('GameOver', () => {
         this.gameOver = true;
-      } else {
-        this.connection.send('AddToGroup', this.username, this.groupname, 3);
-      }
-    });
-
-    this.connection.on('GameOver', () => {
-      this.gameOver = true;
-    });
-
+      });
 
   }
   sleep() {
     this.TopicSelected = true;
     this.Waiting = true;
-    // console.log(this.username + " chose " + this.topic);
-    this.connection.send('OnConnectedAsync', this.username, this.topic, 3);
+    this.connection.send('Init', this.username, this.topic, 3);
+
   }
 
-  gameClock() {
-    this.connection.send('SendQuestions', this.groupname);
-    const intervalMain = setInterval(() => {
-      this.counter--;
-      this.connection.send('SendTicks', this.groupname, this.counter);
-      if (this.counter <= 0) {
-        this.connection.send('SendQuestions', this.groupname);
-        this.counter = 10;
-        this.questionCounter++;
-        if (this.questionCounter > 7) {
-          this.gameOver = true;
-          this.connection.send('GameOver', this.groupname);
-          clearInterval(intervalMain);
-        }
-      }
-    }, 1000);
 
+  shuffle(options : any) {
+    var currentIndex = options.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = options[currentIndex];
+      options[currentIndex] = options[randomIndex];
+      options[randomIndex] = temporaryValue;
+    }
+
+    return options;
   }
 
   scoreCalculator(optionsobject: any) {
-    if (optionsobject.isCorrect == true) {
-      this.score += this.counter * 2;
-    } else {
-      this.score += 0;
-    }
-    this.connection.send('SendScore', this.username, this.score);
+    // if (optionsobject.isCorrect == true) {
+    //   this.score += this.counter * 2;
+    // } else {
+    //   this.score += 0;
+    // }
+    this.connection.send('CalculateScore', this.groupname, this.username, optionsobject, this.counter);
   }
+
 
 }
 

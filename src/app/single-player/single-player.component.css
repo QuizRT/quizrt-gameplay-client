@@ -1,20 +1,33 @@
-.play{
-  /* margin-bottom:30%; */
-  margin-left: 30%;
-  height:3rem;
+/* .topic{
+  width: 100%;
+  margin: auto;
   background-color: #02C39A;
   color: white;
-  font-style: bold;
+  height: 5rem;
   font-size: 25px;
-  width: 30%;
-}
+  text-align: center;
+} */
+/* .play{ */
+  /* margin-bottom:30%; */
+  /* margin-left: 30%;
+  height:3rem;*/
+  /* background-color: #02C39A; */
+  /* color: white; */
+/*  font-style: bold;
+  font-size: 25px;
+  width: 40%;
+} */
 .questions{
   width:80%;
   /* opacity: 0; */
   margin: auto;
+  margin-top:5rem;
   font-size: 25px;
-  color:white;
-  background-color:#02C39A;
+  color:#021C27;
+  border-color:#021C27;
+  background-color: #F0F3BD;
+  border-radius: 10px;
+  box-shadow: 20px 10px 10px #021C27;
 }
 .options{
   display: inline-flex;
@@ -22,8 +35,9 @@
   width:80%;
   /* opacity: 0; */
   margin: auto;
-  color:white;
-  background-color:#02C39A;
+  color:#021C27;
+  background-color:#F0F3BD;
+
   }
 
 button{
@@ -47,18 +61,18 @@ button{
   text-align: center;
   }
 
-  /* .finalScore{ */
-    /* width:30%;
+  .gameover{
+    width:30%;
     height:30%;
     margin-top:13rem;
-    margin-left:15rem; */
+    margin-left:15rem;
     /* width:80%; */
     /* opacity: 0; */
     /* margin-top: 10rem; */
     /* font-size: 65px; */
     /* color:black; */
     /* background-color:#02C39A; */
-    /* } */
+    }
 
    /* #finalScore{
       color: blue;
@@ -97,9 +111,9 @@ button{
   @media(max-width:767px){
     .play{
       height:3rem;
-      margin-left: 40%;
+      margin-left: 30%;
       font-size: 15px;
-      width: 30%;
+      width: 40%;
      }
     .questions{
       font-size: 15px;
