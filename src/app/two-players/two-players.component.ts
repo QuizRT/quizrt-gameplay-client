@@ -84,12 +84,12 @@ export class TwoPlayersComponent implements OnInit {
 
     this.connection.on('StartClock',() => {
       const intervalMain = setInterval(() => {
-        this.counter--;
-        if (this.counter <= 0) {
+        this.counter-= 0.1;
+        if (this.counter <= 1) {
           this.counter = 10;
           clearInterval(intervalMain);
         }
-      }, 1000);
+      }, 100);
     });
 
     this.connection.on('GetScore', (username: string, score: number) => {
@@ -135,11 +135,6 @@ export class TwoPlayersComponent implements OnInit {
   }
 
   scoreCalculator(optionsobject: any) {
-    // if (optionsobject.isCorrect == true) {
-    //   this.score += this.counter * 2;
-    // } else {
-    //   this.score += 0;
-    // }
     this.connection.send('CalculateScore', this.groupname, this.username, optionsobject, this.counter);
   }
 

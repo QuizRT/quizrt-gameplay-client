@@ -43,9 +43,9 @@ export class SinglePlayerComponent implements OnInit {
       this.currentQuestion = message;
       this.options = [
         this.currentQuestion.correctOption,
-        this.currentQuestion.otherOptionsList[0],
-        this.currentQuestion.otherOptionsList[1],
-        this.currentQuestion.otherOptionsList[2]
+        this.currentQuestion.otherOptionsList[0].option,
+        this.currentQuestion.otherOptionsList[1].option,
+        this.currentQuestion.otherOptionsList[2].option
       ];
       this.options = this.shuffle(this.options);
     });
@@ -58,13 +58,14 @@ export class SinglePlayerComponent implements OnInit {
     });
 
     this.connection.on('StartClock',() => {
+      this.counter = 10;
       const intervalMain = setInterval(() => {
-        this.counter--;
-        if (this.counter <= 0) {
-          this.counter = 10;
+        this.counter = this.counter - 0.1;
+        if (this.counter <= 1) {
+
           clearInterval(intervalMain);
         }
-      }, 1000);
+      }, 100);
     });
 
     this.connection.on('ProvideGroupId',(groupname:string)=>{
@@ -72,6 +73,7 @@ export class SinglePlayerComponent implements OnInit {
     })
 
     this.connection.on('GameOver', () => {
+      console.log("came to game over");
       this.gameOver = true;
     });
 

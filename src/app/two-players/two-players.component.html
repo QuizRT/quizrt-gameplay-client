@@ -1,6 +1,7 @@
 <input *ngIf="!TopicSelected" class="topic" type="text" placeholder="Enter Topic" [(ngModel)]="topic">
 <br>
-<button class="play" mat-raised-button  (click)="sleep()">Let's Play</button>
+<button *ngIf="!TopicSelected" class="play" mat-raised-button  (click)="sleep()">Let's Play</button>
+<mat-progress-bar *ngIf ="!start && Waiting" mode="indeterminate"></mat-progress-bar>
 <div class="opponent" *ngIf="!start && Waiting">
   Waiting for opponent to join...
 </div>
@@ -61,6 +62,9 @@
       Go Back</button>
   </mat-card>
 </div>
+
+<progress-bar  *ngIf="start && !gameOver" [progress]="counter*10" [color-degraded]="{'10': '#1B7397', '20': '#05668D', '30':'#055D81','40': '#055474','50': '#044B67','60': '#04415A','70': '#03384D','80': '#032F41','90': '#022634','100': '#021C27'}">
+  </progress-bar>
 
 <!-- <script> -->
 <!-- function disableButton(){ -->

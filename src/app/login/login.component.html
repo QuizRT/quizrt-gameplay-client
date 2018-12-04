@@ -1,7 +1,7 @@
 <div class="login">
     <mat-form-field>
-        <input matInput placeholder="Name" [(ngModel)]="name">
-    </mat-form-field>
+        <input matInput type= "email" placeholder="email" [(ngModel)]= "email">
+      </mat-form-field>
     <br>
     <mat-form-field>
         <input matInput type="password" minlength="8" placeholder="Password" [(ngModel)]="password">
@@ -9,7 +9,7 @@
     <br>
     <div>
         <button mat-raised-button color="primary" type="submit"
-             [routerLink]="['play']" (click)="closeDialog1()" >Login
+           (click)="CheckValidation()" >Login
         </button>
         <button mat-raised-button color="warn" (click)="closeDialog1()">Close</button>
     </div>

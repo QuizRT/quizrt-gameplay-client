@@ -39,7 +39,7 @@ openDialog2(): void {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = false;
   dialogConfig.autoFocus = true;
-  dialogConfig.width = '40%';
+  // dialogConfig.width = '40%';
   this.dialog.open(SignupComponent, dialogConfig);
 }
 
@@ -47,7 +47,7 @@ openDialog1(): void {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = false;
   dialogConfig.autoFocus = true;
-  dialogConfig.width = '40%';
+  //  dialogConfig.width = '40%';
   this.dialog.open(LoginComponent, dialogConfig);
 }
 
