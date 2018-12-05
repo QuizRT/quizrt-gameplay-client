@@ -6,11 +6,9 @@ services:
       dockerfile: Dockerfile
     labels:
       SERVICE_4200_NAME: GamePlay
-    ports:
-      - "4202:4200"
     volumes:
-      - ".:/QuizRT/usr/src/app"
-      - /QuizRT/usr/src/app/node_modules
+      - ".:/GamePlay/usr/src/app"
+      - /GamePlay/usr/src/app/node_modules
     networks:
       - gameplay-network
 networks:
