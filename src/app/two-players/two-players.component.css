@@ -36,14 +36,14 @@
   margin-right: 40%; */
  }
 
-.questions{
-  width:80%;
+/* .questions{
+  width:80%; */
   /* opacity: 0; */
-  margin: auto;
+  /* margin: auto;
   font-size: 25px;
   color:white;
   background-color:#02C39A;
-}
+} */
 .options{
   display: inline-flex;
   flex-direction: column;
@@ -52,6 +52,13 @@
   margin: auto;
   color:white;
   background-color:#02C39A;
+  }
+
+  button::after{
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
   }
 
 button{

@@ -50,18 +50,6 @@
 
   }
 
-button{
-  margin-top:3rem;
-  margin-left: 18rem;
-   /* width:5rem; */
-  height:3rem;
- }
-
- button:hover{
-   background:rgb(238, 122, 87);
-   color:white;
- }
-
  .score{
   background-color:rgb(38, 124, 106);
   color: black;
