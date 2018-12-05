@@ -18,4 +18,4 @@ COPY . /app
 # ENV NAME World
 
 # Run app.py when the container launches
-CMD ng serve --host 0.0.0.0
+CMD npm start
