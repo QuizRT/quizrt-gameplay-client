@@ -16,6 +16,7 @@ COPY . /app
 
 # Define environment variable
 # ENV NAME World
+EXPOSE 4200
 
 # Run app.py when the container launches
-CMD npm start
+CMD ["npm", "start"]
