@@ -24,7 +24,8 @@ export class LoginComponent {
       this.service.GetUser(this.email, this.password).subscribe((result:any)=>
       {
         //this.token = JSON.parse(result);
-        this.token = result;
+        window.location.href = "http://172.23.238.164:7000/social";
+        // this.token = result;
         console.log(result);
         this.AfterLogin();
       },(err)=> {this.Message();})
@@ -34,10 +35,8 @@ export class LoginComponent {
   }
 
   AfterLogin() {
-    console.log("-----token----" +this.token)
-    this.service.TestToken().subscribe((res:any) => {console.log("dgjd")});
-    this.router.navigate(['/play']);
-    //this.CloseDialog1();
+    console.log("-----token----" +this.token);
+
   }
   Message()  {
     alert("Incorrect Credentials... Try Again..");

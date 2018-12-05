@@ -6,8 +6,8 @@ import { HttpClient} from '@angular/common/http';
 })
 export class PlayerService {
 
-  SIGNUP_URI = 'http://172.23.238.164:8091/api/Auth/signup';
-  LOGIN_URI = 'http://172.23.238.164:8091/api/Auth/login';
+  SIGNUP_URI = 'http://172.23.238.164:7000/Authentication/signup';
+  LOGIN_URI = 'http://172.23.238.164:7000/Authentication/login';
   constructor(private httpClient: HttpClient) { }
 
 //   PostData(player:any)

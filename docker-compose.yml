@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     labels:
-      SERVICE_4200_NAME: gameplay
+      SERVICE_4200_NAME: GamePlay
     ports:
       - "4202:4200"
     volumes:
