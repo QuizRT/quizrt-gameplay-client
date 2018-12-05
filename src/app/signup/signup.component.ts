@@ -9,9 +9,9 @@ import { PlayerService } from '../player.service';
 })
 export class SignupComponent implements OnInit {
 
-  name:string;
-  email:string;
-  password:string;
+  Name:string;
+  Email:string;
+  Password:string;
   constructor(
     public dialogConfig: MatDialogRef<SignupComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private service: PlayerService
@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit {
 }
 
 closeDialog2(): void{
-  this.service.PostUser(this.name,this.email, this.password);
+  this.service.PostUser(this.Name,this.Email, this.Password);
   // console.log("signup successful");
   this.closeDialog1();
 }

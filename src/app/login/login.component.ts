@@ -10,8 +10,8 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  email:string;
-  password:string;
+  Email:string;
+  Password:string;
   token:any;
   constructor(
     public dialogConfig: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData,
@@ -21,10 +21,10 @@ export class LoginComponent {
      { }
 
     CheckValidation(): void{
-      this.service.GetUser(this.email, this.password).subscribe((result:any)=>
+      this.service.GetUser(this.Email, this.Password).subscribe((result:any)=>
       {
         //this.token = JSON.parse(result);
-        window.location.href = "http://172.23.238.164:7000/social";
+        window.location.href = "http://172.23.238.164:7000/quizmaster/";
         // this.token = result;
         console.log(result);
         this.AfterLogin();
