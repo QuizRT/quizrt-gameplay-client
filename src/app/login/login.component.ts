@@ -24,7 +24,7 @@ export class LoginComponent {
       this.service.GetUser(this.email, this.password).subscribe((result:any)=>
       {
         //this.token = JSON.parse(result);
-        window.location.href = "http://172.23.238.164:7000/social/";
+        window.location.href = "http://172.23.238.164:7000/questiongenerator/topics/book/2";
         // this.token = result;
         console.log(result);
         this.AfterLogin();
