@@ -23,7 +23,7 @@ GetUser(email:string, password:string){
     });
 }
 
-PostUser(name:string, email:string, password:string){
+PostUser(name:string, email:string, password:string) {
   this.httpClient.post(this.SIGNUP_URI,
     {
       "Name" : name,
