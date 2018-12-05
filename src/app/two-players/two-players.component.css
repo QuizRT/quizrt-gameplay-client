@@ -17,10 +17,10 @@
   font-size: 25px;
   width: 40%;
 } */
-.opponent{
+/* .opponent{
   color: #02C39A;
   font-size: 25px;
-}
+} */
 #clock{
   width:30%;
   height: 3rem;
@@ -59,12 +59,42 @@ button{
   margin-left: 18rem;
    /* width:5rem; */
   height:3rem;
+  font-style: bold;
+  font-size: 25px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: white;
+  background-color: #05668D;
+  border-radius: 10px;
+  color: white;
+  width: 50%;
+  height:3rem;
+  transition:0.5s;
+  opacity:1;
  }
 
- button:hover{
-   background:#05668D;
-   color:white;
- }
+ button::before,
+button::after {
+  background: #fff;
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+
+button:hover{
+  color:#05668D;
+}
+button::after {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 0;
+}
+ button:hover:after{
+    width: 100%;
+}
+
+
 
  mat-grid-tile {
   background-color:#028090;

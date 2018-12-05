@@ -35,4 +35,8 @@ PostUser(name:string, email:string, password:string){
       }
     )
 }
+
+TestToken(){
+ return this.httpClient.get("http://172.23.238.164:7000/questiongenerator/topics");
+}
 }

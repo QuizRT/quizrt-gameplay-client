@@ -3,8 +3,8 @@
 
 <button class="play" mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button>
 <!-- <div> -->
-    <mat-progress-bar *ngIf ="!start && TopicSelected" mode="indeterminate"></mat-progress-bar>
-    <div *ngIf ="!start && TopicSelected">Starting Quiz...</div>
+    <!-- <mat-progress-bar *ngIf ="!start && TopicSelected" mode="indeterminate"></mat-progress-bar> -->
+    <div class="waiting" *ngIf="!start && TopicSelected">Starting Quiz...</div>
 <div *ngIf="start && !gameOver" class="md-elevation-z24">
   <mat-card class="questions">
     {{currentQuestion.question}}

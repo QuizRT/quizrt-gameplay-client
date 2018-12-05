@@ -12,7 +12,7 @@ export class LoginComponent {
 
   email:string;
   password:string;
-  token:string;
+  token:any;
   constructor(
     public dialogConfig: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private service: PlayerService,
@@ -23,18 +23,21 @@ export class LoginComponent {
     CheckValidation(): void{
       this.service.GetUser(this.email, this.password).subscribe((result:any)=>
       {
-        // result.status == 200?this.AfterLogin(): this.Message();
+        //this.token = JSON.parse(result);
+        this.token = result;
+        console.log(result);
         this.AfterLogin();
-      },(err)=> {this.Message();});
+      },(err)=> {this.Message();})
 }
   CloseDialog1():void{
     this.dialogConfig.close();
   }
 
   AfterLogin() {
-    console.log("-----token----",)
+    console.log("-----token----" +this.token)
+    this.service.TestToken().subscribe((res:any) => {console.log("dgjd")});
     this.router.navigate(['/play']);
-    this.CloseDialog1();
+    //this.CloseDialog1();
   }
   Message()  {
     alert("Incorrect Credentials... Try Again..");

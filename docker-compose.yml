@@ -1,9 +1,19 @@
- gameplaynglr:
+version: "3.5"
+services:
+  gameplay-frontend:
     build:
       context: .
       dockerfile: Dockerfile
+    labels:
+      SERVICE_4200_NAME: gameplay
     ports:
       - "4202:4200"
     volumes:
       - ".:/QuizRT/usr/src/app"
       - /QuizRT/usr/src/app/node_modules
+    networks:
+      - gameplay-network
+networks:
+  gameplay-network:
+    name: quizrt-network
+    external: true
