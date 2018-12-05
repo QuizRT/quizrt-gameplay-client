@@ -28,13 +28,6 @@
     <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
   </mat-grid-list>
   <br>
-  <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
-  <!-- <mat-card>{{this.currentQuestion}}</mat-card> -->
-  <!-- <mat-grid-list cols="2" rowHeight="5:2" fxShow="false" fxHide.lt-md="false">
-        <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
-        <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
-      </mat-grid-list>
-             <br> -->
 </div>
 
 <mat-card class="noOpponent" *ngIf="!start && gameOver">
@@ -43,9 +36,9 @@
     Go Back</button>
 </mat-card>
 
-<div id="clock" *ngIf="start && !gameOver">
+<!-- <div id="clock" *ngIf="start && !gameOver">
   {{counter}}
-</div>
+</div> -->
 
 
 <div class="result">

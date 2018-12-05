@@ -1,26 +1,17 @@
-/* .topic{
-  width: 100%;
+.questions{
+  width:80%;
+  /* opacity: 0; */
   margin: auto;
-  background-color: #02C39A;
-  color: white;
-  height: 5rem;
+  margin-top:5rem;
   font-size: 25px;
-  text-align: center;
+  color:#021C27;
+  border-color:#021C27;
+  background-color: #838568;
+  border-radius: 10px;
+  border-width: 10px;
+  box-shadow: 20px 10px 10px #021C27;
+  z-index: 100;
 }
-.play{ */
-  /* margin-bottom:30%; */
-  /* margin-left: 30%;
-  height:3rem;
-  background-color: #02C39A;
-  color: white;
-  font-style: bold;
-  font-size: 25px;
-  width: 40%;
-} */
-/* .opponent{
-  color: #02C39A;
-  font-size: 25px;
-} */
 #clock{
   width:30%;
   height: 3rem;
