@@ -38,25 +38,19 @@ export class SinglePlayerComponent implements OnInit {
       .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
 
-    this.connection.start()
-      .then(() => console.log('connection established'))
-      .catch((err) => console.log('Error::: ', err));
-
-    this.connection.on('QuestionsReceived', (message: any) => {
-      this.start = true;
-      console.log("questions came");
-      this.currentQuestion = message;
-      this.options = [
-        this.currentQuestion.correctOption,
-        this.currentQuestion.otherOptionsList[0].option,
-        this.currentQuestion.otherOptionsList[1].option,
-        this.currentQuestion.otherOptionsList[2].option
-      ];
-      this.options = this.shuffle(this.options);
-    });
-
-    this.connection.on('GetScore',(username:string,score:number)=>
-    {
+      this.connection.on('QuestionsReceived', (message: any) => {
+        this.start = true;
+        console.log("questions came");
+        this.currentQuestion = message;
+        this.options = [
+          this.currentQuestion.correctOption,
+          this.currentQuestion.otherOptionsList[0].option,
+          this.currentQuestion.otherOptionsList[1].option,
+          this.currentQuestion.otherOptionsList[2].option
+        ];
+        this.options = this.shuffle(this.options);
+      });
+    this.connection.on('GetScore', (username:string, score:number) => {
       this.username = username;
       this.score = score
 
@@ -86,8 +80,12 @@ export class SinglePlayerComponent implements OnInit {
   }
 
   sleep() {
-    this.TopicSelected = true;
-    this.connection.send('Init', this.username, this.topic, 1);
+    this.connection.start()
+      .then(() => {
+        console.log('connection established');
+        this.connection.send('Init', this.username, this.topic, 1);
+      })
+      .catch((err) => console.log('Error::: ', err));
   }
 
   scoreCalculator(option: any) {
