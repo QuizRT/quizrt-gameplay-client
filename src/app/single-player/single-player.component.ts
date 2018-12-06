@@ -30,7 +30,7 @@ export class SinglePlayerComponent implements OnInit {
   ngOnInit() {
 
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl('http://172.23.238.164:7000/gameplayhub')
+      .withUrl('http://172.23.238.164:7000/gameplayhub/negotiate')
       .build();
 
     this.connection.start()

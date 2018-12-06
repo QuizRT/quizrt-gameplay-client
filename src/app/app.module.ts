@@ -33,6 +33,7 @@ import { SignupComponent } from './signup/signup.component';
 import { Options } from 'selenium-webdriver/chrome';
 import {ProgressBarModule} from "angular-progress-bar";
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {CookieService} from 'ngx-cookie-service';
 // import { PlayerService } from './player.service';
 // import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 // import {ErrorStateMatcher} from '@angular/material/core';
@@ -88,7 +89,7 @@ return config;
     FormsModule,
     MatSnackBarModule,
     ProgressBarModule,
-    MatProgressBarModule
+    MatProgressBarModule,
   ],
 
 
@@ -96,7 +97,8 @@ return config;
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
-    }
+    },
+    CookieService
   ],
   bootstrap: [AppComponent],
   entryComponents : [SignupComponent,
