@@ -16,12 +16,12 @@ const routes: Route[] = [
    {path: 'home-page', component: HomePageComponent},
    {path: 'players', component: PlayersComponent},
    {path: 'login', component: LoginComponent},
-   {path: 'play', component: PlayComponent},
+   {path: 'play/:id', component: PlayComponent},
    {path: 'play/chat', component: ChatComponent},
-   {path: 'play/single-player', component: SinglePlayerComponent},
-   {path: 'play/two-players', component: TwoPlayersComponent},
-   {path: 'play/three-players', component: ThreePlayersComponent},
-   {path: 'play/four-players', component: FourPlayersComponent},
+   {path: 'play/:id/single-player', component: SinglePlayerComponent},
+   {path: 'play/:id/two-players', component: TwoPlayersComponent},
+   {path: 'play/:id/three-players', component: ThreePlayersComponent},
+   {path: 'play/:id/four-players', component: FourPlayersComponent},
    {path: 'play/single-player/play', component: PlayComponent}
  ];
 @NgModule({

@@ -7,9 +7,10 @@ WORKDIR /app
 
 # Install any needed packages specified in requirements.txt
 COPY package.json /app/package.json
-RUN npm install
+RUN npm install --save
 RUN npm install -g @angular/cli
 RUN npm install @aspnet/signalr
+
 
 # Copy the current directory contents into the container at /app
 COPY . /app

@@ -3,6 +3,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogData } from '../home-page/home-page.component';
 import { PlayerService } from '../player.service';
 
+export class User {
+  
+}
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
