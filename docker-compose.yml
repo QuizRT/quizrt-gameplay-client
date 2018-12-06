@@ -12,7 +12,7 @@ services:
     networks:
       - gameplay-network
     ports:
-      - "4200:4200"
+      - "4209:4200"
 networks:
   gameplay-network:
     name: quizrt-network
