@@ -80,9 +80,11 @@ export class SinglePlayerComponent implements OnInit {
   }
 
   sleep() {
+
     this.connection.start()
       .then(() => {
         console.log('connection established');
+        this.TopicSelected = true;
         this.connection.send('Init', this.username, this.topic, 1);
       })
       .catch((err) => console.log('Error::: ', err));
