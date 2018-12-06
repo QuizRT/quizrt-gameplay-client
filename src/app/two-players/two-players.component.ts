@@ -42,7 +42,7 @@ export class TwoPlayersComponent implements OnInit {
   ngOnInit() {
 
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl('https://localhost:5001/gameplayhub')
+      .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
 
     this.connection.start()
