@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as signalR from '@aspnet/signalr';
+import { ActivatedRoute } from "@angular/router";
 import {delay} from 'q';
 // import { Howl} from 'howler';
 
@@ -18,17 +19,18 @@ export class SinglePlayerComponent implements OnInit {
   start = false;
   gameOver = false;
   connection: any;
-  topic = '';
+  topic:any;
   TopicSelected = false;
   username: string = new Date().getTime().toString();
   groupname: string;
   options: string[];
   answered = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
+    this.route.paramMap.subscribe(params => { this.topic = params.get("id") })
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl('http://172.23.238.164:7000/gameplayhub/negotiate')
       .build();
