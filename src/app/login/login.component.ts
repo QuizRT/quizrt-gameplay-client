@@ -34,7 +34,7 @@ export class LoginComponent {
         let email = decodedJwtData.Email;
          // this.cookieService.set(userId, fullName);
         console.log(userId+"  "+fullName+"  "+email);
-        window.location.href = "http://172.23.238.164:7000/social/";
+        // window.location.href = "http://172.23.238.164:7000/social/";
         // console.log(result);
         this.AfterLogin();
       },(err)=> {this.Message();})
