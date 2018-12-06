@@ -19,7 +19,7 @@ export class SinglePlayerComponent implements OnInit {
   start = false;
   gameOver = false;
   connection: any;
-  topic:any;
+  topic: any;
   TopicSelected = false;
   username: string = new Date().getTime().toString();
   groupname: string;
@@ -30,7 +30,10 @@ export class SinglePlayerComponent implements OnInit {
 
   ngOnInit() {
 
-    this.route.paramMap.subscribe(params => { this.topic = params.get("id") })
+    this.route.paramMap.subscribe(params => { this.topic = params.get("id") });
+    console.log("---topicname---", this.topic);
+
+    
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl('http://172.23.238.164:7000/gameplayhub/negotiate')
       .build();
