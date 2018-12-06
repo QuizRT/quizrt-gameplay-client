@@ -33,9 +33,9 @@ export class SinglePlayerComponent implements OnInit {
     this.route.paramMap.subscribe(params => { this.topic = params.get("id") });
     console.log("---topicname---", this.topic);
 
-    
+
     this.connection = new signalR.HubConnectionBuilder()
-      .withUrl('http://172.23.238.164:7000/gameplayhub/negotiate')
+      .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
 
     this.connection.start()
