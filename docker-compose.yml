@@ -11,6 +11,8 @@ services:
       - /GamePlay/usr/src/app/node_modules
     networks:
       - gameplay-network
+    ports:
+      - "4200:4200"
 networks:
   gameplay-network:
     name: quizrt-network
