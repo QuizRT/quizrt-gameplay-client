@@ -4,6 +4,7 @@ import * as signalR from '@aspnet/signalr';
 import { ActivatedRoute } from '@angular/router';
 import { delay } from 'q';
 import { LoginComponent } from "../login/login.component";
+import { CookieService } from 'ngx-cookie-service';
 // import { Howl} from 'howler';
 
 
@@ -13,7 +14,6 @@ import { LoginComponent } from "../login/login.component";
   styleUrls: ['./single-player.component.css']
 })
 export class SinglePlayerComponent implements OnInit {
-  @ViewChild(LoginComponent) login;
   counter = 10;
   score = 0;
   questionCounter = 0;
@@ -23,14 +23,19 @@ export class SinglePlayerComponent implements OnInit {
   connection: any;
   topic: any;
   TopicSelected = false;
-  username: string = this.login.fullName;
+  username: string;
   groupname: string;
   options: string[];
   answered = false;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private cookieService: CookieService) { }
 
   ngOnInit() {
+    const token = this.cookieService.get('UserLoginAPItoken');
+    const jwtData = token.split('.')[1];
+    const decodedJwtJsonData = window.atob(jwtData);
+    const decodedJwtData = JSON.parse(decodedJwtJsonData);
+    this.username = decodedJwtData.Name;
     this.route.paramMap.subscribe(params => { this.topic = params.get('id'); });
     console.log('---topicname---', this.topic);
 
