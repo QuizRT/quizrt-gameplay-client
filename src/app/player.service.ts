@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PlayerService {
 
   SIGNUP_URI = 'http://172.23.238.164:7000/auth/signup';

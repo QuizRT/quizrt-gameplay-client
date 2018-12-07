@@ -62,7 +62,6 @@ return config;
     FourPlayersComponent,
     ChatComponent,
     SignupComponent,
-    PlayerService
   ],
   imports: [
     HttpClientModule,
@@ -88,13 +87,12 @@ return config;
     ProgressBarModule,
     MatProgressBarModule,
   ],
-
-
   providers: [
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs
     },
+    PlayerService,
     CookieService
   ],
   bootstrap: [AppComponent],
