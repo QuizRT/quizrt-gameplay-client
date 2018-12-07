@@ -8,8 +8,8 @@
 <div *ngIf="start && !gameOver">
   <mat-card class="questions">
     <h2>{{currentQuestion.question}}</h2><br>
-    <mat-radio-group class="options">
-      <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o)">
+    <mat-radio-group class="options" *ngIf="!answered">
+      <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o); answered = true">
         {{o}}<br>
       </mat-radio-button>
     </mat-radio-group>

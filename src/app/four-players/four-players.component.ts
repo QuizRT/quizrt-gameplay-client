@@ -11,19 +11,18 @@ import { CookieService } from "ngx-cookie-service";
 })
 
 export class FourPlayersComponent implements OnInit {
-  @ViewChild(LoginComponent) login;
   counter = 10;
   score = 0;
   questionCounter = 0;
   currentQuestion: any;
   start = false;
   gameOver = false;
-  username = this.login.fullName;
+  username :string;
   connection: any;
   currentUser: any;
   otherUser: any;
   otherUserScore = 0;
-  isDisabled = false;
+  answered = false;
   topic = 'topic';
   TopicSelected = false;
   Waiting = false;
@@ -49,6 +48,7 @@ export class FourPlayersComponent implements OnInit {
     this.connection.on('QuestionsReceived', (message: any) => {
       console.log('received questions');
       this.start = true;
+      this.answered = false;
       this.currentQuestion = message;
       this.options = [
         this.currentQuestion.correctOption,

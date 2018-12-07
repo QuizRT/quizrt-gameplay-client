@@ -28,7 +28,8 @@ export class ThreePlayersComponent implements OnInit {
   TopicSelected = false;
   questionCounter = 0;
   options: string[];
-  constructor(private http: HttpClient, private route: ActivatedRoute, private cookieService: CookieService) { }
+  answered:boolean = false;
+  constructor(private route: ActivatedRoute, private cookieService: CookieService) { }
 
   ngOnInit() {
     const token = this.cookieService.get('UserLoginAPItoken');
@@ -46,6 +47,7 @@ export class ThreePlayersComponent implements OnInit {
       this.connection.on('QuestionsReceived', (message: any) => {
         console.log('received questions');
         this.start = true;
+        this.answered  = false;
         this.currentQuestion = message;
         this.options = [
           this.currentQuestion.correctOption,

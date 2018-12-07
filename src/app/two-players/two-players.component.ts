@@ -27,7 +27,7 @@ export class TwoPlayersComponent implements OnInit {
   currentUser: any;
   otherUser: any;
   otherUserScore = 0;
-  isDisabled = false;
+  answered = false;
   topic = '';
   TopicSelected = false;
   Waiting = false;
@@ -36,7 +36,7 @@ export class TwoPlayersComponent implements OnInit {
   notify: any;
 
 
-  constructor(private http: HttpClient, public cookieService:CookieService, private route: ActivatedRoute) { }
+  constructor(public cookieService:CookieService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     const token = this.cookieService.get('UserLoginAPItoken');
@@ -57,6 +57,7 @@ export class TwoPlayersComponent implements OnInit {
     this.connection.on('QuestionsReceived', (message: any) => {
       console.log('received questions');
       this.start = true;
+      this.answered = false;
       this.currentQuestion = message;
       this.options = [
         this.currentQuestion.correctOption,

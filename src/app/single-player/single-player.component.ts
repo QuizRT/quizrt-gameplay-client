@@ -28,7 +28,7 @@ export class SinglePlayerComponent implements OnInit {
   options: string[];
   answered = false;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private cookieService: CookieService) { }
+  constructor(private route: ActivatedRoute, private cookieService: CookieService) { }
 
   ngOnInit() {
     const token = this.cookieService.get('UserLoginAPItoken');
