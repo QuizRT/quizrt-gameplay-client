@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as signalR from '@aspnet/signalr';
 import { ActivatedRoute } from "@angular/router";
-import {delay} from 'q';
+import { delay } from 'q';
 // import { Howl} from 'howler';
 
 
@@ -38,25 +38,25 @@ export class SinglePlayerComponent implements OnInit {
       .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
 
-      this.connection.on('QuestionsReceived', (message: any) => {
-        this.start = true;
-        console.log("questions came");
-        this.currentQuestion = message;
-        this.options = [
-          this.currentQuestion.correctOption,
-          this.currentQuestion.otherOptionsList[0].option,
-          this.currentQuestion.otherOptionsList[1].option,
-          this.currentQuestion.otherOptionsList[2].option
-        ];
-        this.options = this.shuffle(this.options);
-      });
-    this.connection.on('GetScore', (username:string, score:number) => {
+    this.connection.on('QuestionsReceived', (message: any) => {
+      this.start = true;
+      console.log("questions came");
+      this.currentQuestion = message;
+      this.options = [
+        this.currentQuestion.correctOption,
+        this.currentQuestion.otherOptionsList[0].option,
+        this.currentQuestion.otherOptionsList[1].option,
+        this.currentQuestion.otherOptionsList[2].option
+      ];
+      this.options = this.shuffle(this.options);
+    });
+    this.connection.on('GetScore', (username: string, score: number) => {
       this.username = username;
       this.score = score
 
     });
 
-    this.connection.on('StartClock',() => {
+    this.connection.on('StartClock', () => {
       this.counter = 10;
       const intervalMain = setInterval(() => {
         this.counter = this.counter - 0.1;
@@ -67,7 +67,7 @@ export class SinglePlayerComponent implements OnInit {
       }, 100);
     });
 
-    this.connection.on('ProvideGroupId',(groupname:string)=>{
+    this.connection.on('ProvideGroupId', (groupname: string) => {
       this.groupname = groupname;
     })
 
@@ -96,7 +96,7 @@ export class SinglePlayerComponent implements OnInit {
 
 
 
-  shuffle(options : any) {
+  shuffle(options: any) {
     var currentIndex = options.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
-import { PlayersComponent } from './players/players.component';
 import { LoginComponent } from './login/login.component';
 import { PlayComponent } from './play/play.component';
 import { SinglePlayerComponent } from './single-player/single-player.component';
@@ -14,7 +13,6 @@ const routes: Route[] = [
 
    {path: '', component: HomePageComponent},
    {path: 'home-page', component: HomePageComponent},
-   {path: 'players', component: PlayersComponent},
    {path: 'login', component: LoginComponent},
    {path: 'play/:id', component: PlayComponent},
    {path: 'play/chat', component: ChatComponent},

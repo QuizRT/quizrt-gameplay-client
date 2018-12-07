@@ -1,19 +1,19 @@
-<mat-form-field><input matInput class="topic"  *ngIf="!TopicSelected" type="text" placeholder="Enter Topic" [(ngModel)]="topic"></mat-form-field>
-<button  class="play" mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button>
+<!-- <mat-form-field><input matInput class="topic"  *ngIf="!TopicSelected" type="text" placeholder="Enter Topic" [(ngModel)]="topic"></mat-form-field> -->
+<button class="play" mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button>
 
-<div *ngIf="!start && Waiting" >
+<div *ngIf="!start && Waiting">
   Waiting for opponent to join...
 </div>
 
 <div *ngIf="start && !gameOver">
   <mat-card class="questions">
-      <h2 >{{currentQuestion.question}}</h2><br>
-      <mat-radio-group class="options">
-         <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o)">
-           {{o}}<br>
-          </mat-radio-button>
-      </mat-radio-group>
-      <br>
+    <h2>{{currentQuestion.question}}</h2><br>
+    <mat-radio-group class="options">
+      <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o)">
+        {{o}}<br>
+      </mat-radio-button>
+    </mat-radio-group>
+    <br>
   </mat-card>
 
 
@@ -37,7 +37,7 @@
 </div>
 
 <div class="result">
-<mat-card *ngIf="start && gameOver">Your Score: {{score}}<br>Highest Score: {{max1}}</mat-card>
-<!-- <mat-card *ngIf="gameOver && score<forignUserScore">Opponent Wins</mat-card>
+  <mat-card *ngIf="start && gameOver">Your Score: {{score}}<br>Highest Score: {{max1}}</mat-card>
+  <!-- <mat-card *ngIf="gameOver && score<forignUserScore">Opponent Wins</mat-card>
 <mat-card *ngIf="gameOver && score===forignUserScore">It's a Draw</mat-card> -->
 </div>

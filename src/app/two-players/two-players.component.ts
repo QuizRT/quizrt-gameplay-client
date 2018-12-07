@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as signalR from '@aspnet/signalr';
 import { MatSnackBar } from '@angular/material';
-import { ControlContainer } from '@angular/forms';
-import { throwToolbarMixedModesError } from '@angular/material';
-import { delay } from 'q';
-class Options {
+import { ActivatedRoute } from "@angular/router";
+export class Options {
   optionName: string;
   isCorrect: boolean;
 }
@@ -33,23 +31,19 @@ export class TwoPlayersComponent implements OnInit {
   TopicSelected = false;
   Waiting = false;
   groupname: string;
-  options: Options[];
+  options: string[];
   notify: any;
 
 
-  constructor(private http: HttpClient, public snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, public snackBar: MatSnackBar, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
+    this.route.paramMap.subscribe(params => { this.topic = params.get("id") });
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
 
-    this.connection.start()
-      .then(() => {
-        console.log("Connection Established...");
-      })
-      .catch((err) => console.log('Error::: ', err));
+
     // this.connection.on('ClockStarted', (tick: boolean) => {
     //   this.gameClock();
     // });
@@ -59,32 +53,30 @@ export class TwoPlayersComponent implements OnInit {
       this.start = true;
       this.currentQuestion = message;
       this.options = [
-        { 'optionName': this.currentQuestion.correctOption, 'isCorrect': true },
-        { 'optionName': this.currentQuestion.otherOptionsList[0].option, 'isCorrect': false },
-        { 'optionName': this.currentQuestion.otherOptionsList[1].option, 'isCorrect': false },
-        { 'optionName': this.currentQuestion.otherOptionsList[2].option, 'isCorrect': false }
+        this.currentQuestion.correctOption,
+        this.currentQuestion.otherOptionsList[0].option,
+        this.currentQuestion.otherOptionsList[1].option,
+        this.currentQuestion.otherOptionsList[2].option
       ];
       this.options = this.shuffle(this.options);
 
     });
 
-    this.connection.on('ProvideGroupId',(groupname:string) =>
-    {
+    this.connection.on('ProvideGroupId', (groupname: string) => {
       console.log(groupname);
       this.groupname = groupname;
     })
 
-    this.connection.on('NoOpponentsFound',() =>
-    {
+    this.connection.on('NoOpponentsFound', () => {
       this.Waiting = false;
       this.start = false;
       this.gameOver = true;
       console.log("users not found..");
     })
 
-    this.connection.on('StartClock',() => {
+    this.connection.on('StartClock', () => {
       const intervalMain = setInterval(() => {
-        this.counter-= 0.1;
+        this.counter -= 0.1;
         if (this.counter <= 1) {
           this.counter = 10;
           clearInterval(intervalMain);
@@ -93,8 +85,7 @@ export class TwoPlayersComponent implements OnInit {
     });
 
     this.connection.on('GetScore', (username: string, score: number) => {
-      if(this.username != username)
-      {
+      if (this.username != username) {
         this.otherUser = username;
         this.otherUserScore = score;
       }
@@ -109,13 +100,19 @@ export class TwoPlayersComponent implements OnInit {
 
   }
   sleep() {
-    this.TopicSelected = true;
-    this.Waiting = true;
-    this.connection.send('Init', this.username, this.topic, 2);
+    this.connection.start()
+      .then(() => {
+        console.log("Connection Established...");
+        this.TopicSelected = true;
+        this.Waiting = true;
+        this.connection.send('Init', this.username, this.topic, 2);
+      })
+      .catch((err) => console.log('Error::: ', err));
+
 
   }
 
-  shuffle(options : any) {
+  shuffle(options: any) {
     var currentIndex = options.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
@@ -135,15 +132,14 @@ export class TwoPlayersComponent implements OnInit {
   }
 
   scoreCalculator(optionsobject: any) {
-    this.connection.send('CalculateScore', this.groupname, this.username, optionsobject, this.counter);
+    this.connection.send('CalculateScore', this.groupname, this.username, optionsobject,this.currentQuestion, this.counter);
   }
 
-  openSnackBar(message: string, action: number)
-  {
-    this.snackBar.open("Hi", "JustChecking", {
-      duration: 2000,
-    });
-  }
+  // openSnackBar(message: string, action: number) {
+  //   this.snackBar.open("Hi", "JustChecking", {
+  //     duration: 2000,
+  //   });
+  // }
 
 }
 

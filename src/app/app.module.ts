@@ -5,7 +5,6 @@ import{ MatDialogModule} from '@angular/material';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import { HomePageComponent } from './home-page/home-page.component';
-import { PlayersComponent } from './players/players.component';
 import {MatFormFieldModule, MatInputModule} from '@angular/material';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule, MatGridList} from '@angular/material/grid-list';
@@ -26,7 +25,6 @@ import { SocialLoginModule,  AuthServiceConfig, GoogleLoginProvider} from 'angul
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material';
 import {MatSnackBarModule} from '@angular/material';
-// import {FlexLayoutModule} from '@angular/flex-layout';
 import  {Howl}  from 'howler';
 import { FormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
@@ -34,7 +32,7 @@ import { Options } from 'selenium-webdriver/chrome';
 import {ProgressBarModule} from "angular-progress-bar";
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {CookieService} from 'ngx-cookie-service';
-// import { PlayerService } from './player.service';
+import { PlayerService } from './player.service';
 // import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 // import {ErrorStateMatcher} from '@angular/material/core';
 
@@ -56,7 +54,6 @@ return config;
   declarations: [
     AppComponent,
     HomePageComponent,
-    PlayersComponent,
     LoginComponent,
     PlayComponent,
     SinglePlayerComponent,
@@ -65,7 +62,7 @@ return config;
     FourPlayersComponent,
     ChatComponent,
     SignupComponent,
-    // PlayerService
+    PlayerService
   ],
   imports: [
     HttpClientModule,

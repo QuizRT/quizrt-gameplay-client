@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import { HttpClient } from '@angular/common/http';
-import { ControlContainer } from '@angular/forms';
-import { throwToolbarMixedModesError } from '@angular/material';
-import { delay } from 'q';
+import { ActivatedRoute } from "@angular/router";
 
-class Options {
-  optionName: string;
-  isCorrect: boolean;
-}
+// class Options {
+//   optionName: string;
+//   isCorrect: boolean;
+// }
 @Component({
   selector: 'app-three-players',
   templateUrl: './three-players.component.html',
@@ -21,35 +19,33 @@ export class ThreePlayersComponent implements OnInit {
   start = false;
   gameOver = false;
   connection: any;
-  counter = 0;
+  counter = 10;
   score = 0;
   topic = 'topic';
   Waiting = false;
   groupname: string;
   TopicSelected = false;
   questionCounter = 0;
-  options: Options[];
-  constructor(private http: HttpClient) { }
+  options: string[];
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
+    this.route.paramMap.subscribe(params => { this.topic = params.get("id") });
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
 
-    this.connection.start().
-      then(() => console.log('connection established'))
-      .catch((err) => console.log('Error::: ', err));
+
 
       this.connection.on('QuestionsReceived', (message: any) => {
         console.log("received questions");
         this.start = true;
         this.currentQuestion = message;
         this.options = [
-          { 'optionName': this.currentQuestion.correctOption, 'isCorrect': true },
-          { 'optionName': this.currentQuestion.otherOptionsList[0].option, 'isCorrect': false },
-          { 'optionName': this.currentQuestion.otherOptionsList[1].option, 'isCorrect': false },
-          { 'optionName': this.currentQuestion.otherOptionsList[2].option, 'isCorrect': false }
+          this.currentQuestion.correctOption,
+          this.currentQuestion.otherOptionsList[0].option,
+          this.currentQuestion.otherOptionsList[1].option,
+          this.currentQuestion.otherOptionsList[2].option
         ];
         this.options = this.shuffle(this.options);
 
@@ -89,13 +85,18 @@ export class ThreePlayersComponent implements OnInit {
 
       this.connection.on('GameOver', () => {
         this.gameOver = true;
+
       });
 
   }
   sleep() {
+    this.connection.start().
+    then(() => {console.log('connection established');
     this.TopicSelected = true;
     this.Waiting = true;
-    this.connection.send('Init', this.username, this.topic, 3);
+    this.connection.send('Init', this.username, this.topic, 3);})
+    .catch((err) => console.log('Error::: ', err));
+
 
   }
 
@@ -120,12 +121,7 @@ export class ThreePlayersComponent implements OnInit {
   }
 
   scoreCalculator(optionsobject: any) {
-    // if (optionsobject.isCorrect == true) {
-    //   this.score += this.counter * 2;
-    // } else {
-    //   this.score += 0;
-    // }
-    this.connection.send('CalculateScore', this.groupname, this.username, optionsobject, this.counter);
+    this.connection.send('CalculateScore', this.groupname, this.username, optionsobject,this.currentQuestion, this.counter);
   }
 
 

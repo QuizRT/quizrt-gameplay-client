@@ -11,43 +11,34 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class LoginComponent {
 
-  email:string;
-  password:string;
-  token:any;
+  email: string;
+  password: string;
+  token: any;
   constructor(
     public dialogConfig: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private service: PlayerService,
     private cookieService: CookieService
-    )
-     { }
+  ) { }
 
-    CheckValidation(): void{
-      this.service.GetUser(this.email, this.password).subscribe((result:any)=>
-      {
-        // let token = parseJwt(result);
-        let token = this.cookieService.get("UserLoginAPItoken");
-        let jwtData = token.split('.')[1];
-        let decodedJwtJsonData = window.atob(jwtData);
-        let decodedJwtData = JSON.parse(decodedJwtJsonData);
-        let userId = decodedJwtData.UserID;
-        let fullName = decodedJwtData.Name;
-        let email = decodedJwtData.Email;
-         // this.cookieService.set(userId, fullName);
-        console.log(userId+"  "+fullName+"  "+email);
-        window.location.href = "http://172.23.238.164:7000/social/";
-        // console.log(result);
-        this.AfterLogin();
-      },(err)=> {this.Message();})
-}
-  closeDialog1(): void{
+  CheckValidation(): void {
+    this.service.GetUser(this.email, this.password).subscribe((result: any) => {
+      // let token = parseJwt(result);
+      let token = this.cookieService.get("UserLoginAPItoken");
+      let jwtData = token.split('.')[1];
+      let decodedJwtJsonData = window.atob(jwtData);
+      let decodedJwtData = JSON.parse(decodedJwtJsonData);
+      let userId = decodedJwtData.UserID;
+      let fullName = decodedJwtData.Name;
+      let email = decodedJwtData.Email;
+      console.log(userId + "  " + fullName + "  " + email);
+      window.location.href = "http://172.23.238.164:7000/social/";
+    }, (err) => { this.Message(); })
+  }
+  closeDialog1(): void {
     this.dialogConfig.close();
   }
 
-  AfterLogin() {
-    console.log("-----token----");
-
-  }
-  Message()  {
+  Message() {
     alert("Incorrect Credentials... Try Again..");
   }
 }
