@@ -3,6 +3,7 @@ import * as signalR from '@aspnet/signalr';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from "../login/login.component";
+import { CookieService } from "ngx-cookie-service";
 @Component({
   selector: 'app-four-players',
   templateUrl: './four-players.component.html',
@@ -29,9 +30,14 @@ export class FourPlayersComponent implements OnInit {
   groupname: string;
   options: string[];
   notify: any;
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private cookieService: CookieService) { }
 
   ngOnInit() {
+    const token = this.cookieService.get('UserLoginAPItoken');
+    const jwtData = token.split('.')[1];
+    const decodedJwtJsonData = window.atob(jwtData);
+    const decodedJwtData = JSON.parse(decodedJwtJsonData);
+    this.username = decodedJwtData.Name;
     console.log(this.username);
     this.route.paramMap.subscribe(params => { this.topic = params.get('id'); });
     this.connection = new signalR.HubConnectionBuilder()

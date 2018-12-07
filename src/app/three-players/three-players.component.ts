@@ -3,6 +3,7 @@ import * as signalR from '@aspnet/signalr';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from "../login/login.component";
+import { CookieService } from 'ngx-cookie-service';
 // class Options {
 //   optionName: string;
 //   isCorrect: boolean;
@@ -14,8 +15,7 @@ import { LoginComponent } from "../login/login.component";
 })
 
 export class ThreePlayersComponent implements OnInit {
-  @ViewChild(LoginComponent) login;
-  username: any = this.login.fullName;
+  username: string;
   currentQuestion: any;
   start = false;
   gameOver = false;
@@ -28,9 +28,14 @@ export class ThreePlayersComponent implements OnInit {
   TopicSelected = false;
   questionCounter = 0;
   options: string[];
-  constructor(private http: HttpClient, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private cookieService: CookieService) { }
 
   ngOnInit() {
+    const token = this.cookieService.get('UserLoginAPItoken');
+    const jwtData = token.split('.')[1];
+    const decodedJwtJsonData = window.atob(jwtData);
+    const decodedJwtData = JSON.parse(decodedJwtJsonData);
+    this.username = decodedJwtData.Name;
     this.route.paramMap.subscribe(params => { this.topic = params.get('id'); });
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl('http://172.23.238.164:7000/gameplayhub')
