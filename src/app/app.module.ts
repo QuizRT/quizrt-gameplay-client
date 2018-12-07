@@ -29,7 +29,7 @@ import  {Howl}  from 'howler';
 import { FormsModule } from '@angular/forms';
 import { SignupComponent } from './signup/signup.component';
 import { Options } from 'selenium-webdriver/chrome';
-import {ProgressBarModule} from "angular-progress-bar";
+import {ProgressBarModule} from 'angular-progress-bar';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {CookieService} from 'ngx-cookie-service';
 import { PlayerService } from './player.service';

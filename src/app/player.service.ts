@@ -15,28 +15,28 @@ export class PlayerService {
 //     this.httpClient.post(this.LIVE_URI,player).subscribe(data=> console.log("POST request is successful"));
 //   }
 
-GetUser(email:string, password:string){
+GetUser(email: string, password: string) {
  return this.httpClient.post(this.LOGIN_URI,
     {
-      "Email": email,
-      "Password": password
+      'Email': email,
+      'Password': password
     });
 }
 
-PostUser(name:string, email:string, password:string) {
+PostUser(name: string, email: string, password: string) {
   this.httpClient.post(this.SIGNUP_URI,
     {
-      "Name" : name,
-      "Email": email,
-      "Password": password
+      'Name' : name,
+      'Email': email,
+      'Password': password
     }).subscribe(
       data => {
         console.log('mjddbh');
       }
-    )
+    );
 }
 
-TestToken(){
- return this.httpClient.get("http://172.23.238.164:7000/questiongenerator/topics");
+TestToken() {
+ return this.httpClient.get('http://172.23.238.164:7000/questiongenerator/topics');
 }
 }

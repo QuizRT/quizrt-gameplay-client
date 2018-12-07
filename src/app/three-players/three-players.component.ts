@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from "@angular/router";
-
+import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from "../login/login.component";
 // class Options {
 //   optionName: string;
 //   isCorrect: boolean;
@@ -14,7 +14,8 @@ import { ActivatedRoute } from "@angular/router";
 })
 
 export class ThreePlayersComponent implements OnInit {
-  username: any = new Date().getTime();
+  @ViewChild(LoginComponent) login;
+  username: any = this.login.fullName;
   currentQuestion: any;
   start = false;
   gameOver = false;
@@ -30,7 +31,7 @@ export class ThreePlayersComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => { this.topic = params.get("id") });
+    this.route.paramMap.subscribe(params => { this.topic = params.get('id'); });
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
@@ -38,7 +39,7 @@ export class ThreePlayersComponent implements OnInit {
 
 
       this.connection.on('QuestionsReceived', (message: any) => {
-        console.log("received questions");
+        console.log('received questions');
         this.start = true;
         this.currentQuestion = message;
         this.options = [
@@ -51,34 +52,31 @@ export class ThreePlayersComponent implements OnInit {
 
       });
 
-      this.connection.on('ProvideGroupId',(groupname:string) =>
-      {
+      this.connection.on('ProvideGroupId', (groupname: string) => {
         console.log(groupname);
         this.groupname = groupname;
-      })
+      });
 
-      this.connection.on('NoOpponentsFound',() =>
-      {
-        console.log("users not found..");
-      })
+      this.connection.on('NoOpponentsFound', () => {
+        console.log('users not found..');
+      });
 
-      this.connection.on('StartClock',() => {
+      this.connection.on('StartClock', () => {
+        this.counter = 10;
         const intervalMain = setInterval(() => {
-          this.counter--;
-          if (this.counter <= 0) {
-            this.counter = 10;
+          this.counter-=0.1;
+          if (this.counter <= 0.1) {
+
             clearInterval(intervalMain);
           }
-        }, 1000);
+        }, 100);
       });
 
       this.connection.on('GetScore', (username: string, score: number) => {
-        if(this.username != username)
-        {
+        if (this.username != username) {
           // this.otherUser = username;
           // this.otherUserScore = score;
-        }
-        else {
+        } else {
           this.score = score;
         }
       });
@@ -94,15 +92,15 @@ export class ThreePlayersComponent implements OnInit {
     then(() => {console.log('connection established');
     this.TopicSelected = true;
     this.Waiting = true;
-    this.connection.send('Init', this.username, this.topic, 3);})
+    this.connection.send('Init', this.username, this.topic, 3); })
     .catch((err) => console.log('Error::: ', err));
 
 
   }
 
 
-  shuffle(options : any) {
-    var currentIndex = options.length, temporaryValue, randomIndex;
+  shuffle(options: any) {
+    let currentIndex = options.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
@@ -121,7 +119,7 @@ export class ThreePlayersComponent implements OnInit {
   }
 
   scoreCalculator(optionsobject: any) {
-    this.connection.send('CalculateScore', this.groupname, this.username, optionsobject,this.currentQuestion, this.counter);
+    this.connection.send('CalculateScore', this.groupname, this.username, optionsobject, this.currentQuestion, this.counter);
   }
 
 

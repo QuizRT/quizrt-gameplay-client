@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as signalR from '@aspnet/signalr';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
 import { delay } from 'q';
+import { LoginComponent } from "../login/login.component";
 // import { Howl} from 'howler';
 
 
@@ -12,6 +13,7 @@ import { delay } from 'q';
   styleUrls: ['./single-player.component.css']
 })
 export class SinglePlayerComponent implements OnInit {
+  @ViewChild(LoginComponent) login;
   counter = 10;
   score = 0;
   questionCounter = 0;
@@ -21,7 +23,7 @@ export class SinglePlayerComponent implements OnInit {
   connection: any;
   topic: any;
   TopicSelected = false;
-  username: string = new Date().getTime().toString();
+  username: string = this.login.fullName;
   groupname: string;
   options: string[];
   answered = false;
@@ -29,10 +31,8 @@ export class SinglePlayerComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit() {
-
-    this.route.paramMap.subscribe(params => { this.topic = params.get("id") });
-    console.log("---topicname---", this.topic);
-
+    this.route.paramMap.subscribe(params => { this.topic = params.get('id'); });
+    console.log('---topicname---', this.topic);
 
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl('http://172.23.238.164:7000/gameplayhub')
@@ -40,7 +40,7 @@ export class SinglePlayerComponent implements OnInit {
 
     this.connection.on('QuestionsReceived', (message: any) => {
       this.start = true;
-      console.log("questions came");
+      console.log('questions came');
       this.currentQuestion = message;
       this.options = [
         this.currentQuestion.correctOption,
@@ -52,7 +52,7 @@ export class SinglePlayerComponent implements OnInit {
     });
     this.connection.on('GetScore', (username: string, score: number) => {
       this.username = username;
-      this.score = score
+      this.score = score;
 
     });
 
@@ -60,7 +60,7 @@ export class SinglePlayerComponent implements OnInit {
       this.counter = 10;
       const intervalMain = setInterval(() => {
         this.counter = this.counter - 0.1;
-        if (this.counter <= 1) {
+        if (this.counter <= 0.1) {
 
           clearInterval(intervalMain);
         }
@@ -69,10 +69,10 @@ export class SinglePlayerComponent implements OnInit {
 
     this.connection.on('ProvideGroupId', (groupname: string) => {
       this.groupname = groupname;
-    })
+    });
 
     this.connection.on('GameOver', () => {
-      console.log("came to game over");
+      console.log('came to game over');
       this.gameOver = true;
     });
 
@@ -97,7 +97,7 @@ export class SinglePlayerComponent implements OnInit {
 
 
   shuffle(options: any) {
-    var currentIndex = options.length, temporaryValue, randomIndex;
+    let currentIndex = options.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {

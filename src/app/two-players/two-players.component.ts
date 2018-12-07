@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as signalR from '@aspnet/signalr';
 import { MatSnackBar } from '@angular/material';
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute } from '@angular/router';
+import { LoginComponent } from "../login/login.component";
 export class Options {
   optionName: string;
   isCorrect: boolean;
@@ -14,14 +15,14 @@ export class Options {
 })
 
 export class TwoPlayersComponent implements OnInit {
-
+  @ViewChild(LoginComponent) login;
   counter = 10;
   score = 0;
   questionCounter = 0;
   currentQuestion: any;
   start = false;
   gameOver = false;
-  username = new Date().getTime().toString();
+  username = this.login.fullName;
   connection: any;
   currentUser: any;
   otherUser: any;
@@ -38,7 +39,7 @@ export class TwoPlayersComponent implements OnInit {
   constructor(private http: HttpClient, public snackBar: MatSnackBar, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => { this.topic = params.get("id") });
+    this.route.paramMap.subscribe(params => { this.topic = params.get('id'); });
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
@@ -49,7 +50,7 @@ export class TwoPlayersComponent implements OnInit {
     // });
 
     this.connection.on('QuestionsReceived', (message: any) => {
-      console.log("received questions");
+      console.log('received questions');
       this.start = true;
       this.currentQuestion = message;
       this.options = [
@@ -65,20 +66,21 @@ export class TwoPlayersComponent implements OnInit {
     this.connection.on('ProvideGroupId', (groupname: string) => {
       console.log(groupname);
       this.groupname = groupname;
-    })
+    });
 
     this.connection.on('NoOpponentsFound', () => {
       this.Waiting = false;
       this.start = false;
       this.gameOver = true;
-      console.log("users not found..");
-    })
+      console.log('users not found..');
+    });
 
     this.connection.on('StartClock', () => {
+      this.counter = 10;
       const intervalMain = setInterval(() => {
         this.counter -= 0.1;
-        if (this.counter <= 1) {
-          this.counter = 10;
+        if (this.counter <= 0.1) {
+
           clearInterval(intervalMain);
         }
       }, 100);
@@ -88,8 +90,7 @@ export class TwoPlayersComponent implements OnInit {
       if (this.username != username) {
         this.otherUser = username;
         this.otherUserScore = score;
-      }
-      else {
+      } else {
         this.score = score;
       }
     });
@@ -102,7 +103,7 @@ export class TwoPlayersComponent implements OnInit {
   sleep() {
     this.connection.start()
       .then(() => {
-        console.log("Connection Established...");
+        console.log('Connection Established...');
         this.TopicSelected = true;
         this.Waiting = true;
         this.connection.send('Init', this.username, this.topic, 2);
@@ -113,7 +114,7 @@ export class TwoPlayersComponent implements OnInit {
   }
 
   shuffle(options: any) {
-    var currentIndex = options.length, temporaryValue, randomIndex;
+    let currentIndex = options.length, temporaryValue, randomIndex;
 
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
@@ -132,7 +133,7 @@ export class TwoPlayersComponent implements OnInit {
   }
 
   scoreCalculator(optionsobject: any) {
-    this.connection.send('CalculateScore', this.groupname, this.username, optionsobject,this.currentQuestion, this.counter);
+    this.connection.send('CalculateScore', this.groupname, this.username, optionsobject, this.currentQuestion, this.counter);
   }
 
   // openSnackBar(message: string, action: number) {
