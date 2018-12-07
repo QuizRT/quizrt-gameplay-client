@@ -45,6 +45,7 @@ export class SinglePlayerComponent implements OnInit {
 
     this.connection.on('QuestionsReceived', (message: any) => {
       this.start = true;
+      this.answered = false;
       console.log('questions came');
       this.currentQuestion = message;
       this.options = [
