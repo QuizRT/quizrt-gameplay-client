@@ -4,6 +4,7 @@ import * as signalR from '@aspnet/signalr';
 import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from "../login/login.component";
+import { CookieService } from 'ngx-cookie-service';
 export class Options {
   optionName: string;
   isCorrect: boolean;
@@ -15,14 +16,13 @@ export class Options {
 })
 
 export class TwoPlayersComponent implements OnInit {
-  @ViewChild(LoginComponent) login;
   counter = 10;
   score = 0;
   questionCounter = 0;
   currentQuestion: any;
   start = false;
   gameOver = false;
-  username = this.login.fullName;
+  username:  string;
   connection: any;
   currentUser: any;
   otherUser: any;
@@ -36,9 +36,14 @@ export class TwoPlayersComponent implements OnInit {
   notify: any;
 
 
-  constructor(private http: HttpClient, public snackBar: MatSnackBar, private route: ActivatedRoute) { }
+  constructor(private http: HttpClient, public cookieService:CookieService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    const token = this.cookieService.get('UserLoginAPItoken');
+    const jwtData = token.split('.')[1];
+    const decodedJwtJsonData = window.atob(jwtData);
+    const decodedJwtData = JSON.parse(decodedJwtJsonData);
+    this.username = decodedJwtData.Name;
     this.route.paramMap.subscribe(params => { this.topic = params.get('id'); });
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl('http://172.23.238.164:7000/gameplayhub')
