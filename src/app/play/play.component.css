@@ -13,7 +13,7 @@ margin-left:5rem;
   .logo{
     flex:2;
     background-color: #F0F3BD;
-    background-image: url('/src/assets/img/logo3.png');
+    /* background-image: url('../../assets/img/'); */
     background-size: 400px 410px;
     background-position: 45%;
     /* width: 241px;
