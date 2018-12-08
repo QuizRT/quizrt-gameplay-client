@@ -43,7 +43,7 @@ export class TwoPlayersComponent implements OnInit {
   constructor(public cookieService:CookieService, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
-    this.waiting = true;
+    // this.waiting = true;
     const token = this.cookieService.get('UserLoginAPItoken');
     const jwtData = token.split('.')[1];
     const decodedJwtJsonData = window.atob(jwtData);
@@ -69,6 +69,7 @@ export class TwoPlayersComponent implements OnInit {
       this.opponentsFound = true;
       this.start = true;
       this.answered = false;
+      this.waiting = false;
       this.currentQuestion = message;
       this.options = [
         this.currentQuestion.correctOption,
