@@ -116,13 +116,11 @@ mat-grid-list{
   font-style: normal;
   align-items: center;
   justify-content: space-between;
-  padding-left: 5%;
-  padding-right: 5%;
 }
 
 
 .back_button{
-  padding-right: 10px;
+  margin-right: 10px;
 }
 .result{
   color: #02C39A;
