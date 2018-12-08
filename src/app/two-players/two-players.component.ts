@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from "../login/login.component";
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 export class Options {
   optionName: string;
   isCorrect: boolean;
@@ -39,7 +40,7 @@ export class TwoPlayersComponent implements OnInit {
   opponentsFound:boolean = false;
 
 
-  constructor(public cookieService:CookieService, private route: ActivatedRoute) { }
+  constructor(public cookieService:CookieService, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
     this.waiting = true;
@@ -140,6 +141,10 @@ export class TwoPlayersComponent implements OnInit {
     }
 
     return options;
+  }
+
+  Route() {
+    this.router.navigate([`/play/${this.topic}/single-player`])
   }
 
   scoreCalculator(optionsobject: any) {
