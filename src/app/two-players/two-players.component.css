@@ -115,6 +115,7 @@ mat-grid-list{
   background-color: white;
   font-style: normal;
   align-items: center;
+  justify-content: space-between;
 
 }
 
