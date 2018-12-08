@@ -105,10 +105,10 @@ mat-grid-list{
 }
 .back{
 
-  display: flex;
-  flex-direction: column;
+  display: inline;
+  /* flex-direction: column; */
   justify-content: center;
-  width:60%;
+  /* width:60%; */
   margin-left: 20%;
   font-size: 25px;
   align-content: center;
