@@ -7,7 +7,7 @@
     <div *ngIf="noOpponentsFound; else opponentsFound">
       <div class="quizrt-c-text">Oops! Couldn't find any opponents</div>
       <button class="back" mat-raised-button [routerLink]="['/play/${topic}/single-player']">Play Single</button>
-      <button class="back" mat-raised-button color="primary" (click)="Home()">
+      <button class="back" mat-raised-button (click)="Home()">
         Home</button>
     </div>
     <ng-template #opponentsFound>
