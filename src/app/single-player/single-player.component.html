@@ -1,6 +1,6 @@
 <!-- <input  class="topic" *ngIf="!TopicSelected" type="text" placeholder="Enter Topic" [(ngModel)]="topic"> -->
 
-<button class="play" mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button>
+<!-- <button class="play" mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button> -->
 <!-- <div> -->
 <!-- <mat-progress-bar *ngIf ="!start && TopicSelected" mode="indeterminate"></mat-progress-bar> -->
 <div class="waiting" *ngIf="!start && TopicSelected">Starting Quiz...</div>
@@ -26,9 +26,8 @@
 
 <mat-card class="gameover" *ngIf="start && gameOver">
   <mat-card-title>Your Final Score is {{score}} </mat-card-title>
-  <button mat-raised-button class="goBack" [routerLink]="['/play/topic']">Go Back</button>
+  <button mat-raised-button class="goBack" (click)="Home()">Home</button>
   <br><br>
-</mat-card>
 
 <progress-bar *ngIf="start && !gameOver" [progress]="counter*10" [color-degraded]="{'10': '#1B7397', '20': '#05668D', '30':'#055D81','40': '#055474','50': '#044B67',
     '60': '#04415A','70': '#03384D','80': '#032F41','90': '#022634','100': '#021C27'}">

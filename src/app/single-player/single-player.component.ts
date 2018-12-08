@@ -43,6 +43,14 @@ export class SinglePlayerComponent implements OnInit {
       .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
 
+      this.connection.start()
+      .then(() => {
+        console.log('connection established');
+        this.TopicSelected = true;
+        console.log(this.username +" == "+ this.topic);
+        this.connection.send('Init', this.username, this.topic, 1);
+      })
+      .catch((err) => console.log('Error::: ', err));
     this.connection.on('QuestionsReceived', (message: any) => {
       this.start = true;
       this.answered = false;
@@ -84,17 +92,10 @@ export class SinglePlayerComponent implements OnInit {
 
 
   }
+  Home(){
+    window.location.href = 'http://172.23.238.164:7000/social/';
+}
 
-  sleep() {
-
-    this.connection.start()
-      .then(() => {
-        console.log('connection established');
-        this.TopicSelected = true;
-        this.connection.send('Init', this.username, this.topic, 1);
-      })
-      .catch((err) => console.log('Error::: ', err));
-  }
 
   scoreCalculator(option: any) {
     this.connection.send('CalculateScore', this.groupname, this.username, option, this.currentQuestion, this.counter);

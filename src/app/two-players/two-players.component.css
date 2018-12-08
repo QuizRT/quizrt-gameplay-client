@@ -86,7 +86,7 @@
 
 button{
   margin-top:3rem;
-  margin-left: 18rem;
+  /* margin-left: 18rem; */
    /* width:5rem; */
   height:3rem;
   font-style: bold;
@@ -153,13 +153,18 @@ mat-grid-list{
   font-size: 25px;
 }
 .back{
-  margin-left: 30%;
-  height:3rem;
-  background-color: #02C39A;
-  color: white;
-  font-style: bold;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width:60%;
+  margin-left: 20%;
   font-size: 25px;
-  width: 30%;
+  align-content: center;
+  background-color: #02C39A;
+  font-style: normal;
+  align-items: center;
+
 }
 .result{
   color: #02C39A;

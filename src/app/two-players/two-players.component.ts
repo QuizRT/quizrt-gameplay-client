@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from "../login/login.component";
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 export class Options {
   optionName: string;
   isCorrect: boolean;
@@ -34,32 +35,41 @@ export class TwoPlayersComponent implements OnInit {
   groupname: string;
   options: string[];
   notify: any;
+  noOpponentsFound:boolean =  false;
+  gameplay:boolean=false;
+  opponentsFound:boolean = false;
 
 
-  constructor(public cookieService:CookieService, private route: ActivatedRoute) { }
+  constructor(public cookieService:CookieService, private route: ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
-    this.waiting = true;
+    // this.waiting = true;
     const token = this.cookieService.get('UserLoginAPItoken');
     const jwtData = token.split('.')[1];
-    // const decodedJwtJsonData = window.atob(jwtData);
-    // const decodedJwtData = JSON.parse(decodedJwtJsonData);
-    // this.username = decodedJwtData.Name;
-    this.username = "Nishant";
+    const decodedJwtJsonData = window.atob(jwtData);
+    const decodedJwtData = JSON.parse(decodedJwtJsonData);
+    this.username = decodedJwtData.Name;
+    // this.username = "Nishant";
     this.route.paramMap.subscribe(params => { this.topic = params.get('id'); });
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
-    this.sleep();
 
-    // this.connection.on('ClockStarted', (tick: boolean) => {
-    //   this.gameClock();
-    // });
+      this.connection.start()
+      .then(() => {
+        console.log('Connection Established...');
+        this.waiting = true;
+        this.connection.send('Init', this.username, this.topic, 2);
+      })
+      .catch((err) => console.log('Error::: ', err));
+
 
     this.connection.on('QuestionsReceived', (message: any) => {
       console.log('received questions');
+      this.opponentsFound = true;
       this.start = true;
       this.answered = false;
+      this.waiting = false;
       this.currentQuestion = message;
       this.options = [
         this.currentQuestion.correctOption,
@@ -78,7 +88,9 @@ export class TwoPlayersComponent implements OnInit {
 
     this.connection.on('NoOpponentsFound', () => {
       this.waiting = false;
+      this.gameplay = true;
       this.start = false;
+      this.noOpponentsFound = true;
       this.gameOver = true;
       console.log('users not found..');
     });
@@ -108,17 +120,9 @@ export class TwoPlayersComponent implements OnInit {
     });
 
   }
-  sleep() {
-    this.connection.start()
-      .then(() => {
-        console.log('Connection Established...');
-        this.TopicSelected = true;
-        this.Waiting = true;
-        this.connection.send('Init', this.username, this.topic, 2);
-      })
-      .catch((err) => console.log('Error::: ', err));
 
-
+  Home(){
+      window.location.href = 'http://172.23.238.164:7000/social/';
   }
 
   shuffle(options: any) {
@@ -138,6 +142,10 @@ export class TwoPlayersComponent implements OnInit {
     }
 
     return options;
+  }
+
+  Route() {
+    this.router.navigate([`/play/${this.topic}/single-player`])
   }
 
   scoreCalculator(optionsobject: any) {
