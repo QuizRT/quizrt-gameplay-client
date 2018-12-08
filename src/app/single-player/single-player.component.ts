@@ -47,6 +47,7 @@ export class SinglePlayerComponent implements OnInit {
       .then(() => {
         console.log('connection established');
         this.TopicSelected = true;
+        console.log(this.topic);
         this.connection.send('Init', this.username, this.topic, 1);
       })
       .catch((err) => console.log('Error::: ', err));
@@ -92,7 +93,7 @@ export class SinglePlayerComponent implements OnInit {
 
   }
 
-  
+
   scoreCalculator(option: any) {
     this.connection.send('CalculateScore', this.groupname, this.username, option, this.currentQuestion, this.counter);
   }
