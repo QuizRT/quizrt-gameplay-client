@@ -112,10 +112,14 @@ mat-grid-list{
   margin-left: 20%;
   font-size: 25px;
   align-content: center;
-  background-color: #02C39A;
+  background-color: white;
   font-style: normal;
   align-items: center;
 
+}
+
+.back-container{
+  flex-direction: row;
 }
 .result{
   color: #02C39A;

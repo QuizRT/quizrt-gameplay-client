@@ -6,8 +6,10 @@
   <ng-template #gameplay>
     <div *ngIf="noOpponentsFound; else opponentsFound">
       <div class="quizrt-c-text">Oops! Couldn't find any opponents</div>
+      <div class="back-container">
       <button class="back" mat-raised-button (click)="Route()">Play Single</button>
       <button class="back" mat-raised-button (click)="Home()">Home</button>
+      </div>
     </div>
     <ng-template #opponentsFound>
       <div class="quizrt-c-text">
