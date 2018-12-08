@@ -96,11 +96,10 @@ export class TwoPlayersComponent implements OnInit {
     });
 
     this.connection.on('StartClock', () => {
-      this.counter = 10;
       const intervalMain = setInterval(() => {
         this.counter -= 1;
         if (this.counter <= 0) {
-
+          this.counter = 10;
           clearInterval(intervalMain);
         }
       }, 1000);
