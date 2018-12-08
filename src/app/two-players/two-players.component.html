@@ -1,12 +1,19 @@
-<!-- <input *ngIf="!TopicSelected" class="topic" type="text" placeholder="Enter Topic" [(ngModel)]="topic"> -->
-<br>
-<button *ngIf="!TopicSelected" class="play" mat-raised-button (click)="sleep()">Let's Play</button>
-<mat-progress-bar *ngIf="!start && Waiting" mode="indeterminate"></mat-progress-bar>
-<div class="opponent" *ngIf="!start && Waiting">
-  Waiting for opponent to join...
+<div class="quizrt-c-gameplay">
+  <div *ngIf="waiting; else gameplay" class="quizrt-c-gameplay__loader">
+    <img class="quizrt-c-gameplay__loader__image" src="../../assets/img/gameplay-loader.gif" alt="" srcset="">
+    <h5 class="quizrt-c-gameplay__loader__msg quizrt-c-text">Waiting for the Opponent to join</h5>
+  </div>
+  <ng-template #gameplay>
+    <div *ngIf="noOpponentsFound; else opponentsFound">
+      <div class="quizrt-c-text">Oops! Couldn't find any opponents</div>
+    </div>
+    <ng-template #opponentsFound>
+      <div class="quizrt-c-text">
+        OpponentsFound
+      </div>
+    </ng-template>
+  </ng-template>
 </div>
-
-
 
 <div *ngIf="start && !gameOver">
   <mat-card class="questions">

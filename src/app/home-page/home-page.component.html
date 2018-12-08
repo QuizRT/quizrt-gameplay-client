@@ -1,7 +1,24 @@
-<div class="homepage">
-  <div class="logo"></div>
-  <div class="buttons">
-    <button mat-raised-button class="login" (click)="openDialog1()">Login</button>
-    <button mat-raised-button (click)="openDialog2()">Signup</button>
+<div class="quizrt-l-container__wrapper">
+  <div class="quizrt-l-container__aside"></div>
+  <div class="quizrt-l-container">
+    <img class="quizrt-c-logo" src="../../assets/img/shapes-tranparent.gif" alt="" srcset="">
+    <div class="quizrt-c-container__title">
+      <h1>QuizRT</h1>
+      <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta perspiciatis voluptate reiciendis distinctio quibusdam maxime asperiores in quam porro delectus laborum fugit cum aut totam a aperiam assumenda, laboriosam id.</div>
+      <button mat-button class="quizrt-c-begin_btn">Begin</button>
+    </div>
+    <div class="quizrt-c-topic__container">
+      <mat-card class="quizrt-c-topic__card" *ngFor="let topic of topics" class="quizrt-c-topics">
+        <mat-card-header>
+          <mat-card-title>{{topic | titlecase}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="quizrt-l-topic__content">
+          <img class="quizrt-c-topic__icon" src="../../assets/img/topic.png" alt="" srcset="">
+        </mat-card-content>
+        <mat-card-actions class="quizrt-l-action__container">
+          <button mat-button (click)="quickPlay(topic)">Play</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
 </div>

@@ -35,6 +35,9 @@ import {CookieService} from 'ngx-cookie-service';
 import { PlayerService } from './player.service';
 // import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
 // import {ErrorStateMatcher} from '@angular/material/core';
+import { TopicService } from './topic.service';
+import { AuthGuard } from './AuthGuard';
+import { LoginService } from './login.service';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -93,13 +96,12 @@ return config;
       useFactory: getAuthServiceConfigs
     },
     PlayerService,
-    CookieService
+    CookieService,
+    TopicService,
+    AuthGuard,
+    LoginService
   ],
   bootstrap: [AppComponent],
-  entryComponents : [SignupComponent,
-   LoginComponent
-  ]
 })
-
 
 export class AppModule { }

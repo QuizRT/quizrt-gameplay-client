@@ -16,9 +16,9 @@ export class LoginComponent {
   token: any;
   fullName: string;
   constructor(
-    public dialogConfig: MatDialogRef<LoginComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData,
     private service: PlayerService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router: Router
   ) { }
 
   CheckValidation(): void {
@@ -35,8 +35,10 @@ export class LoginComponent {
       window.location.href = 'http://172.23.238.164:7000/social/';
     }, (err) => { this.Message(); });
   }
-  closeDialog1(): void {
-    this.dialogConfig.close();
+
+  navigateToSignupPage() {
+    console.log("Singup clicked");
+    this.router.navigate(['/signup']);
   }
 
   Message() {

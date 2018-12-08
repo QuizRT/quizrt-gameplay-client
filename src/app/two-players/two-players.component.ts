@@ -30,7 +30,7 @@ export class TwoPlayersComponent implements OnInit {
   answered = false;
   topic = '';
   TopicSelected = false;
-  Waiting = false;
+  waiting = false;
   groupname: string;
   options: string[];
   notify: any;
@@ -39,16 +39,18 @@ export class TwoPlayersComponent implements OnInit {
   constructor(public cookieService:CookieService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.waiting = true;
     const token = this.cookieService.get('UserLoginAPItoken');
     const jwtData = token.split('.')[1];
-    const decodedJwtJsonData = window.atob(jwtData);
-    const decodedJwtData = JSON.parse(decodedJwtJsonData);
-    this.username = decodedJwtData.Name;
+    // const decodedJwtJsonData = window.atob(jwtData);
+    // const decodedJwtData = JSON.parse(decodedJwtJsonData);
+    // this.username = decodedJwtData.Name;
+    this.username = "Nishant";
     this.route.paramMap.subscribe(params => { this.topic = params.get('id'); });
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
-
+    this.sleep();
 
     // this.connection.on('ClockStarted', (tick: boolean) => {
     //   this.gameClock();
@@ -75,7 +77,7 @@ export class TwoPlayersComponent implements OnInit {
     });
 
     this.connection.on('NoOpponentsFound', () => {
-      this.Waiting = false;
+      this.waiting = false;
       this.start = false;
       this.gameOver = true;
       console.log('users not found..');

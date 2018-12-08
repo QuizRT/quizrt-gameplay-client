@@ -1,3 +1,28 @@
+.quizrt-l-container {
+  height: 100vh;
+  width: 100vw;
+  background: #403dd5;
+  color: white;
+  margin: 0%;
+  padding-left: 30px;
+  padding-right: 15px;
+  padding-top: 6em;
+  display: flex;
+  flex-direction: column;
+}
+
+.quizrt-c-signup__btn {
+  margin-left: 10px;
+}
+
+.quizrt-c-login {
+  padding-top: 20px;
+}
+
+.quizrt-c-form__field {
+  width: 100%;
+}
+
 @media(max-width:768px){
   .login{
     width: auto;

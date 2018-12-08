@@ -4,6 +4,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
 import { AuthService, GoogleLoginProvider } from 'angular-6-social-login';
+import { TopicService } from '../topic.service';
+import { Router } from '@angular/router';
 
 export interface DialogData {
   name: string;
@@ -22,7 +24,11 @@ export class HomePageComponent {
   name: string;
   country: string;
   password: string;
-  constructor(private dialog: MatDialog, private socialAuthService: AuthService) { }
+  topics: any[];
+
+  constructor(private dialog: MatDialog, private socialAuthService: AuthService, private topicService: TopicService, private router: Router) {
+    this.getTopics();
+  }
 
   public socialSignIn(socialPlatform: string) {
     let socialPlatformProvider;
@@ -48,6 +54,16 @@ export class HomePageComponent {
     dialogConfig.autoFocus = true;
     //  dialogConfig.width = '40%';
     this.dialog.open(LoginComponent, dialogConfig);
+  }
+
+  getTopics() {
+    this.topicService.getTopics().subscribe((topics: any) => {
+      this.topics = topics;
+    });
+  }
+
+  quickPlay(topic) {
+    this.router.navigate([`/play/${topic}/two-players`])
   }
 
   // onSignIn(googleUser) {

@@ -1,141 +1,98 @@
-
-@media( min-width: 769px){
-.homepage{
-  background-color: #F0F3BD;
+.quizrt-l-container__wrapper {
   display: flex;
-  height:100vh;
-  /* justify-content: space-between; */
-   /* background-image: url('/src/assets/img/image1.jpg');
-   background-repeat: no-repeat;
-   background-size: cover; */
-  z-index: -10;
+  height: 100%;
 }
 
-.homapage-overlay{
-  background-color: black;
-  display: flex;
-  height:100vh;
+.quizrt-l-container__aside {
+  display: none;
+  height: 100vh;
+  background-color: whitesmoke !important;
+  background: url('../../assets/img/mirror-rocket.png');
+  background-size: cover;
+  background-position: 60%;
+  flex: 4;
 }
 
-
-
-.logo{
-  flex:2;
-  background-color: #F0F3BD;
-  background-image: url('/src/assets/img/logo3.png');
-  background-size: 400px 410px;
-  background-position: 45%;
-  /* width: 241px;
-  height: 241px; */
-  background-repeat: no-repeat;
-  /* margin: auto; */
-  z-index: 100;
-  /* box-shadow: 10px 10px 10px #05668D; */
-
-}
-
-.buttons{
-  flex:1;
-  background-color: #05668D;
+.quizrt-l-container {
+  height: 100vh;
+  width: 100vw;
+  background: #403dd5;
+  color: whitesmoke;
+  margin: 0%;
+  padding-left: 30px;
+  padding-right: 15px;
+  padding-top: 6em;
   display: flex;
+  flex: 1 0 0;
   flex-direction: column;
-  justify-content: space-evenly;
-  /* opacity: 0; */
-  z-index:100;
-  box-shadow: -30px 10px 30px #021C27;
 }
 
-button{
-  margin-top:20%;
- /* margin-left: 20%; */
-
-  /* margin-left: 20vh; */
-  font-size: 25px;
-  display: block;
-  border-radius: 5px;
-  background-color:  #F0F3BD;
-  width: 70%;
-  color: #00A896;
-  /* text-align: center; */
-  text-decoration: none;
-  margin-left: 15%;
-  margin-right: 15%;
-  font-family: 'Unlock', cursive;
-  font-size: 1.3rem;
-}
-button:focus{
-  outline: none;
-}
-button:before{
-  content:'';
-  display:block;
-  filter:blur(4px);
+.quizrt-c-logo {
+  height: 120px;
+  width: 150px;
 }
 
-
-.homepage button:hover{
-  /* background:#02C39A; */
-  /* background:#30E3D4; */
-  /* color:white; */
-  cursor:pointer;
-  box-shadow: 10px 10px 10px black;
+.quizrt-c-container__title {
+  display: flex;
+  margin-top: 15px;
+  flex-direction: column;
 }
 
-.homepage button:hover:before{
-  opacity: 0.6;
-  transition: 0.7s;
+.quizrt-c-topic__container {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-
+.quizrt-l-topic__content {
+  min-height: 80px;
+  max-height: 80px;
+  width: 120px;
+  text-align: center;
 }
 
+.quizrt-c-topics {
+  margin-right: 10px;
+  border-radius: 8px;
+}
 
-@media(max-width: 768px) {
-  .homepage{
-    background-color: #F0F3BD;
+.quizrt-c-topics:first {
+  margin-right: 0px;
+}
+
+.quizrt-l-action__container {
+  text-align: center;
+}
+
+.quizrt-c-topic__card {
+  max-height: 100px;
+}
+
+.quizrt-c-topic__icon {
+  height: 80px;
+  width: 80px;
+}
+
+.quizrt-c-begin_btn {
+  border: none;
+  height: 40px;
+  width: 100px;
+  margin: 0px !important;
+  margin-top: 15px !important;
+  border-radius: 20px !important;
+  background: white !important;
+  color: black;
+}
+
+@media (min-width: 800px) {
+  .quizrt-l-container__aside {
+    display: block;
+    flex: 1 0 0;
   }
-
-  .buttons{
-    background-color: #F0F3BD;
-    height: fit-content;
-    margin-top: 10%;
-    /* opacity: 0; */
+  .quizrt-l-container {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 40px rgba(0,0,0,0.22);
   }
-
-  button{
-   margin-bottom:10%;
-   /* margin-left: 25%;    */
-   background-color: #00A896;
-   color: white;
-   text-align: center;
-   text-decoration: none;
-   font-size: 16px;
-   display: block;
-   /* border-radius: 12px; */
-   /* width: 60%; */
-   margin-left: 15%;
-   margin-right: 15%;
-   width: 70%;
-  }
-
-  .homepage button:hover{
-    cursor:pointer;
-    box-shadow: 10px 10px 10px black;
-  }
-
-  .login{
-    margin-top: 25%;
-  }
-
-  .logo{
-    background-color: #F0F3BD;
-    background-image: url('/src/assets/img/logo3.png');
-    width: 241px;
-    height: 241px;
-    background-repeat: no-repeat;
-    margin: auto;
-  }
-
 }
-
-

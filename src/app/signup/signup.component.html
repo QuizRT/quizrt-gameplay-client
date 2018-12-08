@@ -1,20 +1,17 @@
-<div class="login">
-  <mat-form-field>
-      <input matInput placeholder="Name" [(ngModel)]= "name">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <input matInput type= "email" placeholder="email" [(ngModel)]= "email">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
+<div class="quizrt-l-container">
+  <h3>QuizRT Signup</h3>
+  <div class="quizrt-c-login">
+    <mat-form-field class="quizrt-c-form__field">
+      <input matInput placeholder="name" [(ngModel)]= "name">
+    </mat-form-field>
+    <mat-form-field class="quizrt-c-form__field">
+      <input matInput type= "email" placeholder="email" [(ngModel)]= "email">
+    </mat-form-field>
+    <mat-form-field class="quizrt-c-form__field">
       <input matInput type="password" minlength="8" placeholder="Password" [(ngModel)]= "password">
-  </mat-form-field>
-  <br>
-  <div>
-      <button mat-raised-button color="primary" type="submit"
-           [routerLink]="['']" (click)="closeDialog2()" >Signup
-      </button>
-      <button mat-raised-button color="warn" (click)="closeDialog1()">Close</button>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button [routerLink]="['']" (click)="closeDialog2()">Signup</button>
+    </div>
   </div>
 </div>
