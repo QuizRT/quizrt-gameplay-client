@@ -3,35 +3,37 @@
 <!-- <button class="play" mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button> -->
 <!-- <div> -->
 <!-- <mat-progress-bar *ngIf ="!start && TopicSelected" mode="indeterminate"></mat-progress-bar> -->
-<div class="single-player" *ngIf="!start && TopicSelected">
-<img class="quizrt-c-gameplay__loader__image" src="./assets/img/gameplay-loader.gif" alt="" srcset="">
-<div class="waiting" *ngIf="!start && TopicSelected">Starting Quiz...</div>
-</div>
-<div *ngIf="start && !gameOver" class="md-elevation-z24">
-  <mat-card class="questions">
-    {{currentQuestion.question}}
-    <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
-    <br>
-    <br>
-    <mat-radio-group class="options" ng-disabled="answered">
-      <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o); answered = true">
-        {{o}}<br>
-      </mat-radio-button>
-    </mat-radio-group>
+<div class="quizrt-l-container">
+  <div class="single-player" *ngIf="!start && TopicSelected">
+  <img class="quizrt-c-gameplay__loader__image" src="./assets/img/gameplay-loader.gif" alt="" srcset="">
+  <div class="waiting" *ngIf="!start && TopicSelected">Starting Quiz...</div>
+  </div>
+  <div *ngIf="start && !gameOver" class="md-elevation-z24">
+    <mat-card class="questions">
+      {{currentQuestion.question}}
+      <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
+      <br>
+      <br>
+      <mat-radio-group class="options" ng-disabled="answered">
+        <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o); answered = true">
+          {{o}}<br>
+        </mat-radio-button>
+      </mat-radio-group>
+    </mat-card>
+  </div>
+
+  <mat-card *ngIf="start && !gameOver" class="score">
+    Your Score is {{score}}
   </mat-card>
+  <!-- </div> -->
+
+
+  <mat-card class="gameover" *ngIf="start && gameOver">
+    <mat-card-title>Your Final Score is {{score}} </mat-card-title>
+    <button mat-raised-button class="goBack" (click)="Home()">Home</button>
+    <br><br>
+
+  <progress-bar *ngIf="start && !gameOver" [progress]="counter*10" [color-degraded]="{'10': '#1B7397', '20': '#05668D', '30':'#055D81','40': '#055474','50': '#044B67',
+      '60': '#04415A','70': '#03384D','80': '#032F41','90': '#022634','100': '#021C27'}">
+  </progress-bar>
 </div>
-
-<mat-card *ngIf="start && !gameOver" class="score">
-  Your Score is {{score}}
-</mat-card>
-<!-- </div> -->
-
-
-<mat-card class="gameover" *ngIf="start && gameOver">
-  <mat-card-title>Your Final Score is {{score}} </mat-card-title>
-  <button mat-raised-button class="goBack" (click)="Home()">Home</button>
-  <br><br>
-
-<progress-bar *ngIf="start && !gameOver" [progress]="counter*10" [color-degraded]="{'10': '#1B7397', '20': '#05668D', '30':'#055D81','40': '#055474','50': '#044B67',
-    '60': '#04415A','70': '#03384D','80': '#032F41','90': '#022634','100': '#021C27'}">
-</progress-bar>
