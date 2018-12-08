@@ -1,29 +1,9 @@
-/* .topic{
-  width: 100%;
-  margin: auto;
-  background-color: #02C39A;
-  color: white;
-  height: 5rem;
-  font-size: 25px;
-  text-align: center;
-} */
-/* .play{ */
-  /* margin-bottom:30%; */
-  /* margin-left: 30%;
-  height:3rem;*/
-  /* background-color: #02C39A; */
-  /* color: white; */
-/*  font-style: bold;
-  font-size: 25px;
-*/
+
   .waiting {
-  /* background-image: url('./assets/img/liquidloader.gif'); */
+  background-image: url('./assets/img/gameplay-loader.gif');
   background-repeat: no-repeat;
   height:100vh;
   background-size: cover;
-  /* opacity:0; */
-  /* margin-top:10%; */
-  /* margin-left:40%; */
 }
 .questions{
   width:80%;
@@ -62,32 +42,16 @@
   }
 
   .gameover{
-    width:60%;
-    height:60%;
+    /* width:60%;
+    height:60%; */
     margin:auto;
     margin-top:5rem;
-    /* width:80%; */
-    /* opacity: 0; */
-    /* margin-top: 10rem; */
-    /* font-size: 65px; */
     color:white;
-    background-color:#022634;
+    background: #403dd5;
     }
-
-   /* #finalScore{
-      color: blue;
-      font-size: 40px;
-   } */
    .goBack{
     margin: auto;
     }
-
-   img{
-     opacity: 0;
-   }
- 
-
-
 
   @media(max-width:767px){
     .play{
