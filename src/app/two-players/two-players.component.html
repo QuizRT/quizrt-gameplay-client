@@ -7,7 +7,7 @@
     <div *ngIf="noOpponentsFound; else opponentsFound">
       <div class="quizrt-c-text">Oops! Couldn't find any opponents</div>
       <div class="back">
-      <button mat-raised-button (click)="Route()">Play Single</button>
+      <button mat-raised-button (click)="Route()" class="back_button">Play Single</button>
       <button mat-raised-button (click)="Home()">Home</button>
       </div>
     </div>
