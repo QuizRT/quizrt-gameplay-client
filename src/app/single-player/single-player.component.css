@@ -38,6 +38,7 @@
   background-color: whitesmoke;
   border-radius: 8px;
   border-width: 10px;
+  font-family: 'Product Sans';
   /* box-shadow: 20px 10px 10px #021C27; */
   /* z-index: 100; */
 }
@@ -49,6 +50,7 @@
   margin: auto;
   color:#021C27;
   background-color:whitesmoke;
+  font-family: 'Product Sans';
 
   }
 
@@ -61,6 +63,7 @@
   margin-top:10px;
   text-align: center;
   border-radius: 8px;
+  font-family: 'Product Sans';
   }
 
   .gameover{
@@ -70,6 +73,7 @@
     margin-top:5rem;
     color:white;
     background: #403dd5;
+    font-family: 'Product Sans';
     }
    .goBack{
     margin: auto;
@@ -85,9 +89,11 @@
     .questions{
       font-size: 15px;
       margin-top: 3rem;
+      font-family: 'Product Sans';
     }
    .gameover{
      margin-top: 7rem;
+     font-family: 'Product Sans';
    }
    .score{
      font-size: 20px;
