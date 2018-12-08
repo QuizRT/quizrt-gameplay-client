@@ -17,8 +17,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { PlayComponent } from './play/play.component';
 import { SinglePlayerComponent } from './single-player/single-player.component';
 import { TwoPlayersComponent} from './two-players/two-players.component';
-import { ThreePlayersComponent} from './three-players/three-players.component';
-import { FourPlayersComponent } from './four-players/four-players.component';
 import {MatCardModule} from '@angular/material/card';
 import { ChatComponent } from './chat/chat.component';
 import { SocialLoginModule,  AuthServiceConfig, GoogleLoginProvider} from 'angular-6-social-login';
@@ -61,8 +59,6 @@ return config;
     PlayComponent,
     SinglePlayerComponent,
     TwoPlayersComponent,
-    ThreePlayersComponent,
-    FourPlayersComponent,
     ChatComponent,
     SignupComponent,
   ],
