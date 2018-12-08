@@ -91,7 +91,7 @@ export class TwoPlayersComponent implements OnInit {
       this.gameplay = true;
       this.start = false;
       this.noOpponentsFound = true;
-      this.gameOver = true;
+      this.gameOver = false;
       console.log('users not found..');
     });
 
