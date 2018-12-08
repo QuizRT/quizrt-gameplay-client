@@ -43,12 +43,23 @@
   font-size: 25px;
   color:#021C27;
   border-color:#021C27;
-  background-color: #838568;
-  border-radius: 10px;
+  background-color: whitesmoke;
+  border-radius: 8px;
   border-width: 10px;
-  box-shadow: 20px 10px 10px #021C27;
-  z-index: 100;
+  /* box-shadow: 20px 10px 10px #021C27; */
+  /* z-index: 100; */
 }
+.options{
+  display: inline-flex;
+  flex-direction: column;
+  width:80%;
+  /* opacity: 0; */
+  margin: auto;
+  color:#021C27;
+  background-color:whitesmoke;
+
+  }
+
 
 #clock{
   width:30%;
@@ -61,19 +72,7 @@
   text-align: center;
 
  }
-
-
-.options{
-  display: inline-flex;
-  flex-direction: column;
-  width:80%;
-  /* opacity: 0; */
-  margin: auto;
-  color:white;
-  background-color:#02C39A;
-  }
-
- mat-grid-tile {
+mat-grid-tile {
   background-color:#028090;
   color: white;
   width:80%;
@@ -120,10 +119,12 @@ mat-grid-list{
   background-color: white;
 }
 .result{
-  color: #02C39A;
-  width:80%;
-  margin: auto;
-  font-size: 40px;
+    /* width:60%;
+    height:60%; */
+    margin:auto;
+    margin-top:5rem;
+    color:white;
+    background: #403dd5;
 }
 .result .button{
   margin-left: 10%;
@@ -147,14 +148,17 @@ mat-grid-list{
     font-size: 15px;
     width: 30%;
    }
-  .questions{
-    font-size: 20px;
+   .questions{
+    font-size: 15px;
+    margin-top: 3rem;
   }
 
  .result{
-   font-size: 20px;
+  margin-top: 7rem;
  }
-
+.result .button{
+ font-size: 15px;
+}
  mat-grid-list{
   width:80%;
   margin: auto;

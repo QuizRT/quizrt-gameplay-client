@@ -98,12 +98,12 @@ export class TwoPlayersComponent implements OnInit {
     this.connection.on('StartClock', () => {
       this.counter = 10;
       const intervalMain = setInterval(() => {
-        this.counter -= 0.1;
-        if (this.counter <= 0.1) {
+        this.counter -= 1;
+        if (this.counter <= 0) {
 
           clearInterval(intervalMain);
         }
-      }, 100);
+      }, 1000);
     });
 
     this.connection.on('GetScore', (username: string, score: number) => {

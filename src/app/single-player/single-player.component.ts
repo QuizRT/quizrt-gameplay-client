@@ -73,12 +73,11 @@ export class SinglePlayerComponent implements OnInit {
     this.connection.on('StartClock', () => {
       this.counter = 10;
       const intervalMain = setInterval(() => {
-        this.counter = this.counter - 0.1;
-        if (this.counter <= 0.1) {
-
-          clearInterval(intervalMain);
+        this.counter = this.counter-1;
+        if (this.counter <= 0) {
+            clearInterval(intervalMain);
         }
-      }, 100);
+      }, 1000);
     });
 
     this.connection.on('ProvideGroupId', (groupname: string) => {
