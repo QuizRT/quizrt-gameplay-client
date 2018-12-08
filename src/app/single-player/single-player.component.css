@@ -16,7 +16,7 @@
   background-color: whitesmoke;
   border-radius: 8px;
   border-width: 10px;
-  box-shadow: 20px 10px 10px #021C27;
+  /* box-shadow: 20px 10px 10px #021C27; */
   z-index: 100;
 }
 .options{
@@ -32,7 +32,7 @@
 
  .score{
   background-color:rgb(38, 124, 106);
-  color: black;
+  color:whitesmoke;
   width:80%;
   /* opacity: 0; */
   margin: auto;
