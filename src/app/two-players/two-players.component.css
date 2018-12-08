@@ -109,19 +109,17 @@ mat-grid-list{
   flex-direction: row;
   justify-content: center;
   /* width:60%; */
-  margin-left: 20%;
+  /* margin-left: 20%; */
   font-size: 25px;
   align-content: center;
   background-color: white;
   font-style: normal;
   align-items: center;
   justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 5%;
 
 }
-
-/* .back-container{
-  flex-direction: row;
-} */
 .result{
   color: #02C39A;
   width:80%;
