@@ -105,8 +105,8 @@ mat-grid-list{
 }
 .back{
 
-  display: inline;
-  /* flex-direction: column; */
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   /* width:60%; */
   margin-left: 20%;
@@ -118,9 +118,9 @@ mat-grid-list{
 
 }
 
-.back-container{
+/* .back-container{
   flex-direction: row;
-}
+} */
 .result{
   color: #02C39A;
   width:80%;
