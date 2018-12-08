@@ -105,7 +105,7 @@ mat-grid-list{
 }
 .back{
 
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
   justify-content: center;
   /* width:60%; */
