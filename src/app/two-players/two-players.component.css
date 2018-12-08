@@ -1,3 +1,9 @@
+.quizrt-l-container {
+  height: 80vh;
+  width: 100%;
+  background: #403dd5;
+  /* box-sizing: border-box; */
+}
 .quizrt-c-gameplay {
   height: 100vh;
   width: 100%;

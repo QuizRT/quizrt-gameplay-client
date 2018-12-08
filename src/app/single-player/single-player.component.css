@@ -1,10 +1,10 @@
 
 
 .quizrt-l-container {
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   background: #403dd5;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
   .waiting {
