@@ -10,7 +10,7 @@
     <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
     <br>
     <br>
-    <mat-radio-group class="options" *ngIf="!answered">
+    <mat-radio-group class="options" [disabled]="!answered">
       <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o); answered = true">
         {{o}}<br>
       </mat-radio-button>
