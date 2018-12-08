@@ -6,6 +6,9 @@
   <ng-template #gameplay>
     <div *ngIf="noOpponentsFound; else opponentsFound">
       <div class="quizrt-c-text">Oops! Couldn't find any opponents</div>
+      <button mat-raised-button [routerLink]="['/play/${topic}/single-player']">Play Single</button>
+      <button class="back" mat-raised-button color="primary" (click)="Home()">
+        Home</button>
     </div>
     <ng-template #opponentsFound>
       <div class="quizrt-c-text">
@@ -37,11 +40,10 @@
   <br>
 </div>
 
-<mat-card class="noOpponent" *ngIf="!start && gameOver">
-  Players not found...Go Back
-  <button class="back" mat-raised-button color="primary" [routerLink]="['/play']">
-    Go Back</button>
-</mat-card>
+<!-- <mat-card class="noOpponent" *ngIf="!start && gameOver">
+  Players not found...Go Back -->
+
+<!-- </mat-card> -->
 
 <!-- <div id="clock" *ngIf="start && !gameOver">
   {{counter}}

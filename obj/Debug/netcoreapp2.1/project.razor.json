@@ -1,6 +1,14 @@
 {
-  "ProjectFilePath": "/data/workspace/quizrt-gameplay-client/quizrt-gameplay-client.csproj",
+  "ProjectFilePath": "c:\\Users\\Adarshi\\Documents\\Github\\quizrt-gameplay-front\\quizrt-gameplay-client.csproj",
   "TargetFramework": "netcoreapp2.1",
   "TagHelpers": [],
-  "Configuration": null
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
 }
