@@ -26,7 +26,7 @@
 
 <mat-card class="gameover" *ngIf="start && gameOver">
   <mat-card-title>Your Final Score is {{score}} </mat-card-title>
-  <button mat-raised-button class="goBack" [routerLink]="['/play/:id']">Go Back</button>
+  <button mat-raised-button class="goBack" (click)="Home()">Home</button>
   <br><br>
 
 <progress-bar *ngIf="start && !gameOver" [progress]="counter*10" [color-degraded]="{'10': '#1B7397', '20': '#05668D', '30':'#055D81','40': '#055474','50': '#044B67',

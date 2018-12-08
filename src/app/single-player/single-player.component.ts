@@ -92,6 +92,9 @@ export class SinglePlayerComponent implements OnInit {
 
 
   }
+  Home(){
+    window.location.href = 'http://172.23.238.164:7000/social/';
+}
 
 
   scoreCalculator(option: any) {
