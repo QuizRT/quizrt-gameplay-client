@@ -1,4 +1,4 @@
-<div class="quizrt-c-gameplay">
+<div class="two-players"><div class="quizrt-c-gameplay">
   <div *ngIf="waiting; else gameplay" class="quizrt-c-gameplay__loader">
     <img class="quizrt-c-gameplay__loader__image" src="./assets/img/gameplay-loader.gif" alt="" srcset="">
     <h5 class="quizrt-c-gameplay__loader__msg quizrt-c-text">Waiting for the Opponent to join</h5>
@@ -41,14 +41,7 @@
   <br>
 </div>
 
-<!-- <mat-card class="noOpponent" *ngIf="!start && gameOver">
-  Players not found...Go Back -->
 
-<!-- </mat-card> -->
-
-<!-- <div id="clock" *ngIf="start && !gameOver">
-  {{counter}}
-</div> -->
 
 
 <div class="result">
@@ -58,7 +51,7 @@
   </mat-card>
   <mat-card *ngIf="start && gameOver && score<otherUserScore">Opponent Wins<br>
     <button mat-raised-button (click)="Home()">
-      Home</button>`  
+      Home</button>`
   </mat-card>
   <mat-card *ngIf="start && gameOver && score === otherUserScore">It's a Draw<br>
     <button mat-raised-button (click)="Home()">
@@ -69,9 +62,4 @@
 <progress-bar *ngIf="start && !gameOver" [progress]="counter*10" [color-degraded]="{'10': '#1B7397', '20': '#05668D', '30':'#055D81','40': '#055474','50': '#044B67','60': '#04415A','70': '#03384D','80': '#032F41','90': '#022634','100': '#021C27'}">
 </progress-bar>
 
-<!-- <script> -->
-<!-- function disableButton(){ -->
-<!-- console.log("radio-button disabled"); -->
-
-<!-- } -->
-<!-- </script> -->
+</div>

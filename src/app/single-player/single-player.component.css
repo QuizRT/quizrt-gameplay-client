@@ -17,7 +17,7 @@
   border-radius: 8px;
   border-width: 10px;
   /* box-shadow: 20px 10px 10px #021C27; */
-  z-index: 100;
+  /* z-index: 100; */
 }
 .options{
   display: inline-flex;
