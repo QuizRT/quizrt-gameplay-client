@@ -112,7 +112,7 @@ mat-grid-list{
   /* margin-left: 20%; */
   font-size: 25px;
   align-content: center;
-  background-color: white;
+  background: #403dd5;
   font-style: normal;
   align-items: center;
   justify-content: space-between;
@@ -121,6 +121,7 @@ mat-grid-list{
 
 .back_button{
   margin-right: 10px;
+  background-color: white;
 }
 .result{
   color: #02C39A;
