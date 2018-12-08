@@ -3,7 +3,10 @@
 <!-- <button class="play" mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button> -->
 <!-- <div> -->
 <!-- <mat-progress-bar *ngIf ="!start && TopicSelected" mode="indeterminate"></mat-progress-bar> -->
+<div class="single-player" *ngIf="!start && TopicSelected">
+<img class="quizrt-c-gameplay__loader__image" src="./assets/img/gameplay-loader.gif" alt="" srcset="">
 <div class="waiting" *ngIf="!start && TopicSelected">Starting Quiz...</div>
+</div>
 <div *ngIf="start && !gameOver" class="md-elevation-z24">
   <mat-card class="questions">
     {{currentQuestion.question}}
