@@ -7,7 +7,7 @@
   display: none;
   height: 100vh;
   background-color: whitesmoke !important;
-  background: url('../../assets/img/mirror-rocket.png');
+  background: url('./assets/img/mirror-rocket.png');
   background-size: cover;
   background-position: 60%;
   flex: 4;
