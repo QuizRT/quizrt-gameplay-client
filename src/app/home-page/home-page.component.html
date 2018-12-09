@@ -7,7 +7,7 @@
       <div>Play against the best minds of the world!!</div>
       <button mat-button class="quizrt-c-begin_btn" [routerLink]="['login']">Begin</button>
     </div>
-    <div class="quizrt-c-topic__container">
+    <div id="topicContainer" class="quizrt-c-topic__container">
       <mat-card class="quizrt-c-topic__card" *ngFor="let topic of topics" class="quizrt-c-topics">
         <mat-card-header>
           <mat-card-title>{{topic | titlecase}}</mat-card-title>

@@ -6,10 +6,13 @@ import { ActivatedRoute } from '@angular/router';
 import { LoginComponent } from "../login/login.component";
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import * as jwtDecode from 'jwt-decode';
+
 export class Options {
   optionName: string;
   isCorrect: boolean;
 }
+
 @Component({
   selector: 'app-two-players',
   templateUrl: './two-players.component.html',
@@ -40,29 +43,25 @@ export class TwoPlayersComponent implements OnInit {
   opponentsFound:boolean = false;
 
 
-  constructor(public cookieService:CookieService, private route: ActivatedRoute,private router: Router) { }
+  constructor(public cookieService:CookieService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     // this.waiting = true;
-    const token = this.cookieService.get('UserLoginAPItoken');
-    const jwtData = token.split('.')[1];
-    const decodedJwtJsonData = window.atob(jwtData);
-    const decodedJwtData = JSON.parse(decodedJwtJsonData);
+    const token = this.cookieService.get('UserLoginAPIToken');
+    const decodedJwtData = jwtDecode(token);
     this.username = decodedJwtData.Name;
-    // this.username = "Nishant";
     this.route.paramMap.subscribe(params => { this.topic = params.get('id'); });
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
 
-      this.connection.start()
-      .then(() => {
-        console.log('Connection Established...');
-        this.waiting = true;
-        this.connection.send('Init', this.username, this.topic, 2);
-      })
-      .catch((err) => console.log('Error::: ', err));
-
+    this.connection.start()
+    .then(() => {
+      console.log('Connection Established...');
+      this.waiting = true;
+      this.connection.send('Init', this.username, this.topic, 2);
+    })
+    .catch((err) => console.log('Error::: ', err));
 
     this.connection.on('QuestionsReceived', (message: any) => {
       console.log('received questions');

@@ -24,3 +24,19 @@ body {
 .mat-form-field-underline {
   background-color: white !important;
 }
+
+@media (min-width: 800px) {
+  body {
+    font-size: 24px;
+  }
+  .mat-card-title {
+    font-weight: 500 !important;
+    font-size: 1.2em !important;
+  }
+
+  .mat-card-content {
+    font-weight: 400;
+    font-size: 1.05em !important;
+  }
+
+}

@@ -97,17 +97,17 @@ mat-grid-list{
 }
 
 .noOpponent{
-  color: #02C39A;
-  font-size: 25px;
+  /* color: #02C39A; */
+  /* font-size: 25px; */
 }
-.back{
 
+.back{
   display: inline-flex;
   flex-direction: row;
   justify-content: center;
   /* width:60%; */
   /* margin-left: 20%; */
-  font-size: 25px;
+  /* font-size: 25px; */
   align-content: center;
   background: #403dd5;
   font-style: normal;

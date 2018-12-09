@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  socialFrontend: 'http://172.23.238.164:7000/social/',
 };
 
 /*
