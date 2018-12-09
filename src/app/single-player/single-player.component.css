@@ -7,10 +7,14 @@
   align-items: center;
 }
 .home{
-  margin-left: 0%;
+ float: left;
 }
 .end{
- margin-right: 0%;
+float: right;
+}
+
+h2{
+  color: white;
 }
 
 .waiting {
