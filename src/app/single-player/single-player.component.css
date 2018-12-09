@@ -107,11 +107,6 @@ h5{
   font-family: 'Product Sans';
 }
 
-.goBack {
-  margin: auto;
-}
-
-
 @media(min-width: 800px) {
 
 }
@@ -135,9 +130,9 @@ h5{
   .score{
     font-size: 20px;
   }
-  .goBack{
+  /* .goBack{
     font-size: 15px;
-  }
+  } */
   .end{
     margin-top:0;
     float:right;

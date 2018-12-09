@@ -1,7 +1,7 @@
 <div class="quizrt-l-container">
     <button mat-raised-button (click)="Home()">Home</button>
     <button mat-raised-button class="end" (click)="EndGame()">End Game</button>
-    <div><h5>You are playing {{topic}} with {{otherUser}}</h5></div>
+    <div><h4>You are playing {{topic}} with {{otherUser}}</h4></div>
   <div class="quizrt-c-gameplay" *ngIf="!start && !gameOver">
   <div *ngIf="waiting; else gameplay" class="quizrt-c-gameplay__loader">
     <img class="quizrt-c-gameplay__loader__image" src="./assets/img/gameplay-loader.gif" alt="" srcset="">
