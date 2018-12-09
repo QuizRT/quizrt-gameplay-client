@@ -19,7 +19,6 @@ import { SinglePlayerComponent } from './single-player/single-player.component';
 import { TwoPlayersComponent} from './two-players/two-players.component';
 import {MatCardModule} from '@angular/material/card';
 import { ChatComponent } from './chat/chat.component';
-import { SocialLoginModule,  AuthServiceConfig, GoogleLoginProvider} from 'angular-6-social-login';
 import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material';
 import {MatSnackBarModule} from '@angular/material';
@@ -37,19 +36,6 @@ import { TopicService } from './topic.service';
 import { AuthGuard } from './AuthGuard';
 import { LoginService } from './login.service';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-
-export function getAuthServiceConfigs() {
-  const config = new AuthServiceConfig(
-    [
-      {
-        id: GoogleLoginProvider.PROVIDER_ID,
-        provider: new GoogleLoginProvider('146798745966-lj51tb9pmdpam7a2d7k375fq221didg0.apps.googleusercontent.com')
-      }
-
-    ]
-);
-return config;
-}
 
 
 @NgModule({
@@ -78,7 +64,6 @@ return config;
     MatInputModule,
     AppRoutingModule,
     MatCardModule,
-    SocialLoginModule,
     MatListModule,
     MatIconModule,
     MatButtonModule,
@@ -89,10 +74,6 @@ return config;
     MatButtonToggleModule
   ],
   providers: [
-    {
-      provide: AuthServiceConfig,
-      useFactory: getAuthServiceConfigs
-    },
     PlayerService,
     CookieService,
     TopicService,

@@ -3,7 +3,7 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
 import { SignupComponent } from '../signup/signup.component';
-import { AuthService, GoogleLoginProvider } from 'angular-6-social-login';
+
 import { TopicService } from '../topic.service';
 import { Router } from '@angular/router';
 
@@ -26,19 +26,10 @@ export class HomePageComponent {
   password: string;
   topics: any[];
 
-  constructor(private dialog: MatDialog, private socialAuthService: AuthService, private topicService: TopicService, private router: Router) {
+  constructor(private dialog: MatDialog, private topicService: TopicService, private router: Router) {
     this.getTopics();
   }
 
-  public socialSignIn(socialPlatform: string) {
-    let socialPlatformProvider;
-    if (socialPlatform == 'google') {
-      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-    }
-    this.socialAuthService.signIn(socialPlatformProvider).then(
-      (userData) => { console.log(socialPlatform + ' sign in data: ', userData); }
-    );
-  }
 
   openDialog2(): void {
     const dialogConfig = new MatDialogConfig();
