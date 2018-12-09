@@ -43,26 +43,20 @@
       </mat-radio-button>
     </mat-radio-group>
   </mat-card>
-
-  <mat-grid-list cols="2" rowHeight="5:1.5"  class="score">
-    <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
-    <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
-  </mat-grid-list>
 </div>
 
+
+
 <div class="result">
-  <mat-card *ngIf="start && gameOver && score>otherUserScore"><h5>You Win</h5><br>
-    <!-- <button mat-raised-button (click)="Home()"> -->
-      <!-- Home</button> -->
-  </mat-card>
-  <mat-card *ngIf="start && gameOver && score<otherUserScore"><h5>Opponent Wins</h5><br>
-    <!-- <button mat-raised-button (click)="Home()"> -->
-      <!-- Home</button>` -->
-  </mat-card>
-  <mat-card *ngIf="start && gameOver && score === otherUserScore"><h5>It's a Draw</h5><br>
-    <!-- <button mat-raised-button (click)="Home()"> -->
-      <!-- Home</button> -->
-  </mat-card>
+  <div *ngIf="start && gameOver && score>otherUserScore">
+    <h5>You Win</h5>
+  </div>
+  <div *ngIf="start && gameOver && score<otherUserScore">
+    <h5>{{otherUser}} Wins</h5>
+  </div>
+  <div *ngIf="start && gameOver && score === otherUserScore">
+    <h5>It's a Draw</h5>
+  </div>
 </div>
 
 <!-- <progress-bar *ngIf="start && !gameOver" [progress]="counter*10" [color-degraded]="{'10': '#1B7397', '20': '#05668D', '30':'#055D81','40': '#055474','50': '#044B67','60': '#04415A','70': '#03384D','80': '#032F41','90': '#022634','100': '#021C27'}"> -->
