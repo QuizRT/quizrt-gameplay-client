@@ -6,7 +6,7 @@ import * as jwtDecode from 'jwt-decode';
 @Injectable()
 export class LoginService {
   private userLoggedIn: boolean;
-  constructor(private cookieService) {
+  constructor(private cookieService: CookieService) {
     const token = this.cookieService.get('UserLoginAPIToken');
     if (token) {
       this.userLoggedIn = true;
