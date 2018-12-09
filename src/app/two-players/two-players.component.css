@@ -74,22 +74,10 @@
   text-align: center;
 
  }
-mat-grid-tile {
-  background-color:#028090;
-  color: white;
-  width:80%;
-  /* opacity: 0; */
-  margin: auto;
-}
 
-mat-grid-list{
-  width:80%;
-  /* opacity: 0; */
-  margin: auto;
- /* font-size: 25px; */
- background-color:#028090;
-}
-
+ .score{
+   flex-direction: row;
+ }
 .end{
   position: absolute;
   top: 90%;

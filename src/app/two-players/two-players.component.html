@@ -31,11 +31,8 @@
       </mat-radio-button>
     </mat-radio-group>
   </mat-card>
-  <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
-  <!-- <mat-card>{{this.currentQuestion}}</mat-card> -->
 
-  <!-- <mat-grid-list cols="2" rowHeight="5:1.5"> -->
-  <mat-grid-list cols="2" rowHeight="5:1.5">
+  <mat-grid-list cols="2" rowHeight="5:1.5"  class="score">
     <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
     <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
   </mat-grid-list>
