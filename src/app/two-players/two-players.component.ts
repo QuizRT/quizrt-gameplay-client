@@ -123,6 +123,10 @@ export class TwoPlayersComponent implements OnInit {
       window.location.href = 'http://172.23.238.164:7000/social/';
   }
 
+  EndGame(){
+    this.gameOver = true;
+  }
+
   shuffle(options: any) {
     let currentIndex = options.length, temporaryValue, randomIndex;
 
