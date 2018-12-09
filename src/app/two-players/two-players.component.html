@@ -23,6 +23,7 @@
 </div>
 
 <div *ngIf="start && !gameOver">
+  <br>
   <h5>You are playing {{topic}} with {{otherUser}}</h5>
   <mat-card class="questions question-start-timer">
     <mat-card-title class="question-title">
@@ -34,7 +35,7 @@
     </mat-button-toggle-group>
 
   </mat-card>
-  <br><br>
+  <br><br><br>
   <mat-grid-list cols="2" rowHeight="5:1.5"  class="score">
     <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
     <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
@@ -42,15 +43,15 @@
 </div>
 
 <div class="result">
-  <mat-card *ngIf="start && gameOver && score>otherUserScore">You Win<br>
+  <mat-card *ngIf="start && gameOver && score>otherUserScore"><h5>You Win</h5><br>
     <!-- <button mat-raised-button (click)="Home()"> -->
       <!-- Home</button> -->
   </mat-card>
-  <mat-card *ngIf="start && gameOver && score<otherUserScore">Opponent Wins<br>
+  <mat-card *ngIf="start && gameOver && score<otherUserScore"><h5>Opponent Wins</h5><br>
     <!-- <button mat-raised-button (click)="Home()"> -->
       <!-- Home</button>` -->
   </mat-card>
-  <mat-card *ngIf="start && gameOver && score === otherUserScore">It's a Draw<br>
+  <mat-card *ngIf="start && gameOver && score === otherUserScore"><h5>It's a Draw</h5><br>
     <!-- <button mat-raised-button (click)="Home()"> -->
       <!-- Home</button> -->
   </mat-card>
