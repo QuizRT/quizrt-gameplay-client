@@ -22,6 +22,16 @@
 
 <div *ngIf="start && !gameOver" class="question-container">
   <h5 class="game-status">You are playing {{topic}} with {{otherUser}}</h5>
+  <div class="score-container">
+    <div class="score-container-player">
+      <div>{{username}}</div>
+      <div><h3>{{score}}</h3></div>
+    </div>
+    <div class="score-container-player">
+      <div>{{otherUser}}</div>
+      <div><h3>{{otherUserScore}}</h3></div>
+    </div>
+  </div>
   <mat-card class="questions question-start-timer">
     <mat-card-title class="question-title">
     {{currentQuestion.question}}

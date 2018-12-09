@@ -37,6 +37,18 @@
   flex-direction: column;
 }
 
+.score-container {
+  display: flex;
+  width: 100%;
+  background: whitesmoke;
+  justify-content: space-between;
+}
+
+.score-container-player {
+  display: flex;
+  flex-direction: column;
+}
+
 .quizrt-c-gameplay__loader {
   display: flex;
   flex-direction: column;
