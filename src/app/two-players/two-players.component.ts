@@ -1,12 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
-import { MatSnackBar } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
-import { LoginComponent } from "../login/login.component";
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import * as jwtDecode from 'jwt-decode';
+import { environment } from '../../environments';
 
 export class Options {
   optionName: string;
@@ -112,12 +110,6 @@ export class TwoPlayersComponent implements OnInit {
       }
     });
 
-    // this.connection.on('GetUsername',(response:any)=> {
-    //   for(let r in response) {
-    //     if(r.username != this.username)
-    //   }
-    // });
-
     this.connection.on('GameOver', () => {
       this.gameOver = true;
     });
@@ -125,7 +117,7 @@ export class TwoPlayersComponent implements OnInit {
   }
 
   Home(){
-      window.location.href = 'http://172.23.238.164:7000/social/';
+    window.location.href = environment.socialFrontend;
   }
 
   EndGame(){

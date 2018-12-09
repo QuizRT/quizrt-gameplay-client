@@ -49,13 +49,13 @@
 
 <div class="result">
   <div *ngIf="start && gameOver && score>otherUserScore">
-    <h5>You Win</h5>
+    <h2>You Win</h2>
   </div>
   <div *ngIf="start && gameOver && score<otherUserScore">
-    <h5>{{otherUser}} Wins</h5>
+    <h2>{{otherUser}} Wins</h2>
   </div>
   <div *ngIf="start && gameOver && score === otherUserScore">
-    <h5>It's a Draw</h5>
+    <h2>It's a Draw</h2>
   </div>
 </div>
 
