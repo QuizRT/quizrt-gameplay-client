@@ -1,7 +1,7 @@
 <div class="quizrt-l-container">
     <button mat-raised-button (click)="Home()">Home</button>
     <button mat-raised-button (click)="EndGame()">End Game</button>
-    <div>{{username}}</div>
+    <div>You are playing {{topic}} with {{otherUser}}</div>
   <div class="quizrt-c-gameplay" *ngIf="!start && !gameOver">
   <div *ngIf="waiting; else gameplay" class="quizrt-c-gameplay__loader">
     <img class="quizrt-c-gameplay__loader__image" src="./assets/img/gameplay-loader.gif" alt="" srcset="">
@@ -46,15 +46,15 @@
 
 <div class="result">
   <mat-card *ngIf="start && gameOver && score>otherUserScore">You Win<br>
-    <button mat-raised-button (click)="Home()">
+    <!-- <button mat-raised-button (click)="Home()"> -->
       Home</button>
   </mat-card>
   <mat-card *ngIf="start && gameOver && score<otherUserScore">Opponent Wins<br>
-    <button mat-raised-button (click)="Home()">
+    <!-- <button mat-raised-button (click)="Home()"> -->
       Home</button>`
   </mat-card>
   <mat-card *ngIf="start && gameOver && score === otherUserScore">It's a Draw<br>
-    <button mat-raised-button (click)="Home()">
+    <!-- <button mat-raised-button (click)="Home()"> -->
       Home</button>
   </mat-card>
 </div>

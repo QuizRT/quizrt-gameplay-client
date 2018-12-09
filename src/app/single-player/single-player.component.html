@@ -1,7 +1,7 @@
 <div class="quizrt-l-container">
   <button mat-raised-button (click)="Home()">Home</button>
   <button mat-raised-button (click)="EndGame()">End Game</button>
-  <div>{{username}}</div>
+  <div>{{username}} is playing {{topic}}</div>
   <div class="single-player" *ngIf="!start && TopicSelected">
     <img class="quizrt-c-gameplay__loader__image" src="./assets/img/gameplay-loader.gif" alt="" srcset="">
     <div class="waiting" *ngIf="!start && TopicSelected">Starting Quiz</div>
@@ -27,7 +27,7 @@
 
   <mat-card class="gameover" *ngIf="start && gameOver">
     <mat-card-title>Your Final Score is {{score}} </mat-card-title>
-    <button mat-raised-button class="goBack" (click)="Home()">Home</button>
+    <!-- <button mat-raised-button class="goBack" (click)="Home()">Home</button> -->
     <br><br>
     </mat-card>
 </div>
