@@ -6,6 +6,12 @@
   flex-direction: column;
   align-items: center;
 }
+.home{
+  margin-left: 0%;
+}
+.end{
+ margin-right: 0%;
+}
 
 .waiting {
   background-repeat: no-repeat;
