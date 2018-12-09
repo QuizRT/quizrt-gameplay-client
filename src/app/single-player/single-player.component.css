@@ -81,6 +81,7 @@
   display: inline-flex;
   flex-direction: column;
   font-family: 'Product Sans';
+  color:black;
 }
 
 .question-title {
