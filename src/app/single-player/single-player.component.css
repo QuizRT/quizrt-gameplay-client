@@ -141,7 +141,9 @@ h2{
   .goBack{
     font-size: 15px;
   }
-   .end{
-   float: right;
-   }
+  .end{
+    margin-top:0;
+    float:right;
+    margin-right:0;
+  }
 }
