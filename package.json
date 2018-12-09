@@ -29,6 +29,7 @@
     "angular-audio": "^1.7.3",
     "angular-progress-bar": "^1.0.9",
     "core-js": "^2.5.4",
+    "jwt-decode": "^2.2.0",
     "materialize-css": "^1.0.0-rc.2",
     "ngx-cookie-service": "^2.0.2",
     "rxjs": "~6.2.0",

@@ -1,9 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { DialogData } from '../home-page/home-page.component';
 import { PlayerService } from '../player.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import * as jwtDecode from 'jwt-decode';
+import { environment } from '../../environments/environment'
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,15 +25,13 @@ export class LoginComponent {
   CheckValidation(): void {
     this.service.GetUser(this.email, this.password).subscribe((result: any) => {
       // let token = parseJwt(result);
-      const token = this.cookieService.get('UserLoginAPItoken');
-      const jwtData = token.split('.')[1];
-      const decodedJwtJsonData = window.atob(jwtData);
-      const decodedJwtData = JSON.parse(decodedJwtJsonData);
-      const userId = decodedJwtData.UserID;
+      console.log("Successfully Logged IN");
+      this.cookieService.set('UserLoginAPIToken', result.token);
+      console.log(this.cookieService.get('UserLoginAPIToken'));
+      const decodedJwtData = jwtDecode(result.token);
       this.fullName = decodedJwtData.Name;
-      const email = decodedJwtData.Email;
-      console.log(userId + '  ' + this.fullName + '  ' + email);
-      window.location.href = 'http://172.23.238.164:7000/social/';
+
+      // window.location.href = environment.socialFrontend;
     }, (err) => { this.Message(); });
   }
 

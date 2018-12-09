@@ -2,10 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import * as signalR from '@aspnet/signalr';
 import { ActivatedRoute } from '@angular/router';
-import { delay } from 'q';
-import { LoginComponent } from "../login/login.component";
 import { CookieService } from 'ngx-cookie-service';
-// import { Howl} from 'howler';
+import * as jwtDecode from 'jwt-decode';
 
 
 @Component({
@@ -31,10 +29,9 @@ export class SinglePlayerComponent implements OnInit {
   constructor(private route: ActivatedRoute, private cookieService: CookieService) { }
 
   ngOnInit() {
-    const token = this.cookieService.get('UserLoginAPItoken');
-    const jwtData = token.split('.')[1];
-    const decodedJwtJsonData = window.atob(jwtData);
-    const decodedJwtData = JSON.parse(decodedJwtJsonData);
+    const token = this.cookieService.get('UserLoginAPIToken');
+    const decodedJwtData = jwtDecode(token);
+
     this.username = decodedJwtData.Name;
     this.route.paramMap.subscribe(params => { this.topic = params.get('id'); });
     console.log('---topicname---', this.topic);
@@ -43,14 +40,15 @@ export class SinglePlayerComponent implements OnInit {
       .withUrl('http://172.23.238.164:7000/gameplayhub')
       .build();
 
-      this.connection.start()
-      .then(() => {
-        console.log('connection established');
-        this.TopicSelected = true;
-        console.log(this.username +" == "+ this.topic);
-        this.connection.send('Init', this.username, this.topic, 1);
-      })
-      .catch((err) => console.log('Error::: ', err));
+    this.connection.start()
+    .then(() => {
+      console.log('connection established');
+      this.TopicSelected = true;
+      console.log(this.username +" == "+ this.topic);
+      this.connection.send('Init', this.username, this.topic, 1);
+    })
+    .catch((err) => console.log('Error::: ', err));
+
     this.connection.on('QuestionsReceived', (message: any) => {
       this.start = true;
       this.answered = false;
@@ -67,18 +65,16 @@ export class SinglePlayerComponent implements OnInit {
     this.connection.on('GetScore', (username: string, score: number) => {
       this.username = username;
       this.score = score;
-
     });
 
     this.connection.on('StartClock', () => {
-
       const intervalMain = setInterval(() => {
-        this.counter = this.counter-1;
+        this.counter = this.counter - 0.01;
         if (this.counter <= 0) {
           this.counter = 10;
-            clearInterval(intervalMain);
+          clearInterval(intervalMain);
         }
-      }, 1000);
+      }, 10);
     });
 
     this.connection.on('ProvideGroupId', (groupname: string) => {

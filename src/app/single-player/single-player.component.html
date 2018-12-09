@@ -1,30 +1,32 @@
-<!-- <input  class="topic" *ngIf="!TopicSelected" type="text" placeholder="Enter Topic" [(ngModel)]="topic"> -->
-
-<!-- <button class="play" mat-raised-button *ngIf="!TopicSelected" (click)="sleep()">Let's Play</button> -->
-<!-- <div> -->
-<!-- <mat-progress-bar *ngIf ="!start && TopicSelected" mode="indeterminate"></mat-progress-bar> -->
 <div class="quizrt-l-container">
   <div class="single-player" *ngIf="!start && TopicSelected">
-  <img class="quizrt-c-gameplay__loader__image" src="./assets/img/gameplay-loader.gif" alt="" srcset="">
-  <div class="waiting" *ngIf="!start && TopicSelected">Starting Quiz...</div>
+    <img class="quizrt-c-gameplay__loader__image" src="./assets/img/gameplay-loader.gif" alt="" srcset="">
+    <div class="waiting" *ngIf="!start && TopicSelected">Starting Quiz</div>
   </div>
-  <div *ngIf="start && !gameOver" class="md-elevation-z24">
-    <mat-card class="questions">
-      {{currentQuestion.question}}
-      <!-- <button class="end" *ngIf="!gameOver" mat-raised-button (click)="endGame()">End Game</button> -->
-      <br>
-      <br>
-      <mat-radio-group class="options" ng-disabled="answered">
-        <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o); answered = true">
-          {{o}}<br>
-        </mat-radio-button>
-      </mat-radio-group>
+  <div *ngIf="start && !gameOver" class=" md-elevation-z24 question-container">
+    <div *ngIf="start && !gameOver" class="score">
+      Your Score is {{score}}
+    </div>
+    <mat-card class="questions question-start-timer">
+      <mat-card-title class="question-title">
+        {{currentQuestion.question}}
+      </mat-card-title>
+      <!-- <mat-card-header> -->
+      <!-- </mat-card-header> -->
+      <!-- <mat-card-content> -->
+        <!-- <mat-radio-group class="options" ng-disabled="answered"> -->
+          <!-- <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o); answered = true"> -->
+            <!-- {{o}} -->
+          <!-- </mat-radio-button> -->
+        <!-- </mat-radio-group> -->
+      <!-- </mat-card-content> -->
+      <mat-button-toggle-group class="options" cols="2" row-height="5:1.5">
+        <mat-button-toggle *ngFor="let o of options" [value]="o" (click)= "scoreCalculator(); answered=true;"></mat-button-toggle>
+      </mat-button-toggle-group>
+
     </mat-card>
   </div>
 
-  <mat-card *ngIf="start && !gameOver" class="score">
-    Your Score is {{score}}
-  </mat-card>
   <!-- </div> -->
 
 
@@ -33,8 +35,4 @@
     <button mat-raised-button class="goBack" (click)="Home()">Home</button>
     <br><br>
     </mat-card>
-
-  <progress-bar *ngIf="start && !gameOver" [progress]="counter*10" [color-degraded]="{'10': '#1B7397', '20': '#C2B9C1', '30':'#B3A8B2','40': '#958694','50': '#776375',
-      '60': '#594157','70': '#493648','80': '#392A38','90': '#291E28','100': '#191218'}">
-  </progress-bar>
 </div>
