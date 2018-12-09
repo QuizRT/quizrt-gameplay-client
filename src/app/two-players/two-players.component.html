@@ -1,6 +1,9 @@
 <div class="quizrt-l-container">
-    <button mat-raised-button (click)="Home()">Home</button>
-    <button mat-raised-button class="end" (click)="EndGame()">End Game</button>
+  <div class="quizrt-l-container__nav">
+    <button mat-button class="home" (click)="Home()"><h4>QuizRT</h4></button>
+    <button *ngIf="start && !gameOver" mat-button class="end" (click)="EndGame()"><h4>End Game</h4></button>
+  </div>
+
   <div class="quizrt-c-gameplay" *ngIf="!start && !gameOver">
   <div *ngIf="waiting; else gameplay" class="quizrt-c-gameplay__loader">
     <img class="quizrt-c-gameplay__loader__image" src="./assets/img/gameplay-loader.gif" alt="" srcset="">
@@ -17,20 +20,20 @@
   </ng-template>
 </div>
 
-<div *ngIf="start && !gameOver">
-  <br>
-  <h5>You are playing {{topic}} with {{otherUser}}</h5>
+<div *ngIf="start && !gameOver" class="question-container">
+  <h5 class="game-status">You are playing {{topic}} with {{otherUser}}</h5>
   <mat-card class="questions question-start-timer">
     <mat-card-title class="question-title">
     {{currentQuestion.question}}
-  </mat-card-title>
+    </mat-card-title>
 
-  <mat-button-toggle-group class="options"  cols="2" [disabled]="answered">
-      <mat-button-toggle *ngFor="let o of options" (click)= "scoreCalculator(o); answered=true;">{{o}}</mat-button-toggle>
-    </mat-button-toggle-group>
-
+    <mat-radio-group class="options" ng-disabled="answered">
+      <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o); answered = true">
+        {{o}}
+      </mat-radio-button>
+    </mat-radio-group>
   </mat-card>
-  <br><br><br>
+
   <mat-grid-list cols="2" rowHeight="5:1.5"  class="score">
     <mat-grid-tile>{{username}}: <br> {{ score }}</mat-grid-tile>
     <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>

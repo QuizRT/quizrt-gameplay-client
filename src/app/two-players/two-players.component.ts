@@ -158,12 +158,5 @@ export class TwoPlayersComponent implements OnInit {
   scoreCalculator(optionsobject: any) {
     this.connection.send('CalculateScore', this.groupname, this.username, optionsobject, this.currentQuestion, this.counter);
   }
-
-  // openSnackBar(message: string, action: number) {
-  //   this.snackBar.open("Hi", "JustChecking", {
-  //     duration: 2000,
-  //   });
-  // }
-
 }
 
