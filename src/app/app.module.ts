@@ -36,6 +36,7 @@ import { PlayerService } from './player.service';
 import { TopicService } from './topic.service';
 import { AuthGuard } from './AuthGuard';
 import { LoginService } from './login.service';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 export function getAuthServiceConfigs() {
   const config = new AuthServiceConfig(
@@ -85,6 +86,7 @@ return config;
     MatSnackBarModule,
     ProgressBarModule,
     MatProgressBarModule,
+    MatButtonToggleModule
   ],
   providers: [
     {
