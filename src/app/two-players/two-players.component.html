@@ -7,18 +7,13 @@
     <h5 class="quizrt-c-gameplay__loader__msg quizrt-c-text">Waiting for the Opponent to join</h5>
   </div>
   <ng-template #gameplay>
-    <div *ngIf="noOpponentsFound; else opponentsFound">
+    <div *ngIf="noOpponentsFound">
       <div class="quizrt-c-text">Oops! Couldn't find any opponents</div>
       <div class="back">
       <button mat-raised-button (click)="Route()" class="back_button">Play Single</button>
       <button mat-raised-button (click)="Home()">Home</button>
       </div>
     </div>
-    <ng-template #opponentsFound>
-      <div class="quizrt-c-text">
-        OpponentsFound
-      </div>
-    </ng-template>
   </ng-template>
 </div>
 
