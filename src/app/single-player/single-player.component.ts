@@ -4,6 +4,7 @@ import * as signalR from '@aspnet/signalr';
 import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import * as jwtDecode from 'jwt-decode';
+import { environment } from '../../environments/environment';
 
 
 @Component({
@@ -68,12 +69,12 @@ export class SinglePlayerComponent implements OnInit {
 
     this.connection.on('StartClock', () => {
       const intervalMain = setInterval(() => {
-        this.counter = this.counter - 0.01;
+        this.counter = this.counter -1;
         if (this.counter <= 0) {
           this.counter = 10;
           clearInterval(intervalMain);
         }
-      }, 10);
+      }, 1000);
     });
 
     this.connection.on('ProvideGroupId', (groupname: string) => {
@@ -88,8 +89,13 @@ export class SinglePlayerComponent implements OnInit {
 
   }
   Home(){
-    window.location.href = 'http://172.23.238.164:7000/social/';
+    window.location.href =  environment.socialFrontend;;
 }
+EndGame(){
+  this.gameOver = true;
+}
+
+
 
 
   scoreCalculator(option: any) {

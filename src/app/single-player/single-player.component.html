@@ -1,4 +1,6 @@
 <div class="quizrt-l-container">
+  <button mat-raised-button (click)="Home()">Home</button>
+  <button mat-raised-button (click)="EndGame()">End Game</button>
   <div class="single-player" *ngIf="!start && TopicSelected">
     <img class="quizrt-c-gameplay__loader__image" src="./assets/img/gameplay-loader.gif" alt="" srcset="">
     <div class="waiting" *ngIf="!start && TopicSelected">Starting Quiz</div>
@@ -11,16 +13,8 @@
       <mat-card-title class="question-title">
         {{currentQuestion.question}}
       </mat-card-title>
-      <!-- <mat-card-header> -->
-      <!-- </mat-card-header> -->
-      <!-- <mat-card-content> -->
-        <!-- <mat-radio-group class="options" ng-disabled="answered"> -->
-          <!-- <mat-radio-button class="radio-button" *ngFor="let o of options" [value]="o" (click)="scoreCalculator(o); answered = true"> -->
-            <!-- {{o}} -->
-          <!-- </mat-radio-button> -->
-        <!-- </mat-radio-group> -->
-      <!-- </mat-card-content> -->
-      <mat-button-toggle-group class="options" [disabled]="!answered">
+     
+      <mat-button-toggle-group class="options"  cols="2" [disabled]="answered">
         <mat-button-toggle *ngFor="let o of options" (click)= "scoreCalculator(o); answered=true;">{{o}}</mat-button-toggle>
       </mat-button-toggle-group>
 

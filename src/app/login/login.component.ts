@@ -3,7 +3,7 @@ import { PlayerService } from '../player.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import * as jwtDecode from 'jwt-decode';
-import { environment } from '../../environments/environment'
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-login',
