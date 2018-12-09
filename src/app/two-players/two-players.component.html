@@ -21,14 +21,14 @@
 </div>
 
 <div *ngIf="start && !gameOver" class="question-container">
-  <h5 class="game-status">You are playing {{topic}} with {{otherUser}}</h5>
+  <h5 class="game-status">You are playing {{topic}} with {{otherUser | titlecase}}</h5>
   <div class="score-container">
     <div class="score-container-player">
-      <div>{{username}}</div>
+      <div>{{username | titlecase}}</div>
       <div><h3>{{score}}</h3></div>
     </div>
     <div class="score-container-player">
-      <div>{{otherUser}}</div>
+      <div>{{otherUser | titlecase}}</div>
       <div><h3>{{otherUserScore}}</h3></div>
     </div>
   </div>

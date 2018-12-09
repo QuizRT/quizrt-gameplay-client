@@ -44,6 +44,7 @@ export class TwoPlayersComponent implements OnInit {
   constructor(public cookieService:CookieService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.otherUser = "...";
     const token = this.cookieService.get('UserLoginAPIToken');
     const decodedJwtData = jwtDecode(token);
     this.username = decodedJwtData.Name;

@@ -170,19 +170,14 @@
 }
 
 .result {
+  color: white;
   margin:auto;
   width: 100%;
   text-align: center;
   margin-top: 15px;
 }
 
-.result .button{
-  margin-left: 10%;
-   color: #028090;
-   font-style: bold;
-   font-size: 25px;
-   width: 30%;
-}
+
  .two-players{
    background-color:#403dd5;
    width:100%;
