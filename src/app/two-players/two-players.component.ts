@@ -38,15 +38,14 @@ export class TwoPlayersComponent implements OnInit {
   groupname: string;
   options: string[];
   notify: any;
-  noOpponentsFound:boolean =  false;
-  gameplay:boolean=false;
-  opponentsFound:boolean = false;
+  noOpponentsFound: boolean =  false;
+  gameplay: boolean=false;
+  opponentsFound: boolean = false;
 
 
   constructor(public cookieService:CookieService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    // this.waiting = true;
     const token = this.cookieService.get('UserLoginAPIToken');
     const decodedJwtData = jwtDecode(token);
     this.username = decodedJwtData.Name;
@@ -57,8 +56,8 @@ export class TwoPlayersComponent implements OnInit {
 
     this.connection.start()
     .then(() => {
-      console.log('Connection Established...');
       this.waiting = true;
+      console.log('Connection Established...');
       this.connection.send('Init', this.username, this.topic, 2);
     })
     .catch((err) => console.log('Error::: ', err));
@@ -112,6 +111,12 @@ export class TwoPlayersComponent implements OnInit {
         this.score = score;
       }
     });
+
+    // this.connection.on('GetUsername',(response:any)=> {
+    //   for(let r in response) {
+    //     if(r.username != this.username)
+    //   }
+    // });
 
     this.connection.on('GameOver', () => {
       this.gameOver = true;

@@ -107,8 +107,8 @@ h5{
   font-family: 'Product Sans';
 }
 
-@media(min-width: 800px) {
-
+mat-button-toggle-group {
+  width:100%;
 }
 
 @media(max-width:767px) {
