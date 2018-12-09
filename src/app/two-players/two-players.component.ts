@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import * as jwtDecode from 'jwt-decode';
-import { environment } from '../../environments';
+import { environment } from '../../environments/environment';
 
 export class Options {
   optionName: string;
