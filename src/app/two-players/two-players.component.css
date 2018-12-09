@@ -165,12 +165,11 @@
   margin-right: 55px;
   background-color: white;
 }
-.result{
+.result {
     /* width:60%;
     height:60%; */
     margin:auto;
     margin-top:5rem;
-    color:white;
     background: #403dd5;
 }
 .result .button{
