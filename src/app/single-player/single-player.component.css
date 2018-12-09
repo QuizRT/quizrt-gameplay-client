@@ -144,4 +144,10 @@ h2{
   .goBack{
     font-size: 15px;
   }
+  .home{
+    float: left;
+   }
+   .end{
+   float: right;
+   }
 }
