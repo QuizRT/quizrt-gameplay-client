@@ -31,7 +31,7 @@ export class LoginComponent {
       const decodedJwtData = jwtDecode(result.token);
       this.fullName = decodedJwtData.Name;
 
-      // window.location.href = environment.socialFrontend;
+      window.location.href = environment.socialFrontend;
     }, (err) => { this.Message(); });
   }
 

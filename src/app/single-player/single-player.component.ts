@@ -31,7 +31,6 @@ export class SinglePlayerComponent implements OnInit {
   ngOnInit() {
     const token = this.cookieService.get('UserLoginAPIToken');
     const decodedJwtData = jwtDecode(token);
-
     this.username = decodedJwtData.Name;
     this.route.paramMap.subscribe(params => { this.topic = params.get('id'); });
     console.log('---topicname---', this.topic);
