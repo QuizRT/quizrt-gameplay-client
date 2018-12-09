@@ -186,7 +186,9 @@
 }
 
 .end{
+  margin-top:0;
   float:right;
+  margin-right:0;
 }
 
 }
