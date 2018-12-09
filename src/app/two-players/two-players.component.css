@@ -45,6 +45,7 @@
 }
 
 .score-container-player {
+  color: white;
   padding: 15px;
   display: flex;
   text-align: center;
@@ -167,12 +168,14 @@
   margin-right: 55px;
   background-color: white;
 }
+
 .result {
-    /* width:60%;
-    height:60%; */
-    margin:auto;
-    margin-top: 30px;
+  margin:auto;
+  width: 100%;
+  text-align: center;
+  margin-top: 15px;
 }
+
 .result .button{
   margin-left: 10%;
    color: #028090;
