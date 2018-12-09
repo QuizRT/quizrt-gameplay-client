@@ -1,7 +1,7 @@
 <div class="quizrt-l-container">
     <button mat-raised-button (click)="Home()">Home</button>
     <button mat-raised-button class="end" (click)="EndGame()">End Game</button>
-    <div><h2>You are playing {{topic}} with {{otherUser}}</h2></div>
+    <div><h3>You are playing {{topic}} with {{otherUser}}</h3></div>
   <div class="quizrt-c-gameplay" *ngIf="!start && !gameOver">
   <div *ngIf="waiting; else gameplay" class="quizrt-c-gameplay__loader">
     <img class="quizrt-c-gameplay__loader__image" src="./assets/img/gameplay-loader.gif" alt="" srcset="">
@@ -40,9 +40,6 @@
     <mat-grid-tile>{{otherUser}}:<br>{{ otherUserScore }}</mat-grid-tile>
   </mat-grid-list>
 </div>
-
-
-
 
 <div class="result">
   <mat-card *ngIf="start && gameOver && score>otherUserScore">You Win<br>
