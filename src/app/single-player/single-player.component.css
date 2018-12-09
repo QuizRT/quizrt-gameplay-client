@@ -8,7 +8,7 @@
 }
 
 
-h2{
+h3{
   color: white;
 }
 
@@ -111,9 +111,6 @@ h2{
   margin: auto;
 }
 
- .end{
- float: right;
- }
 
 @media(min-width: 800px) {
 
