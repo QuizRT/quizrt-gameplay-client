@@ -21,7 +21,7 @@
         <!-- </mat-radio-group> -->
       <!-- </mat-card-content> -->
       <mat-button-toggle-group class="options" cols="2" row-height="5:1.5">
-        <mat-button-toggle *ngFor="let o of options" (click)= "scoreCalculator(o); answered=true;"></mat-button-toggle>
+        <mat-button-toggle *ngFor="let o of options" (click)= "scoreCalculator(o); answered=true;">{{o}}</mat-button-toggle>
       </mat-button-toggle-group>
 
     </mat-card>
