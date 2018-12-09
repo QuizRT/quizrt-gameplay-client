@@ -111,9 +111,6 @@ h2{
   margin: auto;
 }
 
-.home{
-  float: left;
- }
  .end{
  float: right;
  }
@@ -144,9 +141,6 @@ h2{
   .goBack{
     font-size: 15px;
   }
-  .home{
-    float: left;
-   }
    .end{
    float: right;
    }

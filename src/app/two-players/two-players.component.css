@@ -100,11 +100,11 @@
  .score{
    flex-direction: row;
  }
-.end{
+/* .end{
   position: absolute;
   top: 90%;
     left: 90%
-}
+} */
 
 /* .noOpponent{
   color: #02C39A; */
