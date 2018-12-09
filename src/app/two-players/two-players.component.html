@@ -1,6 +1,6 @@
 <div class="quizrt-l-container">
     <button mat-raised-button (click)="Home()">Home</button>
-    <button mat-raised-button (click)="EndGame()">End Game</button>
+    <button mat-raised-button class="end" (click)="EndGame()">End Game</button>
     <div>You are playing {{topic}} with {{otherUser}}</div>
   <div class="quizrt-c-gameplay" *ngIf="!start && !gameOver">
   <div *ngIf="waiting; else gameplay" class="quizrt-c-gameplay__loader">
