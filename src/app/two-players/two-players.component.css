@@ -99,6 +99,8 @@
 
  .score{
    flex-direction: row;
+   color:white;
+   font-size: 2rem;
  }
 /* .end{
   position: absolute;
